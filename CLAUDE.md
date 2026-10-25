@@ -49,6 +49,7 @@ Pastline is a monorepo for one product and one diploma project.
 
 - Never commit API keys, tokens, passwords, `.env` files or real private journal data.
 - Never commit or push unless the user explicitly requests it.
+- Never add Co-Authored-By, Claude-Session or any AI attribution trailer to commit messages or PRs.
 - Do not use destructive Git commands without explicit instruction.
 - Do not rewrite unrelated code while fixing a focused problem.
 
