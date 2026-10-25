@@ -1,0 +1,44 @@
+# --- IDE: IntelliJ IDEA ---
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# --- IDE: VS Code ---
+.vscode/
+
+# --- Secrets and local environment ---
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+secrets/
+credentials.json
+
+# --- Private journal data (must never enter Git, see master prompt 4.6 / 20.3) ---
+private/
+corpus-private/
+
+# --- Java / Maven ---
+target/
+*.class
+*.log
+hs_err_pid*
+
+# --- Node / frontend ---
+node_modules/
+dist/
+coverage/
+.vite/
+npm-debug.log*
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
