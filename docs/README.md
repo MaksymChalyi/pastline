@@ -4,11 +4,12 @@ Project documentation. Everything here is written from work that was actually do
 
 | Directory | Purpose | Status |
 |-----------|---------|--------|
+| `plan/` | The active execution plan (`SPRINT_PLAN_4W.md`, overrides the 12-week schedule) and supporting protocols such as `QUERY_COLLECTION.md`. | Active |
 | `learning/` | My own study notes, one file per learning day, written from actual commands and observations. `TEMPLATE.md` defines the structure. | Week 1 notes created, not started |
 | `adr/` | Architecture Decision Records: context, decision, alternatives considered, consequences, date. | ADR-001 accepted |
 | `architecture/` | Description of the system architecture as it actually evolves. | Repository structure note |
-| `thesis/` | Maps implementation evidence to thesis material. Not the thesis manuscript. | Evidence map seeded |
-| `experiments/` | Reproducible experiment definitions, dataset metadata, raw results and analysis. | Created when the first real file exists (Week 4) |
+| `thesis/` | Maps implementation evidence to thesis material (`evidence-map.md`) and collects defense notes per checkpoint (`DEFENSE_NOTES.md`). Not the thesis manuscript. | Evidence map follows the sprint plan |
+| `experiments/` | Reproducible experiment definitions, dataset metadata, raw results and analysis. | Created when the first real file exists (sprint Week 1) |
 | `screenshots/` | Dated screenshots of stable features for the thesis. Never with readable real journal text. | Created when the first screenshot exists |
 
 Files planned for later phases (not created yet):

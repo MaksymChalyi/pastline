@@ -10,6 +10,8 @@ Pastline is a monorepo for one product and one diploma project.
 - During initial repository bootstrap, read `PASTLINE_MASTER_PROMPT.md` completely.
 - Do not modify `PASTLINE_MASTER_PROMPT.md` unless the user explicitly asks to change the roadmap.
 
+- Active plan is `docs/plan/SPRINT_PLAN_4W.md`; it overrides the 12-week schedule in the master prompt. In this sprint you implement code; after each checkpoint explain the key design decisions in 5-10 lines so the user can defend them.
+
 ## Repository boundaries
 
 - `backend/` contains production Java/Spring Boot code only.
@@ -37,7 +39,7 @@ Pastline is a monorepo for one product and one diploma project.
 - Update the related documentation and `PROGRESS.md` only from work that was actually completed.
 - Do not invent benchmark results, commands, test results, API behavior or documentation claims.
 - Inspect existing files before making claims about the codebase.
-- Import (4.6, 15A), query routing (4.7, 17A) and answer grounding (18A) are V1 scope. Do not treat them as optional or postpone them to a later phase.
+- Import (4.6, 15A) and answer grounding (18A) are in scope; query routing (17A) is cut by the sprint plan and recorded as a threat to validity.
 - Never build an Ask Pastline path that can return text without verified source identifiers.
 - Never place real personal journal data in the repository, including test fixtures and thesis appendices.
 - When a checkpoint's definition of done fails twice, propose a scope cut from Section 2A.3 instead of proposing more work.
@@ -50,10 +52,12 @@ Pastline is a monorepo for one product and one diploma project.
 - Do not use destructive Git commands without explicit instruction.
 - Do not rewrite unrelated code while fixing a focused problem.
 
-## Learning workflow
+## Working mode
 
-Use this sequence when the checkpoint is educational:
+The user is the orchestrator, Claude writes the code.
 
-learn -> implement -> test -> document -> explain -> verify understanding -> mark complete
-
-The goal is that the user understands and can defend the implementation, not only that the code runs.
+- One checkpoint per session. Present a plan first and wait for approval before editing files.
+- A checkpoint is done only when relevant tests pass; show the test output.
+- After each checkpoint append 5-10 lines to `docs/thesis/DEFENSE_NOTES.md`: decision, reason, rejected alternative, one likely committee question with a short answer.
+- Never commit or push; the user reviews the diff and commits.
+- Reject unnecessary complexity: no microservices, Kafka, JWT, CQRS, Lombok, Kubernetes.
