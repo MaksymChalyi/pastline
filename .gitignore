@@ -26,7 +26,7 @@ private/
 corpus-private/
 
 # --- Java / Maven ---
-target/
+**/target/
 *.class
 *.log
 hs_err_pid*
@@ -42,3 +42,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# --- Lab outputs ---
+embed-out.json

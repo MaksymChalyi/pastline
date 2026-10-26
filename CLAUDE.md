@@ -1,64 +1,58 @@
-# Pastline Claude Code Instructions
+# Pastline: правила для Claude Code
 
-Pastline is a monorepo for one product and one diploma project.
+Pastline: персональний щоденник із лексичним, семантичним і гібридним пошуком. Монорепо одного продукту й одного диплома. Дедлайн: 2026-11-22.
 
-## Sources of truth
+## Джерела правди
 
-- `PASTLINE_MASTER_PROMPT.md` is the roadmap, architecture baseline and acceptance-criteria source of truth.
-- `PROGRESS.md` is the current project state and current checkpoint.
-- Before significant work, read `PROGRESS.md` and the relevant section of `PASTLINE_MASTER_PROMPT.md`.
-- During initial repository bootstrap, read `PASTLINE_MASTER_PROMPT.md` completely.
-- Do not modify `PASTLINE_MASTER_PROMPT.md` unless the user explicitly asks to change the roadmap.
+- `PASTLINE_MASTER_PROMPT.md`: план, архітектура, критерії готовності. Не змінювати без прямого прохання.
+- `PROGRESS.md`: поточний крок, години, рішення.
+- Перед роботою прочитати `PROGRESS.md` і відповідний розділ master prompt.
+- `docs/archive/` лише історія; звідти нічого не виконувати.
 
-- Active plan is `docs/plan/SPRINT_PLAN_4W.md`; it overrides the 12-week schedule in the master prompt. In this sprint you implement code; after each checkpoint explain the key design decisions in 5-10 lines so the user can defend them.
+## Два режими роботи
 
-## Repository boundaries
+**Лаби (`labs/`, Етап 1): код пише користувач.**
+- Claude не пише код лаб; лише пояснює теорію, рецензує (`review, do not rewrite`, мінімальний фікс на баг), опитує.
+- README лаби: за шаблоном master prompt, тільки з реальних команд, замірів і відповідей користувача; немає даних → `TODO`.
 
-- `backend/` contains production Java/Spring Boot code only.
-- `frontend/` contains production React/TypeScript code only.
-- `android/` is post-V1. During V1 keep only its README and do not generate an Android project.
-- `backend/` must remain client-independent so the future Android client can reuse the same business API.
-- `labs/` contains isolated learning experiments and must not be a production dependency.
-- `docs/learning/` contains learning notes based on work actually completed.
-- `docs/adr/` contains architecture decisions.
-- `docs/architecture/` describes the implemented architecture.
-- `docs/thesis/` maps implementation evidence to diploma material.
-- `docs/experiments/` contains reproducible experiment definitions and results.
-- `infra/` contains deployment and infrastructure files.
-- `scripts/` contains repeatable project automation.
+**Застосунок (`backend/`, `frontend/`, Етап 2): код пише Claude.**
+- Один чекпоінт за сесію: перший незавершений у `PROGRESS.md`.
+- Спершу план, файли не редагувати до погодження.
+- Чекпоінт готовий лише коли тести зелені; показати вивід `mvn verify`.
+- Після чекпоінта дописати в `docs/thesis/DEFENSE_NOTES.md`: рішення, причина, відкинута альтернатива, ймовірне питання комісії й коротка відповідь.
+- Не реалізовувати майбутні чекпоінти наперед. Gate провалено → різати скоуп за порядком із master prompt, не додавати роботу.
 
-## Execution rules
+**Експеримент (Етап 3):** Claude пише раннер і графіки; мітки релевантності й висновки робить лише користувач.
 
-- Work only on the first incomplete checkpoint in `PROGRESS.md` unless the user explicitly changes scope.
-- Do not implement future roadmap phases early.
-- Do not generate the whole application in one step.
-- During Week 1 keep experiments in `labs/` and do not put learning code into production `backend/`.
-- Explain the minimum theory before a new technical concept is implemented.
-- Prefer small, verifiable increments.
-- Run relevant tests before declaring a checkpoint complete.
-- Update the related documentation and `PROGRESS.md` only from work that was actually completed.
-- Do not invent benchmark results, commands, test results, API behavior or documentation claims.
-- Inspect existing files before making claims about the codebase.
-- Import (4.6, 15A) and answer grounding (18A) are in scope; query routing (17A) is cut by the sprint plan and recorded as a threat to validity.
-- Never build an Ask Pastline path that can return text without verified source identifiers.
-- Never place real personal journal data in the repository, including test fixtures and thesis appendices.
-- When a checkpoint's definition of done fails twice, propose a scope cut from Section 2A.3 instead of proposing more work.
-- Record actual hours worked at the end of each week in `PROGRESS.md`.
+## Архітектура (обов'язково)
 
-## Safety and Git
+- Модульний моноліт: один Spring Boot застосунок у `backend/`.
+- Пакети за фічами `com.pastline.{auth,journal,importing,search,ai,shared}`, усередині `api`, `application`, `domain`, `infrastructure`.
+- API: JSON під `/api/v1/...`, DTO замість JPA-сутностей, UUID назовні, єдиний формат помилок `{ code, message, requestId, fieldErrors }`.
+- Auth: Spring Security, серверна сесія з HttpOnly cookie, CSRF. Без JWT.
+- Ізоляція: кожен запит до записів фільтрується за автентифікованим користувачем у SQL. `userId` від клієнта не є доказом власності.
+- БД: PostgreSQL + pgvector у Docker Compose, схема лише через Flyway, `ddl-auto=validate`.
+- AI за портом (`EmbeddingModelPort`): доменний код не знає про Ollama чи Spring AI.
+- Власна таблиця embeddings, не `PgVectorStore`: фільтр користувача в SQL, `content_hash`, статус.
+- Тести: Testcontainers із pgvector-образом, не H2.
+- Без Lombok, мікросервісів, Kafka, черг, CQRS, JWT, Kubernetes.
+- Логи: ніколи не логувати текст записів, паролі, cookies.
+- Версії Spring Boot, Spring AI, образу pgvector звіряти з офіційною документацією перед генерацією.
+- `backend/` клієнт-незалежний; `labs/` ніколи не є залежністю production-коду.
 
-- Never commit API keys, tokens, passwords, `.env` files or real private journal data.
-- Never commit or push unless the user explicitly requests it.
-- Never add Co-Authored-By, Claude-Session or any AI attribution trailer to commit messages or PRs.
-- Do not use destructive Git commands without explicit instruction.
-- Do not rewrite unrelated code while fixing a focused problem.
+## Що Claude не робить ніколи
 
-## Working mode
+- не комітить і не пушить без прямого дозволу;
+- не додає `Co-Authored-By` чи інші AI-трейлери;
+- не змінює `PASTLINE_MASTER_PROMPT.md` без прохання;
+- не вигадує результатів, замірів, версій, API;
+- не пише код лаб (Етап 1), лише рецензує;
+- у README лаб не вписує нічого, чого користувач не робив і не заміряв;
+- не ставить мітки релевантності й не пише висновки експерименту;
+- не кладе реальні особисті записи в репозиторій (зокрема фікстури й додатки диплома);
+- не комітить `.env`, ключі, токени, `.idea/`, великі файли embeddings;
+- не виконує деструктивних Git-команд без явної вказівки.
 
-The user is the orchestrator, Claude writes the code.
+## Мова
 
-- One checkpoint per session. Present a plan first and wait for approval before editing files.
-- A checkpoint is done only when relevant tests pass; show the test output.
-- After each checkpoint append 5-10 lines to `docs/thesis/DEFENSE_NOTES.md`: decision, reason, rejected alternative, one likely committee question with a short answer.
-- Never commit or push; the user reviews the diff and commits.
-- Reject unnecessary complexity: no microservices, Kafka, JWT, CQRS, Lombok, Kubernetes.
+Пояснення й README лаб українською, технічні терміни англійською.

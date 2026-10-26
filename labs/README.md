@@ -1,20 +1,17 @@
 # labs/
 
-Isolated learning experiments. Each lab lives in its own subdirectory with its own build.
+Лабораторні Етапу 1 (`PASTLINE_MASTER_PROMPT.md`, розділ 5). Код лаб пишу сам; Claude лише опитує, рецензує і пише README з моїх реальних результатів.
 
-**Status:** empty. The first labs are created during Week 1.
+| Лаба | Папка | Статус | Головний висновок |
+|---|---|---|---|
+| 01 Ollama руками | `01-ollama-curl/` | NOT_STARTED | |
+| 02 Java HttpClient → Ollama | `02-java-http-client/` | NOT_STARTED | |
+| 03 Embeddings і cosine з нуля (EXP-000) | `03-embeddings-cosine/` | NOT_STARTED | |
+| 04 Spring AI | `04-spring-ai-demo/` | NOT_STARTED | |
+| 05 Міні-RAG на Spring AI | `05-spring-ai-rag/` | NOT_STARTED | |
 
-Planned Week 1 labs (from the roadmap, not yet created):
+## Правила
 
-| Lab | Roadmap day | Purpose |
-|-----|-------------|---------|
-| `labs/llm-http-java` | Day 3 | Call Ollama from plain Java 21 `HttpClient` |
-| `labs/openai-java` | Day 4 | Call OpenAI through raw HTTP and the official Java SDK |
-| `labs/embeddings-java` | Day 6 | Embeddings and cosine similarity without a vector database |
-| Spring AI lab | Day 7 | Rebuild the same concepts with Spring AI |
-
-## Rules
-
-- Production code in `backend/` or `frontend/` must never depend on code in `labs/`.
-- Lab code does not move into production by copy-paste without review.
-- Labs never contain API keys or real journal entries. Use environment variables and synthetic data.
+- Код у `backend/` і `frontend/` ніколи не залежить від `labs/`.
+- Код лаб не копіюється в `backend/` без рецензії.
+- У лабах немає API-ключів і реальних записів щоденника, лише синтетичні дані.

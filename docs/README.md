@@ -4,8 +4,9 @@ Project documentation. Everything here is written from work that was actually do
 
 | Directory | Purpose | Status |
 |-----------|---------|--------|
-| `plan/` | The active execution plan (`SPRINT_PLAN_4W.md`, overrides the 12-week schedule) and supporting protocols such as `QUERY_COLLECTION.md`. | Active |
-| `learning/` | My own study notes, one file per learning day, written from actual commands and observations. `TEMPLATE.md` defines the structure. | Week 1 notes created, not started |
+| `plan/` | Supporting protocols such as `QUERY_COLLECTION.md`. The plan itself is `PASTLINE_MASTER_PROMPT.md` (v2.1). | Active |
+| `archive/` | Superseded plans: master prompt v1.6, 4-week sprint plan, v1.6 Week 1 learning templates. History only. | Archived |
+| `learning/` | Study notes from actual work; may be replaced by links to lab READMEs in `labs/`. `TEMPLATE.md` defines the structure. | Template only |
 | `adr/` | Architecture Decision Records: context, decision, alternatives considered, consequences, date. | ADR-001 accepted |
 | `architecture/` | Description of the system architecture as it actually evolves. | Repository structure note |
 | `thesis/` | Maps implementation evidence to thesis material (`evidence-map.md`) and collects defense notes per checkpoint (`DEFENSE_NOTES.md`). Not the thesis manuscript. | Evidence map follows the sprint plan |
