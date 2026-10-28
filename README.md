@@ -1,39 +1,25 @@
 # Pastline
 
-Pastline is a personal journal and personal-history system. A user stores life records and later retrieves them through chronological browsing, lexical search, semantic search and AI-assisted questions answered only from their own records, with source entries shown for every answer. The core problem is information retrieval over personal records, not a generic chatbot.
+Pastline is a personal journal with search over your own entries: lexical, semantic and hybrid search, plus Ask Pastline answers that cite the source entries.
 
-**Diploma working title:** «Інтелектуальна система обліку та інтелектуального пошуку персональних записів»
+**Diploma topic (working title):** «Інтелектуальна система обліку та інтелектуального пошуку персональних записів»
 
-**Status:** pre-V1 / active development. No application exists yet.
+**Status:** in development. The application does not exist yet; learning labs are in progress.
 
-**Current phase:** Phase 0 - Repository bootstrap (see [`PROGRESS.md`](PROGRESS.md) for the live state).
+## Tech stack
 
-## Repository map
+- Backend: Java 21, Spring Boot (modular monolith), Spring Security (server session), Spring AI
+- Database: PostgreSQL + pgvector, Flyway
+- AI: Ollama (local models); OpenAI embeddings only for the online demo
+- Frontend: React + TypeScript (Vite)
+- Tests: JUnit, Testcontainers
+- Infrastructure: Docker Compose; demo deployment on Vercel + Render
 
-```text
-pastline/
-├── backend/      Java 21 / Spring Boot modular monolith (generated in Week 2)
-├── frontend/     React + TypeScript web client (generated in Week 3)
-├── android/      reserved for the post-V1 Kotlin client; documentation only during V1
-├── labs/         isolated learning experiments; never a production dependency
-├── infra/        deployment and infrastructure material
-├── docs/         learning notes, ADRs, architecture, thesis evidence, experiments
-├── scripts/      repeatable project automation
-├── CLAUDE.md     persistent Claude Code instructions
-├── PROGRESS.md   current checkpoint and session handoff
-└── PASTLINE_MASTER_PROMPT.md   roadmap and architecture source of truth
-```
+## Documents
 
-Web V1 talks to one shared Java backend through a versioned, client-neutral `/api/v1` API. The `android/` directory is reserved for a post-V1 Kotlin client that will reuse the same backend rather than a separate mobile backend.
-
-## Setup
-
-Setup and run commands will be added when executable applications exist. There is nothing to build or run yet.
-
-## Roadmap
-
-The full roadmap, architecture baseline and acceptance criteria are in [`PASTLINE_MASTER_PROMPT.md`](PASTLINE_MASTER_PROMPT.md).
+- [`PLAN.md`](PLAN.md): plan, architecture, thesis structure, decision log, progress
+- [`LABS.md`](LABS.md): learning labs 01–05
 
 ## Privacy
 
-Never commit personal diary data or API secrets. Real journal entries must not enter this repository in any form, including test fixtures, screenshots with readable text and thesis appendices. Secrets belong in a local `.env` file (ignored by Git); `.env.example` lists variable names only.
+Real journal entries never enter this repository: not in code, test fixtures, screenshots or thesis appendices. All data in the repository is synthetic. Secrets live in a local `.env` (ignored by Git); `.env.example` lists variable names only.
