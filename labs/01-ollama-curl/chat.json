@@ -1,0 +1,6 @@
+{
+  "model": "qwen3:4b",
+  "messages": [{ "role": "user", "content": "Поясни семантичний пошук у трьох реченнях." }],
+  "stream": false,
+  "think": false
+}

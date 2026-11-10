@@ -1,0 +1,8 @@
+{
+  "model": "embeddinggemma",
+  "input": [
+    "Вивчав CompletableFuture",
+    "Learned Java concurrency",
+    "Купив квиток до Варшави"
+  ]
+}
