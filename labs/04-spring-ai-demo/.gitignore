@@ -1,0 +1,3 @@
+# Решта (IDE, target/) — у кореневому .gitignore репозиторію
+HELP.md
+.mvn/wrapper/maven-wrapper.jar

@@ -274,14 +274,23 @@ src/test/java/lab/   search/CosineTest, search/LexicalTest, eval/MetricsTest
 - 📄 Baeldung, статті про Spring AI (почни з "Introduction to Spring AI"): https://www.baeldung.com/category/spring-ai
 
 ## Проєкт
-IDEA → New Project → Spring Boot, Java 21, Maven. Залежності: Spring Web, Ollama (розділ AI). Сумісність версій звірити на https://start.spring.io.
+Spring Boot 4.1.2, Spring AI 2.0.1, Java 21, Maven. Залежності: Spring Web, Ollama (розділ AI). Проєкт згенеровано на https://start.spring.io (майстер IDEA 2024.3 не створив його), artifact `lab04-spring-ai-demo` (не може починатися з цифри).
 
 ```properties
 spring.ai.ollama.base-url=http://localhost:11434
-spring.ai.ollama.chat.options.model=qwen3:4b
-spring.ai.ollama.embedding.options.model=embeddinggemma
+spring.ai.ollama.chat.model=qwen3:4b
+spring.ai.ollama.embedding.model=embeddinggemma
+server.port=8081
 ```
-Назви властивостей звірити з документацією своєї версії.
+У Spring AI 2.0 властивості без `.options`. Порт 8081, бо 8080 зайнятий системною службою.
+
+```text
+src/main/java/lab/
+├── Application.java
+├── chat/ChatController       GET /demo/chat?q=...
+└── search/  Cosine (з Лаби 03), Entry, SearchHit, SearchService, SearchController   POST /demo/search
+requests.http                 чат + Q02, Q07, Q10 з Лаби 03
+```
 
 ## Кроки
 1. `GET /demo/chat?q=...` через `ChatClient`.
@@ -295,21 +304,24 @@ spring.ai.ollama.embedding.options.model=embeddinggemma
 
 | Що | Значення |
 |---|---|
-| Результати збіглися з Лабою 03? | |
-| Час старту застосунку (embeddings 30 записів), с | |
-| Час `/demo/search`, мс | |
+| Результати збіглися з Лабою 03? | так: Q02, Q07, Q10 — усі 5 позицій і cosine до 3-го знака |
+| Час старту застосунку (embeddings 30 записів), с | 6,1 старт + 10,3 індексація |
+| Час `/demo/search`, мс | 100–189 (перший після чату 3 897) |
+| Час `/demo/chat`, с | 256 (447 у черзі за попереднім запитом) |
 
 | Spring AI робить за мене | Spring AI НЕ робить |
 |---|---|
-| 1. | 1. |
-| 2. | 2. |
-| 3. | 3. |
-| 4. | |
-| 5. | |
+| 1. HTTP, JSON, DTO до Ollama: один виклик `embeddingModel.embed(...)` | 1. Схожість, top-k, метрики (без vector store): мій код, вектори в пам'яті |
+| 2. Конфігурацію через `application.properties` і автоконфігурацію бінів | 2. Не гарантує поведінку моделі: з `disableThinking()` роздуми qwen3 однаково в `content` до `</think>` |
+| 3. Єдиний API над провайдером (Ollama ↔ OpenAI — стартер і властивості) | 3. Не керує мовою відповіді: на те саме питання раз англійською, раз українською |
+| 4. Типізовані опції моделі (`OllamaChatOptions`) | |
+| 5. `embed(List<String>)` повертає вектори в порядку текстів | |
+
+Розбір: `labs/04-spring-ai-demo/ANSWERS.md`.
 
 ## Готово, коли
-- [ ] `/demo/search` повертає top-5
-- [ ] таблиця "робить / не робить" заповнена
+- [x] `/demo/search` повертає top-5
+- [x] таблиця "робить / не робить" заповнена
 - [ ] "опитай мене", README, коміт `lab: 04 spring ai demo`
 
 ---

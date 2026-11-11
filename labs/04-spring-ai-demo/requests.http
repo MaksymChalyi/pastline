@@ -1,0 +1,21 @@
+### Чат (qwen3:4b на CPU, може тривати кілька хвилин)
+# @timeout 600
+GET http://localhost:8081/demo/chat?q=Поясни одним реченням, що таке embedding
+
+### Q02 з лаби 3: очікую E03 першим, cosine 0.414
+POST http://localhost:8081/demo/search
+Content-Type: application/json
+
+{ "query": "Коли я почав займатися спортом?" }
+
+### Q07 з лаби 3: очікую E20 першим, cosine 0.401
+POST http://localhost:8081/demo/search
+Content-Type: application/json
+
+{ "query": "Коли я був у Карпатах?" }
+
+### Q10 з лаби 3: очікую E12 (0.537), потім E19 (0.489)
+POST http://localhost:8081/demo/search
+Content-Type: application/json
+
+{ "query": "Коли я вперше вклав гроші під відсоток?" }
