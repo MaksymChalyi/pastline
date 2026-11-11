@@ -1,0 +1,18 @@
+### 1. Пошук без моделі: має збігтися з Лабою 03 (Q07: E20 першим, cosine 0.401)
+GET http://localhost:8082/rag/search?q=Коли я був у Карпатах?
+
+### 2. RAG вручну — відповідь є (E20)
+# @timeout 900
+GET http://localhost:8082/rag/ask-manual?q=Коли я був у Карпатах і що там було?
+
+### 3. RAG через Advisor — те саме питання
+# @timeout 900
+GET http://localhost:8082/rag/ask?q=Коли я був у Карпатах і що там було?
+
+### 4. RAG вручну — відповіді немає (Q08 з Лаби 03)
+# @timeout 900
+GET http://localhost:8082/rag/ask-manual?q=Коли я переїжджав у нову квартиру?
+
+### 5. RAG через Advisor — відповіді немає
+# @timeout 900
+GET http://localhost:8082/rag/ask?q=Коли я переїжджав у нову квартиру?
