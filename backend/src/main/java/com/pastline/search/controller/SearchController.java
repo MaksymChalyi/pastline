@@ -28,8 +28,9 @@ public class SearchController {
             @AuthenticationPrincipal AuthenticatedUser user,
             @RequestParam String q,
             @RequestParam(defaultValue = "lexical") String mode,
-            @RequestParam(defaultValue = "10") int limit) {
-        return searchService.search(user.id(), q, SearchMode.parse(mode), limit);
+            @RequestParam(defaultValue = "10") int limit,
+            @RequestParam(defaultValue = "false") boolean debug) {
+        return searchService.search(user.id(), q, SearchMode.parse(mode), limit, debug);
     }
 
     @PostMapping("/reindex")

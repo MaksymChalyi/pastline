@@ -49,3 +49,6 @@ GET http://localhost:8090/api/v1/search?q=бігав зранку&mode=semantic&
 
 ### 9. Семантичний: перефразування англійською до українських записів
 GET http://localhost:8090/api/v1/search?q=went jogging in the park&mode=semantic&limit=5
+
+### 10. Гібридний пошук з поясненням рангів (6.7)
+GET http://localhost:8090/api/v1/search?q=бігав зранку&mode=hybrid&limit=5&debug=true
