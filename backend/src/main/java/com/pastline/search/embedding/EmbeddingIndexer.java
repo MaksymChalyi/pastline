@@ -35,7 +35,8 @@ public class EmbeddingIndexer {
             return 0;
         }
         try {
-            List<float[]> vectors = model.embedDocuments(batch.stream().map(EmbeddingIndexer::document).toList());
+            List<float[]> vectors = model.embedDocuments(
+                    batch.stream().map(EmbeddingIndexer::document).toList());
             for (int i = 0; i < batch.size(); i++) {
                 save(batch.get(i), vectors.get(i));
             }
@@ -69,7 +70,10 @@ public class EmbeddingIndexer {
                 return processed;
             } catch (RuntimeException e) {
                 // Лише тип і повідомлення помилки, без тексту запису
-                log.warn("Не вдалося порахувати вектор запису {}: {}", entry.id(), e.getClass().getSimpleName());
+                log.warn(
+                        "Не вдалося порахувати вектор запису {}: {}",
+                        entry.id(),
+                        e.getClass().getSimpleName());
                 repository.saveFailed(entry.id(), model.modelName(), entry.contentHash(), error(e), clock.instant());
             }
             processed++;

@@ -175,10 +175,8 @@ class SemanticSearchApiTest {
     }
 
     private ResultActions semantic(MockHttpSession session, String q) throws Exception {
-        return mvc.perform(get("/api/v1/search")
-                .param("q", q)
-                .param("mode", "semantic")
-                .session(session));
+        return mvc.perform(
+                get("/api/v1/search").param("q", q).param("mode", "semantic").session(session));
     }
 
     private String createEntry(MockHttpSession session, String content) throws Exception {

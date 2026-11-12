@@ -135,6 +135,14 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Кирилиця в консолі тестів на Windows -->
+					<argLine>-Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
 				<version>3.7.0</version>

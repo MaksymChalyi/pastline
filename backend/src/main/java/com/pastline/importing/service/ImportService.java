@@ -15,8 +15,9 @@ import jakarta.validation.Validator;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,8 +26,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 /**
- * Імпорт файлу записів. Навмисно без спільної транзакції: кожен запис зберігається в окремій транзакції
- * JournalService.create, тож помилка одного не відкочує вже імпортовані. Повторний імпорт безпечний завдяки ключу
+ * Імпорт файлу записів у три кроки: перевірка всіх записів у пам'яті, звірка з базою одним запитом, вставка
+ * пачками по BATCH_SIZE (одна транзакція на пачку, JDBC batch). Невалідний запис потрапляє у звіт і не зупиняє
+ * решту; пачка, яку зламав паралельний імпорт, дозаписується по одному. Повторний імпорт безпечний завдяки ключу
  * дедуплікації (user_id, entry_date, sha256 тексту).
  */
 @Service
@@ -35,6 +37,7 @@ public class ImportService {
 
     public static final int MAX_ENTRIES = 5_000;
     public static final int MAX_ERRORS = 100;
+    public static final int BATCH_SIZE = 100;
 
     private final JsonEntryParser jsonParser;
     private final MarkdownEntryParser markdownParser;
@@ -55,14 +58,14 @@ public class ImportService {
             throw new InvalidImportFileException("Забагато записів: максимум " + MAX_ENTRIES + " за один імпорт");
         }
 
-        int created = 0;
         int duplicates = 0;
         int failed = 0;
         LocalDate firstDate = null;
         LocalDate lastDate = null;
         List<ImportError> errors = new ArrayList<>();
-        Set<String> keysInFile = new HashSet<>();
+        Map<String, EntryRequest> candidates = new LinkedHashMap<>();
 
+        // 1. Перевірка кожного запису в пам'яті: валідація і дублікати всередині файлу
         for (int i = 0; i < items.size(); i++) {
             ParsedItem item = items.get(i);
             String error = item.error() != null ? item.error() : validate(item.request());
@@ -73,27 +76,47 @@ public class ImportService {
                 }
                 continue;
             }
-
             EntryRequest request = item.request();
             LocalDate date = request.entryDate();
             firstDate = firstDate == null || date.isBefore(firstDate) ? date : firstDate;
             lastDate = lastDate == null || date.isAfter(lastDate) ? date : lastDate;
 
-            String hash = JournalService.contentHash(request.content());
-            boolean repeatedInFile = !keysInFile.add(date + "|" + hash);
-            if (repeatedInFile || journalService.exists(userId, date, hash)) {
+            String key = JournalService.key(date, JournalService.contentHash(request.content()));
+            if (candidates.putIfAbsent(key, request) != null) {
                 duplicates++;
-                continue;
             }
-            if (!dryRun) {
+        }
+
+        // 2. Дублікати з базою: один запит на весь файл
+        if (!candidates.isEmpty()) {
+            Set<String> existing = journalService.existingKeys(userId, firstDate, lastDate);
+            int before = candidates.size();
+            candidates.keySet().removeAll(existing);
+            duplicates += before - candidates.size();
+        }
+
+        // 3. Запис пачками
+        List<EntryRequest> toCreate = new ArrayList<>(candidates.values());
+        int created = 0;
+        if (dryRun) {
+            created = toCreate.size();
+        } else {
+            for (int from = 0; from < toCreate.size(); from += BATCH_SIZE) {
+                List<EntryRequest> batch = toCreate.subList(from, Math.min(from + BATCH_SIZE, toCreate.size()));
                 try {
-                    journalService.create(userId, request);
-                } catch (DuplicateEntryException | DataIntegrityViolationException e) {
-                    duplicates++; // паралельний імпорт того самого файлу встиг першим
-                    continue;
+                    created += journalService.createAll(userId, batch);
+                } catch (DataIntegrityViolationException e) {
+                    // Паралельний імпорт встиг вставити частину пачки: ця пачка по одному запису
+                    for (EntryRequest request : batch) {
+                        try {
+                            journalService.create(userId, request);
+                            created++;
+                        } catch (DuplicateEntryException | DataIntegrityViolationException duplicate) {
+                            duplicates++;
+                        }
+                    }
                 }
             }
-            created++;
         }
         return new ImportReport(dryRun, items.size(), created, duplicates, failed, firstDate, lastDate, errors);
     }

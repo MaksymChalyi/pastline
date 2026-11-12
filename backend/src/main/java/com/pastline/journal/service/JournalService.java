@@ -13,7 +13,10 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.HexFormat;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,13 +50,37 @@ public class JournalService {
         if (repository.existsByUserIdAndEntryDateAndContentHash(userId, date, hash)) {
             throw new DuplicateEntryException();
         }
-        return repository.save(new JournalEntry(userId, title(request.title()), content, date, hash, clock.instant()));
+        return repository.save(newEntry(userId, request, date));
     }
 
-    /** Чи є вже такий запис: той самий ключ, що й у unique-обмеженні таблиці. */
+    /**
+     * Ключі наявних записів користувача за період одним запитом: імпорт звіряє з ними весь файл замість окремої
+     * перевірки на кожен запис.
+     */
     @Transactional(readOnly = true)
-    public boolean exists(UUID userId, LocalDate entryDate, String contentHash) {
-        return repository.existsByUserIdAndEntryDateAndContentHash(userId, entryDate, contentHash);
+    public Set<String> existingKeys(UUID userId, LocalDate from, LocalDate to) {
+        return repository.findKeys(userId, from, to).stream()
+                .map(k -> key(k.entryDate(), k.contentHash()))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Пакетне створення для імпорту: одна транзакція, INSERT-и йдуть JDBC batch. Викликач уже перевірив записи
+     * (валідація, дата, дублікати); якщо паралельний запит встиг вставити такий самий запис, unique-обмеження кине
+     * DataIntegrityViolationException і вся пачка відкотиться.
+     */
+    @Transactional
+    public int createAll(UUID userId, List<EntryRequest> requests) {
+        List<JournalEntry> entries = requests.stream()
+                .map(r -> newEntry(userId, r, checkDate(r.entryDate())))
+                .toList();
+        repository.saveAll(entries);
+        repository.flush();
+        return entries.size();
+    }
+
+    public static String key(LocalDate entryDate, String contentHash) {
+        return entryDate + "|" + contentHash;
     }
 
     @Transactional(readOnly = true)
@@ -105,6 +132,11 @@ public class JournalService {
     /** Хеш для дедуплікації: від нормалізованого тексту. */
     public static String contentHash(String content) {
         return sha256(normalize(content));
+    }
+
+    private JournalEntry newEntry(UUID userId, EntryRequest request, LocalDate date) {
+        String content = normalize(request.content());
+        return new JournalEntry(userId, title(request.title()), content, date, sha256(content), clock.instant());
     }
 
     private LocalDate checkDate(LocalDate date) {

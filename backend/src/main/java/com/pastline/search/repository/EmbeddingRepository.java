@@ -66,38 +66,32 @@ public class EmbeddingRepository {
      * вектор просто знову стане застарілим, а не перезапише свіжий.
      */
     public void saveReady(UUID entryId, float[] vector, String model, String contentHash, Instant now) {
-        jdbc.update(
-                """
+        jdbc.update("""
                 INSERT INTO entry_embeddings (entry_id, embedding, model, content_hash, status, error, updated_at)
                 VALUES (:entryId, CAST(:embedding AS vector), :model, :hash, 'READY', NULL, :now)
                 ON CONFLICT (entry_id) DO UPDATE
                 SET embedding = EXCLUDED.embedding, model = EXCLUDED.model, content_hash = EXCLUDED.content_hash,
                     status = 'READY', error = NULL, updated_at = EXCLUDED.updated_at
-                """,
-                params(entryId, model, contentHash, now).addValue("embedding", toLiteral(vector)));
+                """, params(entryId, model, contentHash, now).addValue("embedding", toLiteral(vector)));
     }
 
     /** FAILED з тим самим хешем і моделлю не вважається застарілим: зіпсований запис не крутиться в циклі. */
     public void saveFailed(UUID entryId, String model, String contentHash, String error, Instant now) {
-        jdbc.update(
-                """
+        jdbc.update("""
                 INSERT INTO entry_embeddings (entry_id, embedding, model, content_hash, status, error, updated_at)
                 VALUES (:entryId, NULL, :model, :hash, 'FAILED', :error, :now)
                 ON CONFLICT (entry_id) DO UPDATE
                 SET embedding = NULL, model = EXCLUDED.model, content_hash = EXCLUDED.content_hash,
                     status = 'FAILED', error = EXCLUDED.error, updated_at = EXCLUDED.updated_at
-                """,
-                params(entryId, model, contentHash, now).addValue("error", error));
+                """, params(entryId, model, contentHash, now).addValue("error", error));
     }
 
     public int deleteForUser(UUID userId) {
-        return jdbc.update(
-                """
+        return jdbc.update("""
                 DELETE FROM entry_embeddings x
                 USING journal_entries e
                 WHERE e.id = x.entry_id AND e.user_id = :userId
-                """,
-                new MapSqlParameterSource("userId", userId));
+                """, new MapSqlParameterSource("userId", userId));
     }
 
     /** Точний пошук (без ANN-індексу) серед актуальних векторів одного користувача. */
@@ -121,13 +115,16 @@ public class EmbeddingRepository {
                 .addValue("limit", limit)
                 .addValue("snippetLength", Snippets.LENGTH);
         int[] rank = {0};
-        return jdbc.query(sql, params, (rs, i) -> new SearchHit(
-                rs.getObject("id", UUID.class),
-                rs.getObject("entry_date", LocalDate.class),
-                rs.getString("title"),
-                Snippets.of(rs.getString("snippet")),
-                rs.getDouble("score"),
-                ++rank[0]));
+        return jdbc.query(
+                sql,
+                params,
+                (rs, i) -> new SearchHit(
+                        rs.getObject("id", UUID.class),
+                        rs.getObject("entry_date", LocalDate.class),
+                        rs.getString("title"),
+                        Snippets.of(rs.getString("snippet")),
+                        rs.getDouble("score"),
+                        ++rank[0]));
     }
 
     private static MapSqlParameterSource params(UUID entryId, String model, String hash, Instant now) {

@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
+import java.time.Duration;
 import java.util.HexFormat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -221,11 +222,15 @@ class ImportApiTest {
                 HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(corpus));
         assertThat(actualHash).as("corpus.json змінено без перегенерації").isEqualTo(expectedHash);
 
+        long start = System.nanoTime();
         upload(alice, "corpus.json", corpus, false)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.total").value(520))
                 .andExpect(jsonPath("$.created").value(520))
                 .andExpect(jsonPath("$.failed").value(0));
+        // Пакетна вставка: раніше ~1-3 хв (транзакція і merge на кожен запис), тепер секунди. Межа з великим запасом.
+        assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(Duration.ofSeconds(60));
+
         upload(alice, "corpus.json", corpus, false)
                 .andExpect(jsonPath("$.created").value(0))
                 .andExpect(jsonPath("$.duplicates").value(520));

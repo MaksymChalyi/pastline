@@ -26,6 +26,7 @@ GET http://localhost:8090/api/v1/auth/csrf
 > {% client.global.set("xsrf", response.body.token); %}
 
 ### 5. Імпорт корпусу (dryRun=false; повторний запуск дасть created=0)
+# @timeout 600
 POST http://localhost:8090/api/v1/import?dryRun=false
 X-XSRF-TOKEN: {{xsrf}}
 Content-Type: multipart/form-data; boundary=pastline
