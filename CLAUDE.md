@@ -20,7 +20,7 @@
 ## Архітектура (обов'язково)
 
 - Модульний моноліт: один Spring Boot застосунок у `backend/`.
-- Пакети за фічами `com.pastline.{auth,journal,importing,search,ai,shared}`, усередині `api`, `application`, `domain`, `infrastructure`.
+- Пакети за фічами `com.pastline.{auth,journal,importing,search,ai,shared}`, усередині звичні шари: `controller`, `service`, `repository`, `entity`, `dto`, `exception`, за потреби `security`, `config`, `client`. Без інтерфейсу `Service` + `ServiceImpl`, коли реалізація одна.
 - API: JSON під `/api/v1/...`, DTO замість JPA-сутностей, UUID назовні, помилки `{ code, message, requestId, fieldErrors }`.
 - Auth: Spring Security, серверна сесія з HttpOnly cookie, CSRF. Без JWT.
 - Ізоляція: кожен запит до записів фільтрується за користувачем у SQL; `userId` від клієнта не є доказом власності.
@@ -28,8 +28,10 @@
 - AI за портом `EmbeddingModelPort`: домен не знає про Ollama чи Spring AI. Локально Ollama, профіль `cloud` (онлайн-демо) OpenAI.
 - Власна таблиця embeddings, не `PgVectorStore`: фільтр користувача в SQL, `content_hash`, статус.
 - Тести: Testcontainers із pgvector-образом, не H2.
+- Форматування: Spotless (palantir-java-format). Перед комітом користувач запускає `mvnw spotless:apply`; Claude пише код у тому ж стилі.
 - Логи: ніколи не логувати текст записів, паролі, cookies.
-- Без Lombok, мікросервісів, Kafka, черг, CQRS, JWT.
+- Lombok дозволено: `@Getter`, `@RequiredArgsConstructor`, `@NoArgsConstructor(access = PROTECTED)` для JPA, `@Slf4j`. Не використовувати `@Data`, `@EqualsAndHashCode`, `@ToString` на JPA-сутностях; DTO — records.
+- Без мікросервісів, Kafka, черг, CQRS, JWT.
 - Версії Spring Boot, Spring AI, образу pgvector звіряти з офіційною документацією.
 
 ## Чого Claude не робить ніколи
