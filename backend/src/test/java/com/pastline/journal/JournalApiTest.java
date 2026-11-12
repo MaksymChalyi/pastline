@@ -1,6 +1,5 @@
 package com.pastline.journal;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,8 +10,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.jayway.jsonpath.JsonPath;
 import com.pastline.TestcontainersConfiguration;
+import com.pastline.support.TestSessions;
 import java.time.LocalDate;
-import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -216,23 +215,7 @@ class JournalApiTest {
     }
 
     private MockHttpSession newUserSession() throws Exception {
-        String email = "journal-" + UUID.randomUUID() + "@example.com";
-        String credentials = "{\"email\":\"%s\",\"password\":\"correct-horse-1\"}".formatted(email);
-        mvc.perform(post("/api/v1/auth/register")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(credentials))
-                .andExpect(status().isCreated());
-        MockHttpSession session = (MockHttpSession) mvc.perform(post("/api/v1/auth/login")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(credentials))
-                .andExpect(status().isOk())
-                .andReturn()
-                .getRequest()
-                .getSession(false);
-        assertThat(session).isNotNull();
-        return session;
+        return TestSessions.newUser(mvc);
     }
 
     /** Рядки в JSON екрануються вручну лише для \n, \r і лапок: тестові тексти прості. */

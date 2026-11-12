@@ -9,10 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @Slf4j
@@ -43,6 +48,29 @@ public class GlobalExceptionHandler {
                         "Некоректні дані запиту",
                         RequestIdFilter.current(),
                         List.of(new ErrorResponse.FieldError(e.getName(), "некоректне значення"))));
+    }
+
+    @ExceptionHandler({MissingServletRequestParameterException.class, MissingServletRequestPartException.class})
+    ResponseEntity<ErrorResponse> missingParameter() {
+        return ResponseEntity.badRequest().body(ErrorResponse.of("VALIDATION_ERROR", "Бракує обов'язкового параметра"));
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    ResponseEntity<ErrorResponse> tooLarge() {
+        return ResponseEntity.status(HttpStatus.CONTENT_TOO_LARGE)
+                .body(ErrorResponse.of("PAYLOAD_TOO_LARGE", "Файл завеликий"));
+    }
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    ResponseEntity<ErrorResponse> unsupportedMediaType() {
+        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+                .body(ErrorResponse.of("UNSUPPORTED_MEDIA_TYPE", "Непідтримуваний Content-Type"));
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    ResponseEntity<ErrorResponse> methodNotAllowed() {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+                .body(ErrorResponse.of("METHOD_NOT_ALLOWED", "Метод не підтримується"));
     }
 
     /** Порушення unique-обмеження при одночасних запитах, які обійшли перевірку в сервісі. */

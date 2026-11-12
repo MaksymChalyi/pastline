@@ -50,6 +50,12 @@ public class JournalService {
         return repository.save(new JournalEntry(userId, title(request.title()), content, date, hash, clock.instant()));
     }
 
+    /** Чи є вже такий запис: той самий ключ, що й у unique-обмеженні таблиці. */
+    @Transactional(readOnly = true)
+    public boolean exists(UUID userId, LocalDate entryDate, String contentHash) {
+        return repository.existsByUserIdAndEntryDateAndContentHash(userId, entryDate, contentHash);
+    }
+
     @Transactional(readOnly = true)
     public JournalEntry get(UUID userId, UUID id) {
         return repository.findByIdAndUserId(id, userId).orElseThrow(EntryNotFoundException::new);
@@ -92,8 +98,17 @@ public class JournalService {
         repository.delete(get(userId, id));
     }
 
+    public boolean isInFuture(LocalDate date) {
+        return date.isAfter(LocalDate.now(clock.withZone(LATEST_ZONE)));
+    }
+
+    /** Хеш для дедуплікації: від нормалізованого тексту. */
+    public static String contentHash(String content) {
+        return sha256(normalize(content));
+    }
+
     private LocalDate checkDate(LocalDate date) {
-        if (date.isAfter(LocalDate.now(clock.withZone(LATEST_ZONE)))) {
+        if (isInFuture(date)) {
             throw new InvalidEntryQueryException("entryDate не може бути в майбутньому");
         }
         return date;

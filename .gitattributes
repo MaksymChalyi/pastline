@@ -1,0 +1,3 @@
+# Корпус для експериментів: байти мають збігатися з corpus.sha256, тому без перетворення CRLF
+docs/experiments/**/corpus.json -text
+docs/experiments/**/corpus.sha256 -text
