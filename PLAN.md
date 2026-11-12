@@ -134,7 +134,7 @@ pastline/
 
 # 3. ЩО НЕ РОБИМО І ЩО РІЖЕМО ПЕРШИМ
 
-**Не робимо до захисту:** query routing і period summaries, HNSW (лише exact пошук), OpenAI в основному експерименті, CI/CD, Android, теги, настрій, вкладення, CSV-імпорт, мікросервіси, Kafka, Kubernetes, CQRS, JWT, Lombok, підписки, оплати.
+**Не робимо до захисту:** query routing і period summaries, HNSW (лише exact пошук), OpenAI в основному експерименті, CI/CD, Android, теги, настрій, вкладення, CSV-імпорт, мікросервіси, Kafka, Kubernetes, CQRS, JWT, підписки, оплати.
 
 **Якщо gate провалено, ріжу в такому порядку:**
 1. Ask Pastline (H5 тоді спирається на пілот Лаби 05 і йде у future work)
@@ -195,7 +195,7 @@ ollama list
 ## 6.0 Архітектура (обов'язково)
 
 - **Модульний моноліт:** один Spring Boot застосунок у `backend/`.
-- **Пакети за фічами:** `com.pastline.{auth, journal, importing, search, ai, shared}`, усередині `api`, `application`, `domain`, `infrastructure`.
+- **Пакети за фічами:** `com.pastline.{auth, journal, importing, search, ai, shared}`, усередині звичні шари `controller`, `service`, `repository`, `entity`, `dto`, `exception` (за потреби `security`, `config`, `client`).
 - **API:** JSON під `/api/v1/...`, DTO замість JPA-сутностей, UUID назовні, єдиний формат помилок `{ code, message, requestId, fieldErrors }`.
 - **Auth:** Spring Security, серверна сесія з HttpOnly cookie, CSRF. Без JWT.
 - **Ізоляція:** кожен запит до записів фільтрується за користувачем **у SQL**. `userId` від клієнта не є доказом власності.
@@ -204,7 +204,7 @@ ollama list
 - **Власна таблиця embeddings, а не `PgVectorStore`:** потрібні фільтр користувача в SQL, `content_hash` і статус.
 - **Тести:** Testcontainers із pgvector-образом, не H2.
 - **Логи:** ніколи не логувати текст записів, паролі, cookies.
-- **Без:** Lombok, мікросервісів, Kafka, черг, CQRS, JWT.
+- **Без:** мікросервісів, Kafka, черг, CQRS, JWT. Lombok дозволено (без `@Data` на JPA-сутностях).
 - Версії Spring Boot, Spring AI, образу pgvector звіряти з офіційною документацією.
 
 ## 6.0.1 Схема БД
@@ -493,6 +493,10 @@ Claude дописує сюди по рядку після кожного чек�
 | 26.10 | PostgreSQL + pgvector | один сервіс для записів, FTS і векторів, фільтр користувача в одному SQL | Qdrant, Milvus | "Чому не векторна БД?" → обсяг малий, ізоляція в одному запиті |
 | 26.10 | Ollama локально для експерименту | відтворюваність, приватність, безкоштовно | лише OpenAI | "Чому не хмарна модель?" → фіксована версія моделі й даних |
 | 12.11 | 6.1: Spring Boot 4.1.2 + PostgreSQL 17/pgvector 0.8.2 у Docker, схема лише Flyway, тести на Testcontainers з тим самим образом | один образ у dev і тестах, `ddl-auto=validate` ловить розбіжність схеми | H2 у тестах, `ddl-auto=update` | "Чому не H2?" → у H2 немає pgvector і FTS PostgreSQL, тести перевіряли б не ту БД |
+| 12.11 | Усередині модулів звичні шари (controller/service/repository/entity/dto/exception) замість api/application/domain/infrastructure | модулі видно за фічами, а всередині структура знайома з попередніх проєктів | пакети лише за шарами, як у Verdora | "Де модулі моноліту?" → кожна фіча — окремий пакет зі своїми шарами |
+| 12.11 | Lombok для конструкторів, гетерів і логера | менше шаблонного коду, звично з попередніх проєктів | ручні конструктори й гетери | "Чому не @Data на сутностях?" → equals/hashCode і toString на JPA-сутностях ламають колекції та ліниве завантаження |
+| 12.11 | 6.2: серверна сесія в HttpOnly cookie (SameSite=Lax) + CSRF-токен у cookie XSRF-TOKEN, BCrypt, однакова відповідь на невідомий email і неправильний пароль | сесію можна інвалідувати на сервері, токен не лежить у localStorage, фронт і бек на одному домені | JWT у localStorage | "Чому не JWT?" → для одного SPA на тому ж домені сесія простіша й безпечніша: logout миттєвий, XSS не викраде токен |
+| 12.11 | JWT/Bearer для мобільного клієнта — після диплома, додається поруч із сесією в модулі `auth` | до 27.11 мобільного клієнта немає; решта модулів залежить лише від `AuthenticatedUser.id`, тож зміна локальна | JWT уже зараз замість сесії | "А якщо буде мобільний застосунок?" → окремий ланцюжок фільтрів з Bearer-токеном поруч із сесією для вебу |
 
 ---
 
