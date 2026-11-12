@@ -3,6 +3,7 @@ package com.pastline.shared.exception;
 import com.pastline.shared.web.RequestIdFilter;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @Slf4j
@@ -30,6 +32,24 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     ResponseEntity<ErrorResponse> unreadable() {
         return ResponseEntity.badRequest().body(ErrorResponse.of("MALFORMED_JSON", "Тіло запиту не є коректним JSON"));
+    }
+
+    /** Параметр не того типу: невалідний UUID у шляху або дата не у форматі yyyy-MM-dd. */
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    ResponseEntity<ErrorResponse> typeMismatch(MethodArgumentTypeMismatchException e) {
+        return ResponseEntity.badRequest()
+                .body(new ErrorResponse(
+                        "VALIDATION_ERROR",
+                        "Некоректні дані запиту",
+                        RequestIdFilter.current(),
+                        List.of(new ErrorResponse.FieldError(e.getName(), "некоректне значення"))));
+    }
+
+    /** Порушення unique-обмеження при одночасних запитах, які обійшли перевірку в сервісі. */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    ResponseEntity<ErrorResponse> conflict() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ErrorResponse.of("CONFLICT", "Дані конфліктують з уже збереженими"));
     }
 
     /**

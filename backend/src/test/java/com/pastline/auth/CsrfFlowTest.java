@@ -1,7 +1,14 @@
 package com.pastline.auth;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.pastline.TestcontainersConfiguration;
 import jakarta.servlet.http.Cookie;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,14 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Справжній потік CSRF для React без тестового csrf(): GET /auth/csrf → cookie XSRF-TOKEN → заголовок X-XSRF-TOKEN.
@@ -47,13 +46,15 @@ class CsrfFlowTest {
                         .cookie(cookie)
                         .header("X-XSRF-TOKEN", cookie.getValue())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"csrf-" + UUID.randomUUID() + "@example.com\",\"password\":\"correct-horse-1\"}"))
+                        .content("{\"email\":\"csrf-" + UUID.randomUUID()
+                                + "@example.com\",\"password\":\"correct-horse-1\"}"))
                 .andExpect(status().isCreated());
     }
 
     @Test
     void wrongTokenInHeaderIsForbidden() throws Exception {
-        Cookie cookie = mvc.perform(get("/api/v1/auth/csrf")).andReturn().getResponse().getCookie("XSRF-TOKEN");
+        Cookie cookie =
+                mvc.perform(get("/api/v1/auth/csrf")).andReturn().getResponse().getCookie("XSRF-TOKEN");
         assertThat(cookie).isNotNull();
 
         mvc.perform(post("/api/v1/auth/register")
