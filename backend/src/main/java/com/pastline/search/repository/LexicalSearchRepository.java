@@ -17,8 +17,6 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class LexicalSearchRepository {
 
-    public static final int SNIPPET_LENGTH = 200;
-
     // websearch_to_tsquery не падає на довільному вводі користувача: лапки = фраза, "or", "-слово"
     private static final String SQL = """
             SELECT e.id, e.entry_date, e.title, left(e.content, :snippetLength + 1) AS snippet,
@@ -37,7 +35,7 @@ public class LexicalSearchRepository {
                 .addValue("userId", userId)
                 .addValue("query", query)
                 .addValue("limit", limit)
-                .addValue("snippetLength", SNIPPET_LENGTH);
+                .addValue("snippetLength", Snippets.LENGTH);
         int[] rank = {0};
         return jdbc.query(
                 SQL,
@@ -46,12 +44,8 @@ public class LexicalSearchRepository {
                         rs.getObject("id", UUID.class),
                         rs.getObject("entry_date", LocalDate.class),
                         rs.getString("title"),
-                        snippet(rs.getString("snippet")),
+                        Snippets.of(rs.getString("snippet")),
                         rs.getDouble("score"),
                         ++rank[0]));
-    }
-
-    private static String snippet(String text) {
-        return text.length() > SNIPPET_LENGTH ? text.substring(0, SNIPPET_LENGTH) + "…" : text;
     }
 }

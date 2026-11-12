@@ -156,7 +156,7 @@ class SearchApiTest {
                 .andExpect(jsonPath("$.code").value("VALIDATION_ERROR"));
         mvc.perform(get("/api/v1/search")
                         .param("q", "парк")
-                        .param("mode", "semantic")
+                        .param("mode", "hybrid")
                         .session(alice))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.code").value("MODE_NOT_AVAILABLE"));

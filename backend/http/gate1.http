@@ -1,0 +1,50 @@
+### Gate 1: lexical і semantic на корпусі. Запускати по черзі (IDEA HTTP Client зберігає cookie сам).
+### Перед цим: docker compose up -d, ollama serve, застосунок запущений на 8090.
+
+### 1. CSRF-токен
+GET http://localhost:8090/api/v1/auth/csrf
+
+> {% client.global.set("xsrf", response.body.token); %}
+
+### 2. Реєстрація (повторний запуск дасть 409 EMAIL_TAKEN — це нормально)
+POST http://localhost:8090/api/v1/auth/register
+Content-Type: application/json
+X-XSRF-TOKEN: {{xsrf}}
+
+{"email": "gate1@example.com", "password": "gate1-password"}
+
+### 3. Вхід
+POST http://localhost:8090/api/v1/auth/login
+Content-Type: application/json
+X-XSRF-TOKEN: {{xsrf}}
+
+{"email": "gate1@example.com", "password": "gate1-password"}
+
+### 4. Новий CSRF-токен після входу
+GET http://localhost:8090/api/v1/auth/csrf
+
+> {% client.global.set("xsrf", response.body.token); %}
+
+### 5. Імпорт корпусу (dryRun=false; повторний запуск дасть created=0)
+POST http://localhost:8090/api/v1/import?dryRun=false
+X-XSRF-TOKEN: {{xsrf}}
+Content-Type: multipart/form-data; boundary=pastline
+
+--pastline
+Content-Disposition: form-data; name="file"; filename="corpus.json"
+Content-Type: application/json
+
+< ../../docs/experiments/corpus-v1/corpus.json
+--pastline--
+
+### 6. Лексичний пошук: точна форма слова
+GET http://localhost:8090/api/v1/search?q=пробіжка&mode=lexical&limit=5
+
+### 7. Лексичний пошук: інша форма слова (очікувано 0 або мало)
+GET http://localhost:8090/api/v1/search?q=бігав зранку&mode=lexical&limit=5
+
+### 8. Семантичний пошук (pendingCount має дійти до 0 за ~1-3 хв після імпорту)
+GET http://localhost:8090/api/v1/search?q=бігав зранку&mode=semantic&limit=5
+
+### 9. Семантичний: перефразування англійською до українських записів
+GET http://localhost:8090/api/v1/search?q=went jogging in the park&mode=semantic&limit=5
