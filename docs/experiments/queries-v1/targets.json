@@ -1,0 +1,1194 @@
+[
+ {
+  "id": "T001",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Зранку був стендап, обговорили блокери по задачі з платежами.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T002",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Тімлід попросив до п'ятниці закрити інтеграцію з банківським API.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T003",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Пів дня шукав, чому падає імпорт транзакцій на продакшені.",
+  "equivalents": [],
+  "entries": 14
+ },
+ {
+  "id": "T004",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Нарешті змерджили мій пул-реквест після трьох раундів рев'ю.",
+  "equivalents": [
+   "T015"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T005",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Нарада з замовником затягнулась на дві години, вимоги знову змінились.",
+  "equivalents": [
+   "T016"
+  ],
+  "entries": 9
+ },
+ {
+  "id": "T006",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Відчуваю, що вигораю: забагато мітингів і мало часу на код.",
+  "equivalents": [
+   "T014"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T007",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Написав міграцію бази даних і покрив її тестами.",
+  "equivalents": [],
+  "entries": 14
+ },
+ {
+  "id": "T008",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Реліз пройшов спокійно, жодного інциденту за вечір.",
+  "equivalents": [
+   "T013"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T009",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Колега пояснив, як у нас влаштований процес деплою.",
+  "equivalents": [],
+  "entries": 10
+ },
+ {
+  "id": "T010",
+  "topic": "work",
+  "lang": "uk",
+  "sentence": "Отримав позитивний фідбек від менеджера за останній спринт.",
+  "equivalents": [],
+  "entries": 12
+ },
+ {
+  "id": "T011",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "Spent the morning debugging a flaky integration test.",
+  "equivalents": [],
+  "entries": 5
+ },
+ {
+  "id": "T012",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "My manager asked me to lead the next sprint planning.",
+  "equivalents": [],
+  "entries": 6
+ },
+ {
+  "id": "T013",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "The production deploy went smoothly this evening.",
+  "equivalents": [
+   "T008"
+  ],
+  "entries": 6
+ },
+ {
+  "id": "T014",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "Too many meetings today, barely wrote any code.",
+  "equivalents": [
+   "T006"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T015",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "Finally merged the payment service refactoring.",
+  "equivalents": [
+   "T004"
+  ],
+  "entries": 4
+ },
+ {
+  "id": "T016",
+  "topic": "work",
+  "lang": "en",
+  "sentence": "Had a tough conversation with the client about the scope.",
+  "equivalents": [
+   "T005"
+  ],
+  "entries": 4
+ },
+ {
+  "id": "T017",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Відклав десять відсотків зарплати на резервний фонд.",
+  "equivalents": [
+   "T027"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T018",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Купив трохи ОВДП, дохідність поки виглядає непогано.",
+  "equivalents": [],
+  "entries": 15
+ },
+ {
+  "id": "T019",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Порахував витрати за місяць: найбільше пішло на їжу та таксі.",
+  "equivalents": [
+   "T029"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T020",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Поповнив брокерський рахунок і докупив ETF на індекс.",
+  "equivalents": [
+   "T028"
+  ],
+  "entries": 17
+ },
+ {
+  "id": "T021",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Гривня знову просіла, добре що частина заощаджень у доларах.",
+  "equivalents": [
+   "T031"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T022",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Скасував дві підписки, якими не користуюсь.",
+  "equivalents": [
+   "T030"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T023",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Повернув борг другові, нарешті легше на душі.",
+  "equivalents": [],
+  "entries": 11
+ },
+ {
+  "id": "T024",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Склав бюджет на наступний місяць у таблиці.",
+  "equivalents": [],
+  "entries": 8
+ },
+ {
+  "id": "T025",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Думаю, чи варто брати розстрочку на новий ноутбук.",
+  "equivalents": [],
+  "entries": 9
+ },
+ {
+  "id": "T026",
+  "topic": "finance",
+  "lang": "uk",
+  "sentence": "Отримав премію і одразу розподілив її між цілями.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T027",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "Moved part of my salary into the emergency fund.",
+  "equivalents": [
+   "T017"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T028",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "Bought a few more shares of a broad market ETF.",
+  "equivalents": [
+   "T020"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T029",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "Tracked my spending and groceries took the biggest share.",
+  "equivalents": [
+   "T019"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T030",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "Cancelled a streaming subscription I never use.",
+  "equivalents": [
+   "T022"
+  ],
+  "entries": 2
+ },
+ {
+  "id": "T031",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "The exchange rate jumped again, glad I keep savings in dollars.",
+  "equivalents": [
+   "T021"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T032",
+  "topic": "finance",
+  "lang": "en",
+  "sentence": "Set up an automatic monthly transfer to my brokerage account.",
+  "equivalents": [],
+  "entries": 7
+ },
+ {
+  "id": "T033",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Прокинувся з головним болем, мабуть через погоду.",
+  "equivalents": [],
+  "entries": 15
+ },
+ {
+  "id": "T034",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Записався до терапевта, бо кашель не проходить вже тиждень.",
+  "equivalents": [
+   "T044"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T035",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Спав лише п'ять годин, весь день як у тумані.",
+  "equivalents": [
+   "T045"
+  ],
+  "entries": 17
+ },
+ {
+  "id": "T036",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Здав аналіз крові, чекаю результати.",
+  "equivalents": [
+   "T047"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T037",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Стоматолог сказав, що треба лікувати ще один зуб.",
+  "equivalents": [],
+  "entries": 22
+ },
+ {
+  "id": "T038",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Почав пити більше води і менше кави.",
+  "equivalents": [
+   "T048"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T039",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Вечорами болить спина від сидіння за комп'ютером.",
+  "equivalents": [
+   "T046"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T040",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Застуда нарешті відступила, температури вже нема.",
+  "equivalents": [],
+  "entries": 15
+ },
+ {
+  "id": "T041",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Ліг спати до одинадцятої і прокинувся бадьорим.",
+  "equivalents": [],
+  "entries": 17
+ },
+ {
+  "id": "T042",
+  "topic": "health",
+  "lang": "uk",
+  "sentence": "Лікар порадив менше екранів перед сном.",
+  "equivalents": [],
+  "entries": 8
+ },
+ {
+  "id": "T043",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "Woke up with a sore throat and stayed home.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T044",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "Booked a check-up with my doctor for next week.",
+  "equivalents": [
+   "T034"
+  ],
+  "entries": 15
+ },
+ {
+  "id": "T045",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "Slept badly again, kept waking up at night.",
+  "equivalents": [
+   "T035"
+  ],
+  "entries": 15
+ },
+ {
+  "id": "T046",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "My back hurts after a long day at the desk.",
+  "equivalents": [
+   "T039"
+  ],
+  "entries": 19
+ },
+ {
+  "id": "T047",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "Got my blood test results, everything looks normal.",
+  "equivalents": [
+   "T036"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T048",
+  "topic": "health",
+  "lang": "en",
+  "sentence": "Trying to drink less coffee in the afternoon.",
+  "equivalents": [
+   "T038"
+  ],
+  "entries": 17
+ },
+ {
+  "id": "T049",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Подзвонив мамі, довго говорили про дідусеве здоров'я.",
+  "equivalents": [
+   "T059"
+  ],
+  "entries": 5
+ },
+ {
+  "id": "T050",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Поїхали до батьків на вихідні, тато показував новий сад.",
+  "equivalents": [
+   "T060"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T051",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Сестра розповіла, що вступила до магістратури.",
+  "equivalents": [
+   "T061"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T052",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Відсвяткували бабусин день народження всією родиною.",
+  "equivalents": [
+   "T062"
+  ],
+  "entries": 15
+ },
+ {
+  "id": "T053",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Посварився з братом через дрібницю, треба помиритись.",
+  "equivalents": [],
+  "entries": 12
+ },
+ {
+  "id": "T054",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Допомагав батькам з ремонтом на кухні.",
+  "equivalents": [],
+  "entries": 10
+ },
+ {
+  "id": "T055",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Ввечері дивились старі сімейні фото й сміялись.",
+  "equivalents": [
+   "T064"
+  ],
+  "entries": 10
+ },
+ {
+  "id": "T056",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Племінник зробив перші кроки, всі в захваті.",
+  "equivalents": [],
+  "entries": 14
+ },
+ {
+  "id": "T057",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Мама передала банку варення і пиріжки.",
+  "equivalents": [],
+  "entries": 14
+ },
+ {
+  "id": "T058",
+  "topic": "family",
+  "lang": "uk",
+  "sentence": "Обговорили з батьками плани на Новий рік.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T059",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "Called my mom and we talked for over an hour.",
+  "equivalents": [
+   "T049"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T060",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "Visited my parents for the weekend.",
+  "equivalents": [
+   "T050"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T061",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "My sister got accepted into a master's program.",
+  "equivalents": [
+   "T051"
+  ],
+  "entries": 4
+ },
+ {
+  "id": "T062",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "Celebrated grandma's birthday with the whole family.",
+  "equivalents": [
+   "T052"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T063",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "Helped my dad fix the old garden fence.",
+  "equivalents": [],
+  "entries": 6
+ },
+ {
+  "id": "T064",
+  "topic": "family",
+  "lang": "en",
+  "sentence": "Looked through old family photos in the evening.",
+  "equivalents": [
+   "T055"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T065",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Взяв квитки на нічний потяг до Львова.",
+  "equivalents": [
+   "T075"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T066",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Гуляли старим містом, зайшли в маленьку кав'ярню.",
+  "equivalents": [
+   "T076"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T067",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Поїхали в Карпати, піднялись на Говерлу.",
+  "equivalents": [
+   "T079"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T068",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Потяг запізнився на три години, але дорога була гарна.",
+  "equivalents": [],
+  "entries": 11
+ },
+ {
+  "id": "T069",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Забронював житло біля моря на кінець серпня.",
+  "equivalents": [
+   "T077"
+  ],
+  "entries": 15
+ },
+ {
+  "id": "T070",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Вперше летів за кордон сам, трохи хвилювався.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T071",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Цілий день ходили музеями, ноги гудуть.",
+  "equivalents": [
+   "T080"
+  ],
+  "entries": 19
+ },
+ {
+  "id": "T072",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Знайшли затишний готель з видом на гори.",
+  "equivalents": [],
+  "entries": 11
+ },
+ {
+  "id": "T073",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Склав маршрут на тиждень подорожі Європою.",
+  "equivalents": [],
+  "entries": 9
+ },
+ {
+  "id": "T074",
+  "topic": "travel",
+  "lang": "uk",
+  "sentence": "Повернувся додому з купою фото і вражень.",
+  "equivalents": [],
+  "entries": 8
+ },
+ {
+  "id": "T075",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "Took the night train and arrived early in the morning.",
+  "equivalents": [
+   "T065"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T076",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "Walked around the old town and found a cozy cafe.",
+  "equivalents": [
+   "T066"
+  ],
+  "entries": 10
+ },
+ {
+  "id": "T077",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "Booked a small apartment near the sea for August.",
+  "equivalents": [
+   "T069"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T078",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "The flight was delayed but the trip was worth it.",
+  "equivalents": [],
+  "entries": 6
+ },
+ {
+  "id": "T079",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "Hiked in the mountains all day, amazing views.",
+  "equivalents": [
+   "T067"
+  ],
+  "entries": 9
+ },
+ {
+  "id": "T080",
+  "topic": "travel",
+  "lang": "en",
+  "sentence": "Spent the whole day visiting museums.",
+  "equivalents": [
+   "T071"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T081",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Сидів над дипломом до ночі, написав розділ про пошук.",
+  "equivalents": [
+   "T091"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T082",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Пройшов модуль онлайн-курсу з системного дизайну.",
+  "equivalents": [
+   "T092"
+  ],
+  "entries": 10
+ },
+ {
+  "id": "T083",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Науковий керівник дав зауваження до вступу.",
+  "equivalents": [
+   "T093"
+  ],
+  "entries": 10
+ },
+ {
+  "id": "T084",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Готувався до екзамену з алгоритмів, повторив графи.",
+  "equivalents": [
+   "T096"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T085",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Прочитав статтю про векторний пошук і ембедінги.",
+  "equivalents": [
+   "T094"
+  ],
+  "entries": 15
+ },
+ {
+  "id": "T086",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Займався англійською: розбирав співбесідні питання.",
+  "equivalents": [
+   "T095"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T087",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Захистив лабораторну, викладач поставив відмінно.",
+  "equivalents": [],
+  "entries": 10
+ },
+ {
+  "id": "T088",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Подивився лекцію про транзакції в PostgreSQL.",
+  "equivalents": [],
+  "entries": 6
+ },
+ {
+  "id": "T089",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Склав план навчання на наступні три місяці.",
+  "equivalents": [],
+  "entries": 9
+ },
+ {
+  "id": "T090",
+  "topic": "study",
+  "lang": "uk",
+  "sentence": "Розібрався, як працює конкурентність у Java.",
+  "equivalents": [],
+  "entries": 9
+ },
+ {
+  "id": "T091",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "Worked on my thesis late into the night.",
+  "equivalents": [
+   "T081"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T092",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "Finished a module of an online system design course.",
+  "equivalents": [
+   "T082"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T093",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "My supervisor left comments on the introduction.",
+  "equivalents": [
+   "T083"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T094",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "Read a paper about vector search and embeddings.",
+  "equivalents": [
+   "T085"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T095",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "Practiced English with mock interview questions.",
+  "equivalents": [
+   "T086"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T096",
+  "topic": "study",
+  "lang": "en",
+  "sentence": "Prepared for the algorithms exam all evening.",
+  "equivalents": [
+   "T084"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T097",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Зранку пробіжка п'ять кілометрів у парку.",
+  "equivalents": [
+   "T107"
+  ],
+  "entries": 6
+ },
+ {
+  "id": "T098",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Сходив у спортзал, зробив тренування на спину.",
+  "equivalents": [
+   "T108"
+  ],
+  "entries": 6
+ },
+ {
+  "id": "T099",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Пропустив тренування, бо дуже втомився після роботи.",
+  "equivalents": [
+   "T109"
+  ],
+  "entries": 13
+ },
+ {
+  "id": "T100",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Пробіг свій перший напівмарафон, ледве дійшов до фінішу.",
+  "equivalents": [],
+  "entries": 10
+ },
+ {
+  "id": "T101",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Катались на велосипедах вздовж річки.",
+  "equivalents": [],
+  "entries": 4
+ },
+ {
+  "id": "T102",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Почав робити розтяжку щоранку по десять хвилин.",
+  "equivalents": [
+   "T112"
+  ],
+  "entries": 13
+ },
+ {
+  "id": "T103",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Грали з друзями у футбол до темряви.",
+  "equivalents": [
+   "T110"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T104",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Ходив на басейн, проплив кілометр.",
+  "equivalents": [
+   "T111"
+  ],
+  "entries": 13
+ },
+ {
+  "id": "T105",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Тренер змінив програму, тепер більше кардіо.",
+  "equivalents": [],
+  "entries": 12
+ },
+ {
+  "id": "T106",
+  "topic": "sport",
+  "lang": "uk",
+  "sentence": "Після йоги відчуваю, що спина болить менше.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T107",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Went for a five kilometer run in the park.",
+  "equivalents": [
+   "T097"
+  ],
+  "entries": 9
+ },
+ {
+  "id": "T108",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Did a full body workout at the gym.",
+  "equivalents": [
+   "T098"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T109",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Skipped training because I was exhausted.",
+  "equivalents": [
+   "T099"
+  ],
+  "entries": 9
+ },
+ {
+  "id": "T110",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Played football with friends until dark.",
+  "equivalents": [
+   "T103"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T111",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Swam a kilometer at the pool after work.",
+  "equivalents": [
+   "T104"
+  ],
+  "entries": 12
+ },
+ {
+  "id": "T112",
+  "topic": "sport",
+  "lang": "en",
+  "sentence": "Started stretching every morning for ten minutes.",
+  "equivalents": [
+   "T102"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T113",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Генеральне прибирання квартири зайняло пів дня.",
+  "equivalents": [
+   "T123"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T114",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Зламалась пральна машина, викликав майстра.",
+  "equivalents": [
+   "T124"
+  ],
+  "entries": 13
+ },
+ {
+  "id": "T115",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Закупився продуктами на тиждень наперед.",
+  "equivalents": [
+   "T125"
+  ],
+  "entries": 9
+ },
+ {
+  "id": "T116",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Вимкнули світло на шість годин, працював з павербанком.",
+  "equivalents": [
+   "T126"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T117",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Приготував борщ за маминим рецептом.",
+  "equivalents": [
+   "T127"
+  ],
+  "entries": 14
+ },
+ {
+  "id": "T118",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Переставив меблі в кімнаті, стало просторіше.",
+  "equivalents": [],
+  "entries": 11
+ },
+ {
+  "id": "T119",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Заплатив комуналку, тарифи знову зросли.",
+  "equivalents": [
+   "T128"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T120",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Купив нову лампу для робочого столу.",
+  "equivalents": [],
+  "entries": 13
+ },
+ {
+  "id": "T121",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Посадив на балконі розсаду помідорів.",
+  "equivalents": [],
+  "entries": 15
+ },
+ {
+  "id": "T122",
+  "topic": "home",
+  "lang": "uk",
+  "sentence": "Сусіди знову робили ремонт з самого ранку.",
+  "equivalents": [],
+  "entries": 7
+ },
+ {
+  "id": "T123",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "Spent half the day cleaning the apartment.",
+  "equivalents": [
+   "T113"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T124",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "The washing machine broke and I called a repairman.",
+  "equivalents": [
+   "T114"
+  ],
+  "entries": 6
+ },
+ {
+  "id": "T125",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "Did the grocery shopping for the whole week.",
+  "equivalents": [
+   "T115"
+  ],
+  "entries": 7
+ },
+ {
+  "id": "T126",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "There was a power outage for six hours.",
+  "equivalents": [
+   "T116"
+  ],
+  "entries": 8
+ },
+ {
+  "id": "T127",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "Cooked dinner using my mom's recipe.",
+  "equivalents": [
+   "T117"
+  ],
+  "entries": 11
+ },
+ {
+  "id": "T128",
+  "topic": "home",
+  "lang": "en",
+  "sentence": "Paid the utility bills, prices went up again.",
+  "equivalents": [
+   "T119"
+  ],
+  "entries": 10
+ }
+]

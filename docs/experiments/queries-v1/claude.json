@@ -1,0 +1,380 @@
+[
+ {
+  "id": "claude-01",
+  "type": "exact",
+  "lang": "uk",
+  "text": "напівмарафон",
+  "targets": [
+   "T100"
+  ]
+ },
+ {
+  "id": "claude-02",
+  "type": "exact",
+  "lang": "uk",
+  "text": "ОВДП",
+  "targets": [
+   "T018"
+  ]
+ },
+ {
+  "id": "claude-03",
+  "type": "exact",
+  "lang": "uk",
+  "text": "розсаду помідорів",
+  "targets": [
+   "T121"
+  ]
+ },
+ {
+  "id": "claude-04",
+  "type": "exact",
+  "lang": "uk",
+  "text": "пральна машина",
+  "targets": [
+   "T114"
+  ]
+ },
+ {
+  "id": "claude-05",
+  "type": "exact",
+  "lang": "uk",
+  "text": "стоматолог",
+  "targets": [
+   "T037"
+  ]
+ },
+ {
+  "id": "claude-06",
+  "type": "exact",
+  "lang": "uk",
+  "text": "павербанком",
+  "targets": [
+   "T116"
+  ]
+ },
+ {
+  "id": "claude-07",
+  "type": "exact",
+  "lang": "uk",
+  "text": "борщ",
+  "targets": [
+   "T117"
+  ]
+ },
+ {
+  "id": "claude-08",
+  "type": "exact",
+  "lang": "uk",
+  "text": "резервний фонд",
+  "targets": [
+   "T017"
+  ]
+ },
+ {
+  "id": "claude-09",
+  "type": "exact",
+  "lang": "uk",
+  "text": "стендап",
+  "targets": [
+   "T001"
+  ]
+ },
+ {
+  "id": "claude-10",
+  "type": "exact",
+  "lang": "uk",
+  "text": "ембедінги",
+  "targets": [
+   "T085"
+  ]
+ },
+ {
+  "id": "claude-11",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "напівмарафону",
+  "targets": [
+   "T100"
+  ]
+ },
+ {
+  "id": "claude-12",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "Говерла",
+  "targets": [
+   "T067"
+  ]
+ },
+ {
+  "id": "claude-13",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "стоматолога",
+  "targets": [
+   "T037"
+  ]
+ },
+ {
+  "id": "claude-14",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "плавав у басейні",
+  "targets": [
+   "T104"
+  ]
+ },
+ {
+  "id": "claude-15",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "футболу з друзями",
+  "targets": [
+   "T103"
+  ]
+ },
+ {
+  "id": "claude-16",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "ходив до терапевта",
+  "targets": [
+   "T034"
+  ]
+ },
+ {
+  "id": "claude-17",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "посварилися з братом",
+  "targets": [
+   "T053"
+  ]
+ },
+ {
+  "id": "claude-18",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "зламалася пральна машинка",
+  "targets": [
+   "T114"
+  ]
+ },
+ {
+  "id": "claude-19",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "ремонт кухні в батьків",
+  "targets": [
+   "T054"
+  ]
+ },
+ {
+  "id": "claude-20",
+  "type": "wordform",
+  "lang": "uk",
+  "text": "писав диплом",
+  "targets": [
+   "T081"
+  ]
+ },
+ {
+  "id": "claude-21",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "біг 21 кілометр уперше",
+  "targets": [
+   "T100"
+  ]
+ },
+ {
+  "id": "claude-22",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "лікування зубів",
+  "targets": [
+   "T037"
+  ]
+ },
+ {
+  "id": "claude-23",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "не виспався",
+  "targets": [
+   "T035"
+  ]
+ },
+ {
+  "id": "claude-24",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "відключення електрики",
+  "targets": [
+   "T116"
+  ]
+ },
+ {
+  "id": "claude-25",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "на що витрачаю гроші",
+  "targets": [
+   "T019"
+  ]
+ },
+ {
+  "id": "claude-26",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "нічний поїзд",
+  "targets": [
+   "T065"
+  ]
+ },
+ {
+  "id": "claude-27",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "втомився від нескінченних зустрічей",
+  "targets": [
+   "T006"
+  ]
+ },
+ {
+  "id": "claude-28",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "державні облігації",
+  "targets": [
+   "T018"
+  ]
+ },
+ {
+  "id": "claude-29",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "переглядали дитячі фотографії",
+  "targets": [
+   "T055"
+  ]
+ },
+ {
+  "id": "claude-30",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "свято для бабусі",
+  "targets": [
+   "T052"
+  ]
+ },
+ {
+  "id": "claude-31",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "сусіди шуміли зранку",
+  "targets": [
+   "T122"
+  ]
+ },
+ {
+  "id": "claude-32",
+  "type": "paraphrase",
+  "lang": "uk",
+  "text": "скинув зайві підписки",
+  "targets": [
+   "T022"
+  ]
+ },
+ {
+  "id": "claude-33",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "half marathon",
+  "targets": [
+   "T100"
+  ]
+ },
+ {
+  "id": "claude-34",
+  "type": "crosslingual",
+  "lang": "uk",
+  "text": "болить горло, сиджу вдома",
+  "targets": [
+   "T043"
+  ]
+ },
+ {
+  "id": "claude-35",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "hiking in the Carpathians",
+  "targets": [
+   "T067"
+  ]
+ },
+ {
+  "id": "claude-36",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "government bonds",
+  "targets": [
+   "T018"
+  ]
+ },
+ {
+  "id": "claude-37",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "cooking borscht",
+  "targets": [
+   "T117"
+  ]
+ },
+ {
+  "id": "claude-38",
+  "type": "crosslingual",
+  "lang": "uk",
+  "text": "нестабільний інтеграційний тест",
+  "targets": [
+   "T011"
+  ]
+ },
+ {
+  "id": "claude-39",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "talked about grandpa's health",
+  "targets": [
+   "T049"
+  ]
+ },
+ {
+  "id": "claude-40",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "dentist",
+  "targets": [
+   "T037"
+  ]
+ },
+ {
+  "id": "claude-41",
+  "type": "crosslingual",
+  "lang": "en",
+  "text": "daily stand-up about payments",
+  "targets": [
+   "T001"
+  ]
+ },
+ {
+  "id": "claude-42",
+  "type": "crosslingual",
+  "lang": "uk",
+  "text": "розмова з клієнтом про обсяг робіт",
+  "targets": [
+   "T016"
+  ]
+ }
+]
