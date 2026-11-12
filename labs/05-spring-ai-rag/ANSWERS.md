@@ -45,7 +45,7 @@ GET /rag/ask?q         ──▶ ChatClient + QuestionAnswerAdvisor(topK 5) + Si
 - `RagService`: `search`, `askManual`, `askWithAdvisor`, `stripThinking`, `citedIds`.
 - `Source`: `score` від pgvector — це `1 − cosine distance`, тобто той самий cosine.
 - Налаштування pgvector: `initialize-schema=true` (за замовчуванням таблицю Spring AI не створює), `dimensions=768`, `COSINE_DISTANCE`, індекс `HNSW`.
-- Тести: `RagServiceTest` (без БД і моделі: вирізання `</think>`, витягування `[id]`, правило статусу) і `ApplicationTests` (контекст із реальною БД, без завантаження записів). Під час експерименту: `Tests run: 4, Failures: 0, Errors: 0`; після посилення правила статусу додався ще один тест.
+- Тести: `RagServiceTest` (без БД і моделі: вирізання `</think>`, витягування `[id]`, правило статусу) і `ApplicationTests` (контекст із реальною БД, без завантаження записів). Результат: `Tests run: 5, Failures: 0, Errors: 0` (збірка `mvnw test` 18 с).
 
 ## Результати
 
