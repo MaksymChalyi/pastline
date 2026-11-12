@@ -45,3 +45,7 @@ desktop.ini
 
 # --- Lab outputs ---
 embed-out.json
+Claude outputs/
+
+# --- Локальні файли Claude (звіти, налаштування) ---
+.claude/
