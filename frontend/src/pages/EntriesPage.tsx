@@ -6,10 +6,7 @@ import { formatEntryDate } from '../lib/dates'
 const PAGE_SIZE = 20
 const PREVIEW_LENGTH = 280
 
-/**
- * Стрічка записів, новіші вгорі. Фільтр і номер сторінки живуть в адресі (?from=&to=&page=), а не в useState:
- * F5, "назад" у браузері і посилання на конкретну сторінку працюють без додаткового коду.
- */
+/** Фільтр і сторінка зберігаються в адресі, тож F5 і «назад» працюють без додаткового коду. */
 export default function EntriesPage() {
   const [params, setParams] = useSearchParams()
   const from = params.get('from') ?? ''
@@ -60,7 +57,9 @@ export default function EntriesPage() {
 
       {data && data.items.length === 0 && (
         <div className="empty">
-          {from || to ? 'За цей період записів немає.' : 'Записів поки немає. Створіть перший або імпортуйте файл.'}
+          {from || to
+            ? 'За цей період записів немає.'
+            : 'Записів поки немає. Створіть перший або імпортуйте файл.'}
         </div>
       )}
 
@@ -84,7 +83,11 @@ export default function EntriesPage() {
 
       {data && data.totalPages > 1 && (
         <div className="pager">
-          <button className="secondary" disabled={page === 0} onClick={() => update({ page: String(page - 1) })}>
+          <button
+            className="secondary"
+            disabled={page === 0}
+            onClick={() => update({ page: String(page - 1) })}
+          >
             ← Новіші
           </button>
           <span className="muted pager-label">

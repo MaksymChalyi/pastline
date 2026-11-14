@@ -2,10 +2,7 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tansta
 import { entriesApi, type EntryFilter } from '../api/entries'
 import type { EntryInput } from '../api/types'
 
-/**
- * Ключі кешу записів. Усі починаються з 'entries': після будь-якої зміни достатньо скинути цей префікс,
- * і всі списки та картки перезавантажаться (аналог @CacheEvict(allEntries = true)).
- */
+/** Усі ключі починаються з 'entries': після зміни скидається весь префікс. */
 export const entryKeys = {
   all: ['entries'] as const,
   list: (filter: EntryFilter) => ['entries', 'list', filter] as const,

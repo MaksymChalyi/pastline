@@ -20,8 +20,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       // Повторювати має сенс лише збої мережі і 5xx; 4xx від повтору не зміниться
-      retry: (failureCount, error) =>
-        failureCount < 2 && !(error instanceof ApiError && error.status < 500),
+      retry: (failureCount, error) => failureCount < 2 && !(error instanceof ApiError && error.status < 500),
       refetchOnWindowFocus: false,
     },
   },

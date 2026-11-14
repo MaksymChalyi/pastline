@@ -7,19 +7,28 @@ import { IconSearch } from '../layout/Icons'
 import { formatEntryDate } from '../lib/dates'
 
 const MODES: { value: SearchMode; label: string; hint: string }[] = [
-  { value: 'lexical', label: 'Точні слова', hint: 'Повнотекстовий пошук PostgreSQL: знаходить записи з усіма словами запиту, у тій самій формі.' },
-  { value: 'semantic', label: 'За змістом', hint: 'Векторний пошук: знаходить записи, близькі за змістом, навіть іншими словами чи іншою мовою.' },
-  { value: 'hybrid', label: 'Гібридний', hint: 'Обидва списки зливаються через Reciprocal Rank Fusion (RRF).' },
+  {
+    value: 'lexical',
+    label: 'Точні слова',
+    hint: 'Повнотекстовий пошук PostgreSQL: знаходить записи з усіма словами запиту, у тій самій формі.',
+  },
+  {
+    value: 'semantic',
+    label: 'За змістом',
+    hint: 'Векторний пошук: знаходить записи, близькі за змістом, навіть іншими словами чи іншою мовою.',
+  },
+  {
+    value: 'hybrid',
+    label: 'Гібридний',
+    hint: 'Обидва списки зливаються через Reciprocal Rank Fusion (RRF).',
+  },
 ]
 
 function parseMode(value: string | null): SearchMode {
   return value === 'lexical' || value === 'hybrid' ? value : 'semantic'
 }
 
-/**
- * Пошук з перемикачем режиму. Запит, режим і debug живуть в адресі: однаковий URL дає однаковий результат,
- * тож режими зручно порівнювати, перемикаючи лише mode.
- */
+/** Запит, режим і debug зберігаються в адресі: той самий URL дає той самий результат. */
 export default function SearchPage() {
   const [params, setParams] = useSearchParams()
   const q = params.get('q') ?? ''
@@ -86,7 +95,11 @@ export default function SearchPage() {
         </div>
         {mode === 'hybrid' && (
           <label className="check">
-            <input type="checkbox" checked={debug} onChange={(e) => setParam({ debug: e.target.checked ? '1' : '' })} />
+            <input
+              type="checkbox"
+              checked={debug}
+              onChange={(e) => setParam({ debug: e.target.checked ? '1' : '' })}
+            />
             Показати ранги
           </label>
         )}
@@ -109,8 +122,9 @@ export default function SearchPage() {
           </div>
           {mode !== 'lexical' && data.hits.length > 0 && (
             <p className="muted small semantic-note">
-              Пошук за змістом завжди показує найближчі записи, навіть коли точної відповіді немає. Щоб отримати
-              відповідь або чесне «не знайдено», поставте питання в розділі <Link to="/ask">«Запитати»</Link>.
+              Пошук за змістом завжди показує найближчі записи, навіть коли точної відповіді немає. Щоб
+              отримати відповідь або чесне «не знайдено», поставте питання в розділі{' '}
+              <Link to="/ask">«Запитати»</Link>.
             </p>
           )}
           {data.hits.length === 0 ? (
@@ -125,8 +139,8 @@ export default function SearchPage() {
                     </div>
                     {hit.debug && (
                       <div className="debug">
-                        lexical {hit.debug.lexicalRank ?? '—'} · semantic {hit.debug.semanticRank ?? '—'} · RRF{' '}
-                        {hit.debug.rrfScore.toFixed(4)}
+                        lexical {hit.debug.lexicalRank ?? '—'} · semantic {hit.debug.semanticRank ?? '—'} ·
+                        RRF {hit.debug.rrfScore.toFixed(4)}
                       </div>
                     )}
                     {hit.title && <div className="entry-title">{hit.title}</div>}

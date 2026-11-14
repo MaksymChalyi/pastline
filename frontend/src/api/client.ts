@@ -1,8 +1,5 @@
 import type { ApiErrorBody, FieldError } from './types'
 
-/**
- * Помилка API у вигляді, зручному для UI. Аналог BaseException на бекенді: статус + код + повідомлення.
- */
 export class ApiError extends Error {
   readonly status: number
   readonly code: string
@@ -43,8 +40,8 @@ interface RequestOptions {
 }
 
 /**
- * Єдиний HTTP-клієнт застосунку (аналог RestClient з interceptor'ом): cookie сесії, CSRF для змінних запитів,
- * перетворення помилки бекенду на ApiError. Шлях без префікса: api('/me') → GET /api/v1/me.
+ * Єдиний HTTP-клієнт: cookie сесії, CSRF для змінних запитів, помилка бекенду → ApiError.
+ * api('/me') → GET /api/v1/me.
  */
 export async function api<T>(path: string, options: RequestOptions = {}): Promise<T> {
   return send<T>(path, options, false)

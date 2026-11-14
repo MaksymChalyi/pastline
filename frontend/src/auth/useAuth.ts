@@ -4,13 +4,10 @@ import { authApi } from '../api/auth'
 import { ApiError } from '../api/client'
 import type { User } from '../api/types'
 
-/** Ключ кешу "хто я". Аналог SecurityContextHolder, тільки на клієнті: одне джерело правди для всіх сторінок. */
+/** Ключ кешу поточного користувача. */
 export const meKey = ['me'] as const
 
-/**
- * Поточний користувач: User, null (не увійшов) або undefined (ще завантажується).
- * 401 тут не помилка, а відповідь "сесії немає".
- */
+/** User, null (сесії немає, 401) або undefined (ще завантажується). */
 export function useMe() {
   return useQuery<User | null>({
     queryKey: meKey,
@@ -40,7 +37,7 @@ export function useLogin() {
   })
 }
 
-/** Реєстрація не створює сесію (так на бекенді), тому одразу після неї входимо тими ж даними. */
+/** Реєстрація не створює сесію, тому після неї одразу вхід. */
 export function useRegister() {
   const queryClient = useQueryClient()
   const navigate = useNavigate()

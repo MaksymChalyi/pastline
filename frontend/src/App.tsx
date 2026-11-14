@@ -9,7 +9,6 @@ import EntryEditorPage from './pages/EntryEditorPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
-/** Маршрути на клієнті: аналог @RequestMapping, тільки сторінку обирає браузер без запиту до сервера. */
 export default function App() {
   return (
     <Routes>

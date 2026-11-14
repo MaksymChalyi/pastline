@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-/** Іконки навігації: inline SVG, колір береться з currentColor, тож вони фарбуються як текст. */
+/** Іконки навігації: колір з currentColor. */
 type IconProps = { size?: number }
 
 function Svg({ size = 22, children }: IconProps & { children: ReactNode }) {

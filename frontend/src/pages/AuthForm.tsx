@@ -12,11 +12,15 @@ interface Props {
   footer: ReactNode
 }
 
-/**
- * Спільна форма для входу і реєстрації. useState тримає значення полів між рендерами: кожна зміна поля
- * викликає новий рендер компонента з новим значенням (контрольований input).
- */
-export default function AuthForm({ title, submitLabel, passwordHint, pending, error, onSubmit, footer }: Props) {
+export default function AuthForm({
+  title,
+  submitLabel,
+  passwordHint,
+  pending,
+  error,
+  onSubmit,
+  footer,
+}: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 

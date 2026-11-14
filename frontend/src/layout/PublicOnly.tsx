@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 import { useMe } from '../auth/useAuth'
 
-/** Сторінки входу й реєстрації: якщо сесія вже є, на них немає сенсу лишатись. */
+/** Вхід і реєстрація: з активною сесією перенаправляє на головну. */
 export default function PublicOnly() {
   const me = useMe()
   if (me.isPending) {

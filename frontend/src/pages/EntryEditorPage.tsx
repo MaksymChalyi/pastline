@@ -16,13 +16,14 @@ export default function EntryEditorPage() {
   if (id && entry.isError) {
     return (
       <p className="error">
-        {entry.error instanceof ApiError && entry.error.status === 404 ? 'Запис не знайдено.' : entry.error.message}{' '}
+        {entry.error instanceof ApiError && entry.error.status === 404
+          ? 'Запис не знайдено.'
+          : entry.error.message}{' '}
         <Link to="/">До стрічки</Link>
       </p>
     )
   }
-  // key: форма створюється заново для кожного запису, тож початкові значення беруться з пропсів один раз,
-  // без useEffect для "синхронізації" стану з даними сервера
+  // key створює форму заново для кожного запису: початковий стан береться з даних один раз, без useEffect
   return <EntryForm key={id ?? 'new'} entry={entry.data} />
 }
 
@@ -37,10 +38,7 @@ function EntryForm({ entry }: { entry: Entry | undefined }) {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    save.mutate(
-      { entryDate, title: title.trim() || null, content },
-      { onSuccess: () => navigate('/') },
-    )
+    save.mutate({ entryDate, title: title.trim() || null, content }, { onSuccess: () => navigate('/') })
   }
 
   function handleDelete() {
@@ -65,7 +63,13 @@ function EntryForm({ entry }: { entry: Entry | undefined }) {
         <div className="editor-row">
           <label>
             Дата
-            <input type="date" value={entryDate} max={todayIso()} onChange={(e) => setEntryDate(e.target.value)} required />
+            <input
+              type="date"
+              value={entryDate}
+              max={todayIso()}
+              onChange={(e) => setEntryDate(e.target.value)}
+              required
+            />
           </label>
           <label className="grow">
             Заголовок <span className="muted">(необов'язково)</span>

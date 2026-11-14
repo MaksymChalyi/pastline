@@ -6,10 +6,7 @@ import type { ImportReport } from '../api/types'
 import { entryKeys } from '../entries/useEntries'
 import { formatEntryDate } from '../lib/dates'
 
-/**
- * Імпорт у два кроки: спершу перевірка (dryRun=true, нічого не зберігається), потім імпорт. Повторний імпорт
- * того самого файлу безпечний: дублікати (та сама дата і текст) пропускаються.
- */
+/** Імпорт у два кроки: перевірка (dryRun=true), потім збереження. */
 export default function ImportPage() {
   const queryClient = useQueryClient()
   const [file, setFile] = useState<File | null>(null)
@@ -104,8 +101,8 @@ function ReportView({ report }: { report: ImportReport }) {
       )}
       {!report.dryRun && report.created > 0 && (
         <p className="muted">
-          Записи вже у <Link to="/">стрічці</Link>. Пошук за змістом побачить їх через кілька хвилин, коли фоновий
-          індексатор порахує вектори.
+          Записи вже у <Link to="/">стрічці</Link>. Пошук за змістом побачить їх через кілька хвилин, коли
+          фоновий індексатор порахує вектори.
         </p>
       )}
     </div>

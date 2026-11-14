@@ -5,10 +5,7 @@ import { askApi } from '../api/ask'
 import type { AskResponse, AskSource } from '../api/types'
 import { formatEntryDate } from '../lib/dates'
 
-/**
- * Ask Pastline: відповідь лише з ваших записів, кожне твердження з посиланням на джерело. Модель працює локально
- * на CPU, тож відповідь займає десятки секунд: показуємо, скільки вже чекаємо.
- */
+/** Локальна модель на CPU відповідає десятки секунд, тому показуємо час очікування. */
 export default function AskPage() {
   const [question, setQuestion] = useState('')
   const ask = useMutation({ mutationFn: (q: string) => askApi.ask(q) })
@@ -58,21 +55,13 @@ export default function AskPage() {
   )
 }
 
-/**
- * Лічильник секунд. useEffect запускає таймер, коли компонент з'являється на екрані, і зупиняє його (функція,
- * яку повертає ефект), коли компонент зникає. Аналог @PostConstruct + @PreDestroy.
- */
 function Elapsed() {
   const [seconds, setSeconds] = useState(0)
   useEffect(() => {
     const timer = setInterval(() => setSeconds((s) => s + 1), 1000)
     return () => clearInterval(timer)
   }, [])
-  return (
-    <span className="muted">
-      Шукаю в записах і складаю відповідь… {seconds} с (зазвичай 20–60 с)
-    </span>
-  )
+  return <span className="muted">Шукаю в записах і складаю відповідь… {seconds} с (зазвичай 20–60 с)</span>
 }
 
 const CITATION = /\[(E\d+(?:\s*,\s*E\d+)*)\]/g
