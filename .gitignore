@@ -21,7 +21,7 @@ out/
 secrets/
 credentials.json
 
-# --- Private journal data (must never enter Git, see PLAN.md) ---
+# --- Private journal data (must never enter Git, see README.md) ---
 private/
 corpus-private/
 

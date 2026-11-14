@@ -3,14 +3,14 @@ services:
     image: pgvector/pgvector:0.8.2-pg17
     environment:
       POSTGRES_DB: pastline
-      POSTGRES_USER: pastline
-      POSTGRES_PASSWORD: pastline
+      POSTGRES_USER: ${PASTLINE_DB_USER:-pastline}
+      POSTGRES_PASSWORD: ${PASTLINE_DB_PASSWORD:-pastline}
     ports:
       - "${PASTLINE_DB_PORT:-5434}:5432"
     volumes:
       - pastline-pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pastline -d pastline"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d pastline"]
       interval: 5s
       timeout: 3s
       retries: 10
