@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant C as Клієнт
+    participant S as Search<br/>Service
+    participant M as Embedding<br/>ModelPort
+    participant E as Embedding<br/>Repository
+    participant L as LexicalSearch<br/>Repository
+    participant F as RrfFusion
+
+    C->>S: GET /search?mode=hybrid
+    S->>M: embedQuery(q)
+    alt модель недоступна
+        S-->>C: 503
+    end
+    M-->>S: вектор (768)
+    S->>E: top-50, косинусна відстань
+    E-->>S: семантичний список
+    S->>L: top-50, ts_rank
+    L-->>S: лексичний список
+    S->>F: fuse(k = 60)
+    Note over S,F: Σ 1 / (k + rank)
+    F-->>S: об'єднаний список
+    S-->>C: результати

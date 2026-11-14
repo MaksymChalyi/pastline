@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant C as Клієнт
+    participant A as Ask<br/>Service
+    participant S as Search<br/>Service
+    participant J as JournalEntry<br/>Repository
+    participant M as ChatModel<br/>Port
+    participant V as Citation<br/>Validator
+
+    C->>A: POST /ai/ask
+    A->>S: гібридний пошук, top-8
+    alt записів немає
+        A-->>C: NO_EVIDENCE
+    end
+    A->>J: текст записів (user_id)
+    Note over A,J: <entry id="E1">, екранування < >
+    A->>M: правила + записи + питання
+    M-->>A: сира відповідь
+    alt NO_ANSWER
+        A-->>C: NO_EVIDENCE
+    end
+    A->>V: validate(відповідь, E1…E8)
+    V-->>A: перевірені речення
+    alt нічого не лишилось
+        A-->>C: NO_EVIDENCE
+    else
+        A-->>C: ANSWERED, джерела
+    end

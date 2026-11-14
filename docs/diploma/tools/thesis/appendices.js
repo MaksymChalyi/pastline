@@ -40,6 +40,19 @@ const questions = JSON.parse(read('docs/experiments/ask-v1/questions.json'));
 const promptMd = read('docs/experiments/queries-v1/PROMPT.md');
 const promptText = promptMd.slice(promptMd.indexOf('---') + 3).trim().split('\n');
 
+// Розбиття Б.1 на сторінки: оцінка висоти рядка в рядках тексту (≈ 40 символів у стовпці запиту),
+// бюджет першої сторінки менший через заголовок додатка
+function pageChunks(texts, first, other, perLine = 40) {
+  const chunks = []; let n = 0; let used = 0; let budget = first;
+  for (const t of texts) {
+    const h = Math.max(1, Math.ceil(t.length / perLine));
+    if (used + h > budget && n > 0) { chunks.push(n); n = 0; used = 0; budget = other; }
+    n += 1; used += h;
+  }
+  if (n) chunks.push(n);
+  return chunks;
+}
+
 const appendixB = [
   ['p', `Повний набір із ${queries.length} пошукових запитів наведено в таблиці Б.1, запитання для оцінки Ask Pastline — у таблиці Б.2, промпт, за яким запити згенеровано моделями ChatGPT і DeepSeek, — у лістингу Б.1. Цільові речення корпусу і сам корпус зберігаються в репозиторії в каталозі docs/experiments.`],
   ['table', {
@@ -49,6 +62,7 @@ const appendixB = [
     size: 20,
     header: ['№', 'Ідентифікатор', 'Джерело', 'Тип', 'Мова', 'Текст запиту'],
     rows: queries.map((q, i) => [String(i + 1), q.id, SOURCE[q.source] ?? q.source, TYPE[q.type] ?? q.type, q.lang, q.text]),
+    chunks: pageChunks(queries.map((q) => q.text), 29, 43, 36),
   }],
   ['table', {
     num: 'Б.2',
@@ -59,7 +73,7 @@ const appendixB = [
     rows: questions.map((q, i) => [String(i + 1), q.id, q.expect === 'answer' ? 'є' : 'немає', q.question]),
   }],
   ['code', { caption: 'Лістинг Б.1. Промпт для генерації запитів моделями ChatGPT і DeepSeek', lines: promptText, size: 18 }],
-  ['hint', 'За вимогою методики вказати модель і дату запиту для ChatGPT і DeepSeek (наприклад, «ChatGPT (модель …), 12.11.2026; DeepSeek (модель …), 12.11.2026»), — ці дані є лише у вас.'],
+  ['todo', 'Запити згенеровано: ChatGPT — модель [___], дата [__.__.2026]; DeepSeek — модель [___], дата [__.__.2026].'],
 ];
 
 module.exports = { appendixA, appendixB };

@@ -56,27 +56,41 @@ function cite(text) {
 }
 
 // ---------- текст розділу з блоків ----------
+// Таблиця: малі тримаються на одній сторінці (keepNext у кожному рядку, крім останнього);
+// великі (t.chunks — кількість рядків на сторінку) діляться на частини з підписом «Продовження таблиці N»
+// і повтором заголовка, як вимагає Положення.
 function renderTable(t) {
-  const out = [
-    p([r(`Таблиця ${t.num}`)], { noIndent: true, align: AlignmentType.RIGHT, before: 240, keepNext: true }),
-    center([r(t.title)], { keepNext: true, after: 120 }),
-  ];
   const size = t.size ?? 24;
   const total = t.widths.reduce((a, b) => a + b, 0);
-  const para = (text, bold, align) => new Paragraph({ alignment: align, indent: { firstLine: 0 }, spacing: { lineRule: LineRuleType.AUTO, line: 240 },
-    children: [r(cite(text), { size, bold })] });
-  out.push(new Table({
-    width: { size: total, type: WidthType.DXA },
-    columnWidths: t.widths,
-    rows: [
-      new TableRow({ tableHeader: true, cantSplit: true, children: t.header.map((h, i) =>
-        new TableCell({ width: { size: t.widths[i], type: WidthType.DXA }, margins: { top: 40, bottom: 40, left: 70, right: 70 },
-          children: [para(h, true, AlignmentType.CENTER)] })) }),
-      ...t.rows.map((row) => new TableRow({ cantSplit: true, children: row.map((c, i) =>
-        new TableCell({ width: { size: t.widths[i], type: WidthType.DXA }, margins: { top: 40, bottom: 40, left: 70, right: 70 },
-          children: [para(c, i === 0, AlignmentType.LEFT)] })) })),
-    ],
-  }));
+  const para = (text, bold, align, keepNext) => new Paragraph({ alignment: align, indent: { firstLine: 0 }, keepNext,
+    spacing: { lineRule: LineRuleType.AUTO, line: 240 }, children: [r(cite(text), { size, bold })] });
+  const headerRow = () => new TableRow({ tableHeader: true, cantSplit: true, children: t.header.map((h, i) =>
+    new TableCell({ width: { size: t.widths[i], type: WidthType.DXA }, margins: { top: 40, bottom: 40, left: 70, right: 70 },
+      children: [para(h, true, AlignmentType.CENTER, true)] })) });
+  const bodyRows = (rows, keepAll) => rows.map((row, ri) => new TableRow({ cantSplit: true, children: row.map((c, i) =>
+    new TableCell({ width: { size: t.widths[i], type: WidthType.DXA }, margins: { top: 40, bottom: 40, left: 70, right: 70 },
+      children: [para(c, i === 0, AlignmentType.LEFT, keepAll && ri < rows.length - 1)] })) }));
+  const table = (rows, keepAll) => new Table({ width: { size: total, type: WidthType.DXA }, columnWidths: t.widths,
+    rows: [headerRow(), ...bodyRows(rows, keepAll)] });
+
+  const chunks = [];
+  if (t.chunks) {
+    let from = 0;
+    for (const n of t.chunks) { if (from < t.rows.length) chunks.push(t.rows.slice(from, from + n)); from += n; }
+    if (from < t.rows.length) chunks.push(t.rows.slice(from));
+  } else {
+    chunks.push(t.rows);
+  }
+  const out = [];
+  chunks.forEach((rows, k) => {
+    if (k === 0) {
+      out.push(p([r(`Таблиця ${t.num}`)], { noIndent: true, align: AlignmentType.RIGHT, before: 240, keepNext: true }));
+      out.push(center([r(t.title)], { keepNext: true, after: 120 }));
+    } else {
+      out.push(p([r(`Продовження таблиці ${t.num}`)], { noIndent: true, align: AlignmentType.RIGHT, keepNext: true, pageBreak: true, after: 120 }));
+    }
+    out.push(table(rows, !t.chunks));
+  });
   out.push(p([r('')], { noIndent: true, line: 240 }));
   return out;
 }
@@ -113,6 +127,7 @@ function renderBlocks(blocks) {
       })];
       case 'where': return [p(cite(value), { noIndent: true })];
       case 'hint': return hint(value);
+      case 'todo': return [p([fill(value)])];  // жовтим: дані, які є лише в автора
       case 'code': return [
         p([r(value.caption)], { noIndent: true, keepNext: true, before: 120 }),
         ...value.lines.map((line, i) => new Paragraph({
@@ -233,7 +248,7 @@ const PAGES = '__';
 const abstract = () => [
   unlisted('РЕФЕРАТ'),
   p([r('Пояснювальна записка до кваліфікаційної роботи «Інтелектуальна система обліку та інтелектуального пошуку персональних записів»: '),
-     fill(`${PAGES} с.`), r(`, 12 рис., 22 табл., ${citedOrder.length} джерел, 2 додатки.`)]),
+     fill(`${PAGES} с.`), r(`, 14 рис., 22 табл., ${citedOrder.length} джерел, 2 додатки.`)]),
   p([r('ПЕРСОНАЛЬНІ ЗАПИСИ, ЩОДЕННИК, ЛЕКСИЧНИЙ ПОШУК, СЕМАНТИЧНИЙ ПОШУК, ГІБРИДНИЙ ПОШУК, ВЕКТОРНІ ПРЕДСТАВЛЕННЯ, RRF, RAG, ВЕЛИКІ МОВНІ МОДЕЛІ, PGVECTOR')]),
   p('Об’єкт дослідження — процес пошуку інформації в персональних записах. Предмет дослідження — методи лексичного, семантичного і гібридного пошуку персональних записів та генерації відповідей із перевіркою посилань на джерела.'),
   p('Мета роботи — розробити систему обліку персональних записів із трьома режимами пошуку та відповідями на запитання з перевіркою джерел і експериментально порівняти режими пошуку за якістю і затримкою.'),
@@ -246,31 +261,22 @@ const abstract = () => [
 const toc = [
   unlisted('ЗМІСТ'),
   new TableOfContents('Зміст', { hyperlink: true, headingStyleRange: '1-3' }),
-  ...hint('Зміст заповнює Word: правий клік по змісту → «Оновити поле» → «Оновити повністю» (або F9). Оновлювати після кожної зміни заголовків.'),
 ];
 
 // ---------- перелік скорочень ----------
 const abbr = [
-  ['ANN', 'Approximate Nearest Neighbors — наближений пошук найближчих сусідів'],
   ['API', 'Application Programming Interface — програмний інтерфейс застосунку'],
   ['BM25', 'Best Matching 25 — функція ранжування в інформаційному пошуку'],
   ['CSRF', 'Cross-Site Request Forgery — підробка міжсайтового запиту'],
-  ['DTO', 'Data Transfer Object — об’єкт передачі даних'],
-  ['FTS', 'Full-Text Search — повнотекстовий пошук'],
   ['GIN', 'Generalized Inverted Index — узагальнений інвертований індекс PostgreSQL'],
   ['HNSW', 'Hierarchical Navigable Small World — граф для наближеного векторного пошуку'],
   ['JPA', 'Jakarta Persistence API'],
   ['JSON', 'JavaScript Object Notation'],
-  ['JWT', 'JSON Web Token'],
-  ['LLM', 'Large Language Model — велика мовна модель'],
   ['MRR', 'Mean Reciprocal Rank — середній обернений ранг'],
   ['RAG', 'Retrieval-Augmented Generation — генерація з доповненням пошуком'],
   ['REST', 'Representational State Transfer'],
   ['RRF', 'Reciprocal Rank Fusion — злиття рангів'],
-  ['SPA', 'Single Page Application — односторінковий застосунок'],
   ['SQL', 'Structured Query Language'],
-  ['UUID', 'Universally Unique Identifier'],
-  ['ПЗ', 'програмне забезпечення'],
   ['СУБД', 'система управління базами даних'],
 ];
 const abbrTable = new Table({
@@ -282,7 +288,6 @@ const abbrTable = new Table({
 const abbreviations = [
   h1('ПЕРЕЛІК УМОВНИХ ПОЗНАЧЕНЬ, СКОРОЧЕНЬ, ТЕРМІНІВ'),
   abbrTable,
-  ...hint('Перелік за абеткою, дві колонки. Залишити лише ті скорочення, що вжито в тексті три й більше разів; решту розшифрувати при першій згадці (Положення, п. 4.8). Спершу латиниця, потім кирилиця.'),
 ];
 
 // ---------- вступ ----------

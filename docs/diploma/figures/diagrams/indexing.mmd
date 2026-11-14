@@ -1,0 +1,26 @@
+sequenceDiagram
+    actor U as Користувач
+    participant I as ImportService
+    participant J as JournalService
+    participant DB as PostgreSQL
+    participant X as EmbeddingIndexer<br/>(фоновий)
+    participant M as Embedding<br/>ModelPort
+
+    U->>I: файл JSON / Markdown, dryRun=true
+    I->>I: розбір і перевірка в пам'яті
+    I->>DB: один запит: наявні ключі (дата + хеш тексту)
+    I-->>U: звіт: буде створено / дублікати / помилки
+    U->>I: той самий файл, dryRun=false
+    I->>J: createAll пачками по 100
+    J->>DB: пакетний INSERT (дублікати пропускаються)
+    I-->>U: звіт імпорту
+    loop кожні 2 с (у хмарі 3 с)
+        X->>DB: записи без вектора або з іншим content_hash / моделлю
+        X->>M: embedDocuments (пачка 32)
+        alt модель недоступна
+            X->>X: пауза до наступного циклу, запис лишається «у черзі»
+        else
+            M-->>X: вектори
+            X->>DB: upsert entry_embeddings (READY / FAILED)
+        end
+    end
