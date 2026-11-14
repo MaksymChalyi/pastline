@@ -67,6 +67,11 @@ public final class CitationValidator {
         return result;
     }
 
+    /** Усі посилання [E#] у тексті, з повтореннями, у порядку появи. */
+    public static List<String> refsIn(String text) {
+        return refs(text == null ? "" : text);
+    }
+
     private static List<String> refs(String sentence) {
         List<String> refs = new ArrayList<>();
         Matcher citation = CITATION.matcher(sentence);

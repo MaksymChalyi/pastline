@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Запуск: {@code .\mvnw spring-boot:run "-Dspring-boot.run.profiles=benchmark"} з папки backend. Без веб-сервера (див.
- * application-benchmark.properties): прогін, звіт, вихід.
+ * application-benchmark.properties): прогін, звіт, вихід. pastline.benchmark.task: search (пошук, за замовчуванням)
+ * або ask (Ask Pastline, H5).
  */
 @Slf4j
 @Component
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Component;
 public class BenchmarkRunner implements ApplicationRunner {
 
     private final BenchmarkService benchmarkService;
+    private final AskBenchmarkService askBenchmarkService;
     private final ConfigurableApplicationContext context;
 
     @Value("${pastline.benchmark.corpus}")
@@ -42,11 +44,22 @@ public class BenchmarkRunner implements ApplicationRunner {
     @Value("${pastline.benchmark.repeats}")
     private int repeats;
 
+    @Value("${pastline.benchmark.task:search}")
+    private String task;
+
+    @Value("${pastline.benchmark.ask-questions}")
+    private Path askQuestions;
+
     @Override
     public void run(ApplicationArguments args) {
         int exitCode = 0;
         try {
-            benchmarkService.run(new BenchmarkConfig(corpus, queries, output, user, warmup, repeats));
+            switch (task) {
+                case "search" ->
+                    benchmarkService.run(new BenchmarkConfig(corpus, queries, output, user, warmup, repeats));
+                case "ask" -> askBenchmarkService.run(corpus, queries, askQuestions, output, user);
+                default -> throw new IllegalArgumentException("pastline.benchmark.task: search або ask, а не " + task);
+            }
         } catch (Exception e) {
             log.error("Бенчмарк не виконано: {}", e.toString());
             exitCode = 1;

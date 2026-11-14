@@ -1,0 +1,22 @@
+[
+  {"id": "q01", "source": "claude", "question": "Що мені сказав стоматолог?", "expect": "answer", "targets": ["T037"]},
+  {"id": "q02", "source": "claude", "question": "Як пройшов мій перший напівмарафон?", "expect": "answer", "targets": ["T100"]},
+  {"id": "q03", "source": "claude", "question": "Що лікар порадив робити перед сном?", "expect": "answer", "targets": ["T042"]},
+  {"id": "q04", "source": "claude", "question": "Що сталося з пральною машиною і що я зробив?", "expect": "answer", "targets": ["T114"]},
+  {"id": "q05", "source": "claude", "question": "На яку гору я піднімався в Карпатах?", "expect": "answer", "targets": ["T067"]},
+  {"id": "q06", "source": "claude", "question": "Що мені передала мама?", "expect": "answer", "targets": ["T057"]},
+  {"id": "q07", "source": "claude", "question": "Чим здивував усіх мій племінник?", "expect": "answer", "targets": ["T056"]},
+  {"id": "q08", "source": "claude", "question": "Як пройшов реліз на роботі?", "expect": "answer", "targets": ["T008"]},
+  {"id": "q09", "source": "claude", "question": "Які державні облігації я купував і яка в них дохідність?", "expect": "answer", "targets": ["T018"]},
+  {"id": "q10", "source": "claude", "question": "Як я працював, коли вимкнули світло?", "expect": "answer", "targets": ["T116"]},
+  {"id": "q11", "source": "claude", "question": "Що сказав науковий керівник про мою роботу?", "expect": "answer", "targets": ["T083"]},
+  {"id": "q12", "source": "claude", "question": "Через що я посварився з братом?", "expect": "answer", "targets": ["T053"]},
+  {"id": "q13", "source": "claude", "question": "What did my sister get accepted into?", "expect": "answer", "targets": ["T051"]},
+  {"id": "q14", "source": "claude", "question": "How late was my train and how was the trip?", "expect": "answer", "targets": ["T068"]},
+  {"id": "q15", "source": "claude", "question": "What did I plant on the balcony?", "expect": "answer", "targets": ["T121"]},
+  {"id": "q16", "source": "claude", "question": "Як звали мою собаку?", "expect": "refuse"},
+  {"id": "q17", "source": "claude", "question": "На чиєму весіллі я був?", "expect": "refuse"},
+  {"id": "q18", "source": "claude", "question": "Який автомобіль я купив?", "expect": "refuse"},
+  {"id": "q19", "source": "claude", "question": "Коли я грав у теніс?", "expect": "refuse"},
+  {"id": "q20", "source": "claude", "question": "Скільки я щомісяця плачу за іпотеку?", "expect": "refuse"}
+]

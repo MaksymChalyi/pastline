@@ -1,33 +1,21 @@
 package com.pastline.benchmark;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pastline.ai.port.EmbeddingModelPort;
-import com.pastline.auth.service.AuthService;
 import com.pastline.benchmark.BenchmarkReport.Config;
 import com.pastline.benchmark.BenchmarkReport.ModeResult;
 import com.pastline.benchmark.BenchmarkReport.QueryResult;
 import com.pastline.benchmark.BenchmarkReport.Summary;
-import com.pastline.importing.dto.ImportReport;
-import com.pastline.importing.service.ImportService;
-import com.pastline.journal.service.JournalService;
 import com.pastline.search.dto.SearchHit;
-import com.pastline.search.embedding.EmbeddingIndexer;
-import com.pastline.search.repository.EmbeddingRepository;
 import com.pastline.search.repository.LexicalOperator;
 import com.pastline.search.service.SearchMode;
 import com.pastline.search.service.SearchService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -38,10 +26,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 /**
@@ -63,18 +48,11 @@ public class BenchmarkService {
 
     private static final List<SearchMode> MODES = List.of(SearchMode.LEXICAL, SearchMode.SEMANTIC, SearchMode.HYBRID);
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    record CorpusEntry(String id, String entryDate, String title, String content) {}
-
     private final ObjectMapper objectMapper;
     private final QuerySetLoader querySetLoader;
-    private final AuthService authService;
-    private final ImportService importService;
-    private final EmbeddingIndexer indexer;
-    private final EmbeddingRepository embeddingRepository;
+    private final CorpusPreparer corpusPreparer;
     private final EmbeddingModelPort embeddingModel;
     private final SearchService searchService;
-    private final JdbcTemplate jdbc;
     private final Clock clock;
     private final int rrfK;
     private final LexicalOperator lexicalOperator;
@@ -82,25 +60,17 @@ public class BenchmarkService {
     public BenchmarkService(
             ObjectMapper objectMapper,
             QuerySetLoader querySetLoader,
-            AuthService authService,
-            ImportService importService,
-            EmbeddingIndexer indexer,
-            EmbeddingRepository embeddingRepository,
+            CorpusPreparer corpusPreparer,
             EmbeddingModelPort embeddingModel,
             SearchService searchService,
-            JdbcTemplate jdbc,
             Clock clock,
             @Value("${pastline.search.rrf-k:60}") int rrfK,
             @Value("${pastline.search.lexical-operator:and}") String lexicalOperator) {
         this.objectMapper = objectMapper;
         this.querySetLoader = querySetLoader;
-        this.authService = authService;
-        this.importService = importService;
-        this.indexer = indexer;
-        this.embeddingRepository = embeddingRepository;
+        this.corpusPreparer = corpusPreparer;
         this.embeddingModel = embeddingModel;
         this.searchService = searchService;
-        this.jdbc = jdbc;
         this.clock = clock;
         this.rrfK = rrfK;
         this.lexicalOperator = LexicalOperator.parse(lexicalOperator);
@@ -110,43 +80,21 @@ public class BenchmarkService {
 
     public Result run(BenchmarkConfig cfg) throws IOException {
         String startedAt = clock.instant().toString();
-        byte[] corpusBytes = Files.readAllBytes(cfg.corpus());
-        List<CorpusEntry> corpus = objectMapper.readValue(corpusBytes, new TypeReference<>() {});
         QuerySetLoader.Targets targets = querySetLoader.loadTargets(cfg.queriesDir());
         List<BenchmarkQuery> queries = querySetLoader.loadQueries(cfg.queriesDir(), targets);
+        CorpusPreparer.Prepared prepared = corpusPreparer.prepare(cfg.corpus(), cfg.userEmail());
         log.info(
                 "Корпус: {} записів, запитів: {}, лексичний оператор: {}",
-                corpus.size(),
+                prepared.corpus().size(),
                 queries.size(),
                 lexicalOperator);
-
-        UUID userId = ensureUser(cfg.userEmail());
-        ImportReport imported = importService.importFile(userId, "corpus.json", corpusBytes, false);
-        log.info(
-                "Імпорт: створено {}, вже було {}, помилок {}",
-                imported.created(),
-                imported.duplicates(),
-                imported.failed());
-        if (imported.failed() > 0) {
-            throw new IllegalStateException("Корпус імпортовано з помилками: " + imported.errors());
-        }
-
-        log.info("Індексація векторів...");
-        indexer.indexAll();
-        int stale = embeddingRepository.countStale(userId, embeddingModel.modelName());
-        if (stale > 0) {
-            throw new IllegalStateException(
-                    stale + " записів без вектора: модель ембедінгів недоступна або індексація неповна");
-        }
-        int failed = countFailedEmbeddings(userId);
-
-        Map<String, UUID> dbIdByCorpusId = mapCorpusToDb(userId, corpus);
+        UUID userId = prepared.userId();
         Map<UUID, String> corpusIdByDbId = new HashMap<>();
-        dbIdByCorpusId.forEach((c, db) -> corpusIdByDbId.put(db, c));
+        prepared.dbIdByCorpusId().forEach((c, db) -> corpusIdByDbId.put(db, c));
 
         Map<String, Set<UUID>> relevantByQuery = new HashMap<>();
         for (BenchmarkQuery q : queries) {
-            relevantByQuery.put(q.id(), relevant(q, targets, corpus, dbIdByCorpusId));
+            relevantByQuery.put(q.id(), relevant(q, targets, prepared));
         }
 
         Config config = new Config(
@@ -156,11 +104,11 @@ public class BenchmarkService {
                 BenchmarkMetrics.DEPTH,
                 cfg.warmup(),
                 cfg.repeats(),
-                sha256(corpusBytes),
-                corpus.size(),
+                prepared.corpusSha256(),
+                prepared.corpus().size(),
                 queryFileHashes(cfg.queriesDir()),
                 queries.size(),
-                failed,
+                prepared.failedEmbeddings(),
                 System.getProperty("java.version"));
         Files.createDirectories(cfg.outputDir());
         String stamp = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss").format(java.time.LocalDateTime.now(clock));
@@ -251,58 +199,10 @@ public class BenchmarkService {
         return new BenchmarkReport(startedAt, config, List.copyOf(completedModes), summary, queryResults);
     }
 
-    private UUID ensureUser(String email) {
-        try {
-            return authService.loadUserByUsername(email).id();
-        } catch (UsernameNotFoundException e) {
-            return authService
-                    .register(email, UUID.randomUUID().toString(), null)
-                    .getId();
-        }
-    }
-
-    private int countFailedEmbeddings(UUID userId) {
-        Integer n = jdbc.queryForObject("""
-                SELECT count(*) FROM entry_embeddings x JOIN journal_entries e ON e.id = x.entry_id
-                WHERE e.user_id = ? AND x.status = 'FAILED'
-                """, Integer.class, userId);
-        return n == null ? 0 : n;
-    }
-
-    /** Запис корпусу -> запис у БД за ключем дедуплікації (дата + хеш нормалізованого тексту). */
-    private Map<String, UUID> mapCorpusToDb(UUID userId, List<CorpusEntry> corpus) {
-        Map<String, UUID> dbByKey = new HashMap<>();
-        jdbc.query(
-                "SELECT id, entry_date, content_hash FROM journal_entries WHERE user_id = ?",
-                rs -> {
-                    dbByKey.put(
-                            JournalService.key(
-                                    rs.getObject("entry_date", LocalDate.class), rs.getString("content_hash")),
-                            rs.getObject("id", UUID.class));
-                },
-                userId);
-        Map<String, UUID> result = new HashMap<>();
-        for (CorpusEntry e : corpus) {
-            String key = JournalService.key(LocalDate.parse(e.entryDate()), JournalService.contentHash(e.content()));
-            UUID id = dbByKey.get(key);
-            if (id == null) {
-                throw new IllegalStateException("Запис корпусу " + e.id() + " не знайдено в БД");
-            }
-            result.put(e.id(), id);
-        }
-        return result;
-    }
-
     private static Set<UUID> relevant(
-            BenchmarkQuery q, QuerySetLoader.Targets targets, List<CorpusEntry> corpus, Map<String, UUID> dbIds) {
-        List<String> sentences =
-                q.targets().stream().map(t -> targets.sentences().get(t)).toList();
-        Set<UUID> relevant = new HashSet<>();
-        for (CorpusEntry e : corpus) {
-            if (sentences.stream().anyMatch(e.content()::contains)) {
-                relevant.add(dbIds.get(e.id()));
-            }
-        }
+            BenchmarkQuery q, QuerySetLoader.Targets targets, CorpusPreparer.Prepared prepared) {
+        Set<UUID> relevant = prepared.entriesContaining(
+                q.targets().stream().map(t -> targets.sentences().get(t)).toList());
         if (relevant.isEmpty()) {
             throw new IllegalStateException("Запит " + q.id() + ": у корпусі немає жодного релевантного запису");
         }
@@ -378,18 +278,10 @@ public class BenchmarkService {
         try (Stream<Path> files = Files.list(dir)) {
             for (Path f :
                     files.filter(p -> p.toString().endsWith(".json")).sorted().toList()) {
-                hashes.put(f.getFileName().toString(), sha256(Files.readAllBytes(f)));
+                hashes.put(f.getFileName().toString(), CorpusPreparer.sha256(Files.readAllBytes(f)));
             }
         }
         return hashes;
-    }
-
-    private static String sha256(byte[] bytes) {
-        try {
-            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalStateException(e);
-        }
     }
 
     private static double round(double value) {

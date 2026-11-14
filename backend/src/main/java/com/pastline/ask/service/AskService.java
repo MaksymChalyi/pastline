@@ -61,7 +61,7 @@ public class AskService {
                 searchService.search(userId, q, SearchMode.HYBRID, topK, false).hits();
         if (hits.isEmpty()) {
             // Нічого шукати в моделі: відмова без виклику
-            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, null, 0);
+            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, null, List.of());
         }
 
         // Повний текст для контексту; userId у запиті повторно гарантує, що чужий запис не потрапить до моделі
@@ -73,6 +73,7 @@ public class AskService {
                         .collect(Collectors.toMap(JournalEntry::getId, Function.identity()));
 
         List<AskPrompt.ContextEntry> context = new ArrayList<>();
+        List<UUID> contextIds = new ArrayList<>();
         Map<String, SearchHit> hitByRef = new HashMap<>();
         for (SearchHit hit : hits) {
             JournalEntry entry = entries.get(hit.id());
@@ -82,14 +83,15 @@ public class AskService {
             String ref = "E" + (context.size() + 1);
             context.add(new AskPrompt.ContextEntry(ref, entry.getEntryDate(), entry.getTitle(), entry.getContent()));
             hitByRef.put(ref, hit);
+            contextIds.add(hit.id());
         }
         if (context.isEmpty()) {
-            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, null, 0);
+            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, null, List.of());
         }
 
         String raw = chatModel.generate(AskPrompt.SYSTEM, AskPrompt.user(q, context, maxEntryChars));
         if (AskPrompt.isNoAnswer(raw)) {
-            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, raw, context.size());
+            return result(AskStatus.NO_EVIDENCE, NO_EVIDENCE_MESSAGE, List.of(), 0, start, raw, contextIds);
         }
 
         CitationValidator.Result validated = CitationValidator.validate(raw, Set.copyOf(hitByRef.keySet()));
@@ -101,7 +103,7 @@ public class AskService {
                     validated.removedSentences(),
                     start,
                     raw,
-                    context.size());
+                    contextIds);
         }
         List<AskSource> sources = context.stream()
                 .map(AskPrompt.ContextEntry::ref)
@@ -112,13 +114,7 @@ public class AskService {
                 })
                 .toList();
         return result(
-                AskStatus.ANSWERED,
-                validated.answer(),
-                sources,
-                validated.removedSentences(),
-                start,
-                raw,
-                context.size());
+                AskStatus.ANSWERED, validated.answer(), sources, validated.removedSentences(), start, raw, contextIds);
     }
 
     private AskResult result(
@@ -128,15 +124,15 @@ public class AskService {
             int removed,
             long start,
             String raw,
-            int contextEntries) {
+            List<UUID> contextIds) {
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
         log.info(
                 "Ask: статус {}, записів у контексті {}, джерел {}, відкинуто речень {}, {} мс",
                 status,
-                contextEntries,
+                contextIds.size(),
                 sources.size(),
                 removed,
                 tookMs);
-        return new AskResult(new AskResponse(status, answer, sources, removed, tookMs), raw, contextEntries);
+        return new AskResult(new AskResponse(status, answer, sources, removed, tookMs), raw, List.copyOf(contextIds));
     }
 }
