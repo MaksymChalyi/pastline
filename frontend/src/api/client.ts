@@ -52,7 +52,9 @@ export async function api<T>(path: string, options: RequestOptions = {}): Promis
 
 async function send<T>(path: string, { method = 'GET', body }: RequestOptions, retried: boolean): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json' }
-  if (body !== undefined) {
+  const isForm = body instanceof FormData
+  // Для файлу Content-Type (multipart з boundary) браузер ставить сам
+  if (body !== undefined && !isForm) {
     headers['Content-Type'] = 'application/json'
   }
   if (method !== 'GET') {
@@ -64,7 +66,7 @@ async function send<T>(path: string, { method = 'GET', body }: RequestOptions, r
     method,
     credentials: 'include',
     headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: body === undefined ? undefined : isForm ? body : JSON.stringify(body),
   })
 
   if (res.status === 204) {

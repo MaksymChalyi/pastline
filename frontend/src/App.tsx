@@ -1,5 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router'
 import AppLayout from './layout/AppLayout'
+import AskPage from './pages/AskPage'
+import ImportPage from './pages/ImportPage'
+import SearchPage from './pages/SearchPage'
 import PublicOnly from './layout/PublicOnly'
 import EntriesPage from './pages/EntriesPage'
 import EntryEditorPage from './pages/EntryEditorPage'
@@ -18,6 +21,9 @@ export default function App() {
         <Route index element={<EntriesPage />} />
         <Route path="/entries/new" element={<EntryEditorPage />} />
         <Route path="/entries/:id" element={<EntryEditorPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/ask" element={<AskPage />} />
+        <Route path="/import" element={<ImportPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

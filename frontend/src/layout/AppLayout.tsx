@@ -27,6 +27,9 @@ export default function AppLayout() {
           <NavLink to="/" end>
             Записи
           </NavLink>
+          <NavLink to="/search">Пошук</NavLink>
+          <NavLink to="/ask">Запитати</NavLink>
+          <NavLink to="/import">Імпорт</NavLink>
         </nav>
         <span className="spacer" />
         <span className="muted">{me.data.email}</span>

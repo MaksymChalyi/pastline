@@ -333,3 +333,168 @@ textarea:focus {
   display: flex;
   gap: 0.75rem;
 }
+
+/* Пошук */
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.mode-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.segmented button {
+  background: none;
+  color: var(--text);
+  border-radius: 0;
+  padding: 0.45rem 0.9rem;
+}
+
+.segmented button + button {
+  border-left: 1px solid var(--border);
+}
+
+.segmented button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.segmented button:hover:not(.active) {
+  background: #f0eee9;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.check input {
+  width: auto;
+}
+
+.hint {
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.result-meta {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.warn {
+  color: #a15c00;
+}
+
+.debug {
+  margin-left: 0.75rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 6px;
+  background: #eef3f1;
+  color: var(--accent);
+  font-family: ui-monospace, monospace;
+}
+
+ol.entry-list {
+  padding: 0;
+}
+
+/* Імпорт */
+pre {
+  background: #f3f2ef;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}
+
+input[type='file'] {
+  border: 1px dashed var(--border);
+  padding: 0.8rem;
+}
+
+.report h2,
+.answer h2 {
+  font-size: 1.05rem;
+  margin: 0.5rem 0;
+}
+
+.report dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1.25rem;
+  margin: 0;
+}
+
+.report dt {
+  color: var(--muted);
+}
+
+.report dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Ask Pastline */
+.answer {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.answer .question {
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.answer-text {
+  line-height: 1.65;
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+
+.cite a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 0.1rem;
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.sources {
+  padding-left: 1.4rem;
+  margin: 0;
+}
+
+.sources li {
+  margin-bottom: 0.6rem;
+}
+
+.sources li:target {
+  background: #eef3f1;
+  border-radius: 6px;
+}
+
+.sources p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+}
