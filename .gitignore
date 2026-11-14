@@ -46,3 +46,6 @@ desktop.ini
 # --- Lab outputs ---
 embed-out.json
 
+
+# --- Office: файли блокування відкритого документа ---
+~$*
