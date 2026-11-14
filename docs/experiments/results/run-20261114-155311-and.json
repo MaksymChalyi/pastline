@@ -1,0 +1,3179 @@
+{
+  "startedAt" : "2026-11-14T15:53:10.791059100Z",
+  "config" : {
+    "embeddingModel" : "embeddinggemma+prompts",
+    "rrfK" : 60,
+    "lexicalOperator" : "and",
+    "depth" : 10,
+    "warmup" : 5,
+    "repeats" : 5,
+    "corpusSha256" : "d65ad391566d79e915ae377393eac16ab5fd83675df58dc9232719b8c5a90f61",
+    "corpusEntries" : 520,
+    "queryFilesSha256" : {
+      "author.json" : "6883d8e75ce7799b63a25a519803e6707b40e90019292c875bc39877bf66121e",
+      "chatgpt.json" : "8775dfa77321723b558d6f791dc2f0a3b356a6fa2fe7e4896a5f81a45f03bd6c",
+      "claude.json" : "b6be84a9cd87f5b2a807d4f6cb09cadeb6133c0b936d5175f8467625bc515fd4",
+      "deepseek.json" : "f09d271811cfb160030c76a26e4a22e8ee8614a5159b07d1e635d726f48d841c",
+      "targets.json" : "8b5861778888e2b9115cf831b17a5111dfdd9eacdaf7166bc88d7acf48827b98"
+    },
+    "queries" : 102,
+    "failedEmbeddings" : 0,
+    "javaVersion" : "21.0.2"
+  },
+  "completedModes" : [ "lexical", "semantic", "hybrid" ],
+  "summary" : [ {
+    "mode" : "lexical",
+    "group" : "all",
+    "queries" : 102,
+    "hit1" : 0.1078,
+    "hit5" : 0.1078,
+    "hit10" : 0.1078,
+    "mrr10" : 0.1078,
+    "recall10" : 0.1049,
+    "latencyP50Ms" : 2.3135,
+    "latencyP95Ms" : 13.487
+  }, {
+    "mode" : "lexical",
+    "group" : "type:crosslingual",
+    "queries" : 23,
+    "hit1" : 0.0,
+    "hit5" : 0.0,
+    "hit10" : 0.0,
+    "mrr10" : 0.0,
+    "recall10" : 0.0,
+    "latencyP50Ms" : 2.189,
+    "latencyP95Ms" : 9.9761
+  }, {
+    "mode" : "lexical",
+    "group" : "type:exact",
+    "queries" : 11,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.9727,
+    "latencyP50Ms" : 2.3606,
+    "latencyP95Ms" : 3.6626
+  }, {
+    "mode" : "lexical",
+    "group" : "type:paraphrase",
+    "queries" : 57,
+    "hit1" : 0.0,
+    "hit5" : 0.0,
+    "hit10" : 0.0,
+    "mrr10" : 0.0,
+    "recall10" : 0.0,
+    "latencyP50Ms" : 2.3352,
+    "latencyP95Ms" : 24.8736
+  }, {
+    "mode" : "lexical",
+    "group" : "type:wordform",
+    "queries" : 11,
+    "hit1" : 0.0,
+    "hit5" : 0.0,
+    "hit10" : 0.0,
+    "mrr10" : 0.0,
+    "recall10" : 0.0,
+    "latencyP50Ms" : 2.4882,
+    "latencyP95Ms" : 6.5328
+  }, {
+    "mode" : "lexical",
+    "group" : "source:author",
+    "queries" : 10,
+    "hit1" : 0.1,
+    "hit5" : 0.1,
+    "hit10" : 0.1,
+    "mrr10" : 0.1,
+    "recall10" : 0.1,
+    "latencyP50Ms" : 1.815,
+    "latencyP95Ms" : 2.7963
+  }, {
+    "mode" : "lexical",
+    "group" : "source:chatgpt",
+    "queries" : 25,
+    "hit1" : 0.0,
+    "hit5" : 0.0,
+    "hit10" : 0.0,
+    "mrr10" : 0.0,
+    "recall10" : 0.0,
+    "latencyP50Ms" : 2.3669,
+    "latencyP95Ms" : 3.5055
+  }, {
+    "mode" : "lexical",
+    "group" : "source:claude",
+    "queries" : 42,
+    "hit1" : 0.2381,
+    "hit5" : 0.2381,
+    "hit10" : 0.2381,
+    "mrr10" : 0.2381,
+    "recall10" : 0.231,
+    "latencyP50Ms" : 2.6158,
+    "latencyP95Ms" : 48.8586
+  }, {
+    "mode" : "lexical",
+    "group" : "source:deepseek",
+    "queries" : 25,
+    "hit1" : 0.0,
+    "hit5" : 0.0,
+    "hit10" : 0.0,
+    "mrr10" : 0.0,
+    "recall10" : 0.0,
+    "latencyP50Ms" : 2.0659,
+    "latencyP95Ms" : 2.8983
+  }, {
+    "mode" : "semantic",
+    "group" : "all",
+    "queries" : 102,
+    "hit1" : 0.7843,
+    "hit5" : 0.902,
+    "hit10" : 0.9216,
+    "mrr10" : 0.8321,
+    "recall10" : 0.6996,
+    "latencyP50Ms" : 252.6778,
+    "latencyP95Ms" : 353.7014
+  }, {
+    "mode" : "semantic",
+    "group" : "type:crosslingual",
+    "queries" : 23,
+    "hit1" : 0.6087,
+    "hit5" : 0.8261,
+    "hit10" : 0.913,
+    "mrr10" : 0.6997,
+    "recall10" : 0.612,
+    "latencyP50Ms" : 250.8761,
+    "latencyP95Ms" : 321.4529
+  }, {
+    "mode" : "semantic",
+    "group" : "type:exact",
+    "queries" : 11,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.9545,
+    "latencyP50Ms" : 273.6215,
+    "latencyP95Ms" : 444.0829
+  }, {
+    "mode" : "semantic",
+    "group" : "type:paraphrase",
+    "queries" : 57,
+    "hit1" : 0.7719,
+    "hit5" : 0.8947,
+    "hit10" : 0.8947,
+    "mrr10" : 0.8208,
+    "recall10" : 0.6384,
+    "latencyP50Ms" : 247.933,
+    "latencyP95Ms" : 331.7211
+  }, {
+    "mode" : "semantic",
+    "group" : "type:wordform",
+    "queries" : 11,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.9455,
+    "latencyP50Ms" : 257.8362,
+    "latencyP95Ms" : 349.976
+  }, {
+    "mode" : "semantic",
+    "group" : "source:author",
+    "queries" : 10,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.85,
+    "latencyP50Ms" : 239.3141,
+    "latencyP95Ms" : 323.8343
+  }, {
+    "mode" : "semantic",
+    "group" : "source:chatgpt",
+    "queries" : 25,
+    "hit1" : 0.68,
+    "hit5" : 0.92,
+    "hit10" : 0.92,
+    "mrr10" : 0.7593,
+    "recall10" : 0.5986,
+    "latencyP50Ms" : 242.3221,
+    "latencyP95Ms" : 321.4529
+  }, {
+    "mode" : "semantic",
+    "group" : "source:claude",
+    "queries" : 42,
+    "hit1" : 0.9524,
+    "hit5" : 0.9524,
+    "hit10" : 0.9524,
+    "mrr10" : 0.9524,
+    "recall10" : 0.8294,
+    "latencyP50Ms" : 256.8855,
+    "latencyP95Ms" : 365.726
+  }, {
+    "mode" : "semantic",
+    "group" : "source:deepseek",
+    "queries" : 25,
+    "hit1" : 0.52,
+    "hit5" : 0.76,
+    "hit10" : 0.84,
+    "mrr10" : 0.6357,
+    "recall10" : 0.5226,
+    "latencyP50Ms" : 257.3246,
+    "latencyP95Ms" : 339.3964
+  }, {
+    "mode" : "hybrid",
+    "group" : "all",
+    "queries" : 102,
+    "hit1" : 0.7843,
+    "hit5" : 0.902,
+    "hit10" : 0.9216,
+    "mrr10" : 0.8321,
+    "recall10" : 0.7016,
+    "latencyP50Ms" : 275.7977,
+    "latencyP95Ms" : 412.6522
+  }, {
+    "mode" : "hybrid",
+    "group" : "type:crosslingual",
+    "queries" : 23,
+    "hit1" : 0.6087,
+    "hit5" : 0.8261,
+    "hit10" : 0.913,
+    "mrr10" : 0.6997,
+    "recall10" : 0.612,
+    "latencyP50Ms" : 270.746,
+    "latencyP95Ms" : 348.8172
+  }, {
+    "mode" : "hybrid",
+    "group" : "type:exact",
+    "queries" : 11,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.9727,
+    "latencyP50Ms" : 287.0301,
+    "latencyP95Ms" : 412.6522
+  }, {
+    "mode" : "hybrid",
+    "group" : "type:paraphrase",
+    "queries" : 57,
+    "hit1" : 0.7719,
+    "hit5" : 0.8947,
+    "hit10" : 0.8947,
+    "mrr10" : 0.8208,
+    "recall10" : 0.6384,
+    "latencyP50Ms" : 278.4761,
+    "latencyP95Ms" : 448.6346
+  }, {
+    "mode" : "hybrid",
+    "group" : "type:wordform",
+    "queries" : 11,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.9455,
+    "latencyP50Ms" : 267.6683,
+    "latencyP95Ms" : 386.5151
+  }, {
+    "mode" : "hybrid",
+    "group" : "source:author",
+    "queries" : 10,
+    "hit1" : 1.0,
+    "hit5" : 1.0,
+    "hit10" : 1.0,
+    "mrr10" : 1.0,
+    "recall10" : 0.85,
+    "latencyP50Ms" : 272.9384,
+    "latencyP95Ms" : 456.2244
+  }, {
+    "mode" : "hybrid",
+    "group" : "source:chatgpt",
+    "queries" : 25,
+    "hit1" : 0.68,
+    "hit5" : 0.92,
+    "hit10" : 0.92,
+    "mrr10" : 0.7593,
+    "recall10" : 0.5986,
+    "latencyP50Ms" : 287.9823,
+    "latencyP95Ms" : 448.6346
+  }, {
+    "mode" : "hybrid",
+    "group" : "source:claude",
+    "queries" : 42,
+    "hit1" : 0.9524,
+    "hit5" : 0.9524,
+    "hit10" : 0.9524,
+    "mrr10" : 0.9524,
+    "recall10" : 0.8342,
+    "latencyP50Ms" : 270.3758,
+    "latencyP95Ms" : 398.9875
+  }, {
+    "mode" : "hybrid",
+    "group" : "source:deepseek",
+    "queries" : 25,
+    "hit1" : 0.52,
+    "hit5" : 0.76,
+    "hit10" : 0.84,
+    "mrr10" : 0.6357,
+    "recall10" : 0.5226,
+    "latencyP50Ms" : 275.7135,
+    "latencyP95Ms" : 397.5477
+  } ],
+  "queries" : [ {
+    "id" : "author-01",
+    "source" : "author",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "чому на проді не вантажились транзакції",
+    "targets" : [ "T003" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9715,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 187.8223,
+        "top" : [ "c-0499", "c-0311", "c-0280", "c-0083", "c-0400", "c-0329", "c-0405", "c-0011", "c-0480", "c-0464" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 223.8769,
+        "top" : [ "c-0499", "c-0311", "c-0280", "c-0083", "c-0400", "c-0329", "c-0405", "c-0011", "c-0480", "c-0464" ]
+      }
+    }
+  }, {
+    "id" : "author-02",
+    "source" : "author",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "купував ОВДП",
+    "targets" : [ "T018" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.7822,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 226.8639,
+        "top" : [ "c-0118", "c-0205", "c-0306", "c-0133", "c-0142", "c-0495", "c-0033", "c-0193", "c-0489", "c-0024" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 284.6656,
+        "top" : [ "c-0118", "c-0205", "c-0306", "c-0133", "c-0142", "c-0495", "c-0033", "c-0193", "c-0489", "c-0024" ]
+      }
+    }
+  }, {
+    "id" : "author-03",
+    "source" : "author",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "my brokerage index fund purchase",
+    "targets" : [ "T020", "T028" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.5949,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 244.6524,
+        "top" : [ "c-0498", "c-0289", "c-0406", "c-0404", "c-0213", "c-0277", "c-0139", "c-0331", "c-0245", "c-0361" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 333.3075,
+        "top" : [ "c-0498", "c-0289", "c-0406", "c-0404", "c-0213", "c-0277", "c-0139", "c-0331", "c-0245", "c-0361" ]
+      }
+    }
+  }, {
+    "id" : "author-04",
+    "source" : "author",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "чому спина ниє після ноутбука",
+    "targets" : [ "T039", "T046" ],
+    "relevant" : 31,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.6116,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 240.267,
+        "top" : [ "c-0445", "c-0411", "c-0147", "c-0505", "c-0304", "c-0218", "c-0342", "c-0043", "c-0228", "c-0172" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 260.4613,
+        "top" : [ "c-0445", "c-0411", "c-0147", "c-0505", "c-0304", "c-0218", "c-0342", "c-0043", "c-0228", "c-0172" ]
+      }
+    }
+  }, {
+    "id" : "author-05",
+    "source" : "author",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "новорічні домовленості з батьками",
+    "targets" : [ "T058" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.7277,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 241.1044,
+        "top" : [ "c-0269", "c-0483", "c-0212", "c-0029", "c-0202", "c-0419", "c-0455", "c-0106", "c-0224", "c-0012" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 260.0914,
+        "top" : [ "c-0269", "c-0483", "c-0212", "c-0029", "c-0202", "c-0419", "c-0455", "c-0106", "c-0224", "c-0012" ]
+      }
+    }
+  }, {
+    "id" : "author-06",
+    "source" : "author",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "seaside accommodation booking for late August",
+    "targets" : [ "T069", "T077" ],
+    "relevant" : 26,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.8411,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 256.4951,
+        "top" : [ "c-0105", "c-0422", "c-0129", "c-0155", "c-0426", "c-0040", "c-0232", "c-0162", "c-0378", "c-0170" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 236.1622,
+        "top" : [ "c-0105", "c-0422", "c-0129", "c-0155", "c-0426", "c-0040", "c-0232", "c-0162", "c-0378", "c-0170" ]
+      }
+    }
+  }, {
+    "id" : "author-07",
+    "source" : "author",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "коли засидівся з магістерською допізна",
+    "targets" : [ "T081", "T091" ],
+    "relevant" : 20,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.5721,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 239.3141,
+        "top" : [ "c-0176", "c-0023", "c-0166", "c-0308", "c-0382", "c-0217", "c-0247", "c-0068", "c-0077", "c-0461" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 267.4817,
+        "top" : [ "c-0176", "c-0023", "c-0166", "c-0308", "c-0382", "c-0217", "c-0247", "c-0068", "c-0077", "c-0461" ]
+      }
+    }
+  }, {
+    "id" : "author-08",
+    "source" : "author",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "learning Java thread concurrency",
+    "targets" : [ "T090" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.7111,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 218.4291,
+        "top" : [ "c-0110", "c-0388", "c-0387", "c-0296", "c-0401", "c-0035", "c-0475", "c-0009", "c-0449", "c-0474" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 300.9811,
+        "top" : [ "c-0110", "c-0388", "c-0387", "c-0296", "c-0401", "c-0035", "c-0475", "c-0009", "c-0449", "c-0474" ]
+      }
+    }
+  }, {
+    "id" : "author-09",
+    "source" : "author",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "проплив кілометр",
+    "targets" : [ "T104", "T111" ],
+    "relevant" : 25,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.4098,
+        "top" : [ "c-0443", "c-0436", "c-0370", "c-0367", "c-0312", "c-0309", "c-0292", "c-0285", "c-0221", "c-0188" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 323.8343,
+        "top" : [ "c-0443", "c-0052", "c-0370", "c-0367", "c-0309", "c-0221", "c-0312", "c-0131", "c-0115", "c-0251" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 308.9677,
+        "top" : [ "c-0443", "c-0370", "c-0367", "c-0309", "c-0312", "c-0436", "c-0052", "c-0221", "c-0285", "c-0131" ]
+      }
+    }
+  }, {
+    "id" : "author-10",
+    "source" : "author",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "працював від акумулятора під час відключення",
+    "targets" : [ "T116", "T126" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4676,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 237.4744,
+        "top" : [ "c-0321", "c-0134", "c-0046", "c-0309", "c-0481", "c-0352", "c-0344", "c-0188", "c-0234", "c-0370" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 425.8603,
+        "top" : [ "c-0321", "c-0134", "c-0046", "c-0309", "c-0481", "c-0352", "c-0344", "c-0188", "c-0234", "c-0370" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-01",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "збій завантаження платежів у бойовому середовищі",
+    "targets" : [ "T003" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.3352,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 3,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 274.937,
+        "top" : [ "c-0290", "c-0055", "c-0329", "c-0254", "c-0177", "c-0190", "c-0509", "c-0499", "c-0334", "c-0331" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 3,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 389.4189,
+        "top" : [ "c-0290", "c-0055", "c-0329", "c-0254", "c-0177", "c-0190", "c-0509", "c-0499", "c-0334", "c-0331" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-02",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "оновлення схеми сховища з перевірками",
+    "targets" : [ "T007" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.971,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 182.1619,
+        "top" : [ "c-0352", "c-0373", "c-0343", "c-0334", "c-0159", "c-0165", "c-0203", "c-0024", "c-0331", "c-0477" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 278.9695,
+        "top" : [ "c-0352", "c-0373", "c-0343", "c-0334", "c-0159", "c-0165", "c-0203", "c-0024", "c-0331", "c-0477" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-03",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "керівник похвалив за робочий цикл",
+    "targets" : [ "T010" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4718,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 249.8574,
+        "top" : [ "c-0291", "c-0080", "c-0037", "c-0324", "c-0496", "c-0517", "c-0462", "c-0512", "c-0206", "c-0247" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 300.1439,
+        "top" : [ "c-0291", "c-0080", "c-0037", "c-0324", "c-0496", "c-0517", "c-0462", "c-0512", "c-0206", "c-0247" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-04",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "план витрат на прийдешній період",
+    "targets" : [ "T024" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2254,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 234.4978,
+        "top" : [ "c-0489", "c-0142", "c-0334", "c-0165", "c-0159", "c-0116", "c-0081", "c-0282", "c-0209", "c-0070" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 323.5536,
+        "top" : [ "c-0489", "c-0142", "c-0334", "c-0165", "c-0159", "c-0116", "c-0081", "c-0282", "c-0209", "c-0070" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-05",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "бонус розклав по фінансових планах",
+    "targets" : [ "T026" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.189,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 189.8334,
+        "top" : [ "c-0159", "c-0282", "c-0216", "c-0067", "c-0245", "c-0361", "c-0081", "c-0519", "c-0209", "c-0506" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 239.5165,
+        "top" : [ "c-0159", "c-0282", "c-0216", "c-0067", "c-0245", "c-0361", "c-0081", "c-0519", "c-0209", "c-0506" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-06",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "лабораторне обстеження ще без висновку",
+    "targets" : [ "T036", "T047" ],
+    "relevant" : 28,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0805,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 233.651,
+        "top" : [ "c-0183", "c-0338", "c-0038", "c-0184", "c-0459", "c-0253", "c-0512", "c-0507", "c-0439", "c-0313" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 258.8971,
+        "top" : [ "c-0183", "c-0338", "c-0038", "c-0184", "c-0459", "c-0253", "c-0512", "c-0507", "c-0439", "c-0313" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-07",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "змінив звички щодо напоїв",
+    "targets" : [ "T038", "T048" ],
+    "relevant" : 31,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0139,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 238.2897,
+        "top" : [ "c-0255", "c-0386", "c-0390", "c-0256", "c-0017", "c-0279", "c-0158", "c-0220", "c-0394", "c-0123" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 273.8789,
+        "top" : [ "c-0255", "c-0386", "c-0390", "c-0256", "c-0017", "c-0279", "c-0158", "c-0220", "c-0394", "c-0123" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-08",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "медик рекомендував обмежити гаджети ввечері",
+    "targets" : [ "T042" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1311,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 195.0279,
+        "top" : [ "c-0127", "c-0354", "c-0146", "c-0103", "c-0220", "c-0478", "c-0418", "c-0121", "c-0279", "c-0445" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 254.6903,
+        "top" : [ "c-0127", "c-0354", "c-0146", "c-0103", "c-0220", "c-0478", "c-0418", "c-0121", "c-0279", "c-0445" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-09",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "гостювали в рідних дивилися город",
+    "targets" : [ "T050", "T060" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.3864,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 240.1484,
+        "top" : [ "c-0104", "c-0330", "c-0013", "c-0472", "c-0041", "c-0468", "c-0225", "c-0094", "c-0045", "c-0346" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 276.883,
+        "top" : [ "c-0104", "c-0330", "c-0013", "c-0472", "c-0041", "c-0468", "c-0225", "c-0094", "c-0045", "c-0346" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-10",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "малюк навчився ходити самостійно",
+    "targets" : [ "T056" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2291,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 217.9805,
+        "top" : [ "c-0001", "c-0398", "c-0102", "c-0066", "c-0456", "c-0197", "c-0073", "c-0223", "c-0344", "c-0336" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 272.3774,
+        "top" : [ "c-0001", "c-0398", "c-0102", "c-0066", "c-0456", "c-0197", "c-0073", "c-0223", "c-0344", "c-0336" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-11",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "гостинці від матері домашні солодощі",
+    "targets" : [ "T057" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1787,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 243.0346,
+        "top" : [ "c-0238", "c-0511", "c-0456", "c-0197", "c-0230", "c-0015", "c-0027", "c-0516", "c-0102", "c-0409" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 270.6465,
+        "top" : [ "c-0238", "c-0511", "c-0456", "c-0197", "c-0230", "c-0015", "c-0027", "c-0516", "c-0102", "c-0409" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-12",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "залізнична затримка на кілька годин",
+    "targets" : [ "T068" ],
+    "relevant" : 11,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.6791,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 267.5139,
+        "top" : [ "c-0150", "c-0469", "c-0467", "c-0181", "c-0065", "c-0394", "c-0087", "c-0357", "c-0091", "c-0460" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 340.7509,
+        "top" : [ "c-0150", "c-0469", "c-0467", "c-0181", "c-0065", "c-0394", "c-0087", "c-0357", "c-0091", "c-0460" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-13",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "дебютний авіарейс в іншу країну без компанії",
+    "targets" : [ "T070" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7492,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 251.3577,
+        "top" : [ "c-0063", "c-0196", "c-0066", "c-0136", "c-0047", "c-0181", "c-0374", "c-0075", "c-0268", "c-0250" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 318.5479,
+        "top" : [ "c-0063", "c-0196", "c-0066", "c-0136", "c-0047", "c-0181", "c-0374", "c-0075", "c-0268", "c-0250" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-14",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "планував пересування країнами на сім днів",
+    "targets" : [ "T073" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.8288,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8889,
+        "latencyMedianMs" : 198.7241,
+        "top" : [ "c-0508", "c-0520", "c-0156", "c-0310", "c-0392", "c-0180", "c-0087", "c-0347", "c-0469", "c-0181" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8889,
+        "latencyMedianMs" : 345.8857,
+        "top" : [ "c-0508", "c-0520", "c-0156", "c-0310", "c-0392", "c-0180", "c-0087", "c-0347", "c-0469", "c-0181" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-15",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "підготовка до іспиту задачі на вершини",
+    "targets" : [ "T084", "T096" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7615,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 242.3221,
+        "top" : [ "c-0307", "c-0039", "c-0064", "c-0364", "c-0023", "c-0082", "c-0393", "c-0176", "c-0496", "c-0490" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 303.3354,
+        "top" : [ "c-0307", "c-0039", "c-0064", "c-0364", "c-0023", "c-0082", "c-0393", "c-0176", "c-0496", "c-0490" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-16",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "багатопотокове виконання в джаві",
+    "targets" : [ "T090" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7423,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 268.3472,
+        "top" : [ "c-0387", "c-0475", "c-0388", "c-0401", "c-0110", "c-0009", "c-0296", "c-0449", "c-0035", "c-0157" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 326.5833,
+        "top" : [ "c-0387", "c-0475", "c-0388", "c-0401", "c-0110", "c-0009", "c-0296", "c-0449", "c-0035", "c-0157" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-17",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "не пішов у зал через виснаження",
+    "targets" : [ "T099", "T109" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 3.0106,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 248.9987,
+        "top" : [ "c-0234", "c-0002", "c-0036", "c-0323", "c-0194", "c-0088", "c-0312", "c-0228", "c-0006", "c-0351" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 293.782,
+        "top" : [ "c-0234", "c-0002", "c-0036", "c-0323", "c-0194", "c-0088", "c-0312", "c-0228", "c-0006", "c-0351" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-18",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "ранкова гнучкість щоденна коротка зарядка",
+    "targets" : [ "T102", "T112" ],
+    "relevant" : 21,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.8163,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 236.0694,
+        "top" : [ "c-0052", "c-0206", "c-0313", "c-0174", "c-0462", "c-0394", "c-0501", "c-0080", "c-0423", "c-0437" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 286.1609,
+        "top" : [ "c-0052", "c-0206", "c-0313", "c-0174", "c-0462", "c-0394", "c-0501", "c-0080", "c-0423", "c-0437" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-19",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "велике наведення ладу вдома",
+    "targets" : [ "T113", "T123" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.9193,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 5,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 264.763,
+        "top" : [ "c-0230", "c-0238", "c-0484", "c-0348", "c-0391", "c-0126", "c-0019", "c-0463", "c-0200", "c-0503" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 5,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 295.7731,
+        "top" : [ "c-0230", "c-0238", "c-0484", "c-0348", "c-0391", "c-0126", "c-0019", "c-0463", "c-0200", "c-0503" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-20",
+    "source" : "chatgpt",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "змінив розташування обстановки стало вільніше",
+    "targets" : [ "T118" ],
+    "relevant" : 11,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.5299,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 178.0867,
+        "top" : [ "c-0112", "c-0215", "c-0447", "c-0340", "c-0394", "c-0221", "c-0188", "c-0187", "c-0292", "c-0075" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 262.597,
+        "top" : [ "c-0112", "c-0215", "c-0447", "c-0340", "c-0394", "c-0221", "c-0188", "c-0187", "c-0292", "c-0075" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-21",
+    "source" : "chatgpt",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "production payment loading failure investigation",
+    "targets" : [ "T003" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2926,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 5,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 201.1854,
+        "top" : [ "c-0195", "c-0510", "c-0509", "c-0125", "c-0329", "c-0011", "c-0311", "c-0499", "c-0400", "c-0280" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 5,
+        "recall10" : 0.6,
+        "latencyMedianMs" : 234.3818,
+        "top" : [ "c-0195", "c-0510", "c-0509", "c-0125", "c-0329", "c-0011", "c-0311", "c-0499", "c-0400", "c-0280" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-22",
+    "source" : "chatgpt",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "schema upgrade with automated checks",
+    "targets" : [ "T007" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1667,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 253.6072,
+        "top" : [ "c-0349", "c-0195", "c-0510", "c-0186", "c-0476", "c-0139", "c-0011", "c-0125", "c-0480", "c-0509" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 278.8648,
+        "top" : [ "c-0349", "c-0195", "c-0510", "c-0186", "c-0476", "c-0139", "c-0011", "c-0125", "c-0480", "c-0509" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-23",
+    "source" : "chatgpt",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "team lead praised my recent work",
+    "targets" : [ "T010" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2122,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 4,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 292.3259,
+        "top" : [ "c-0335", "c-0297", "c-0095", "c-0291", "c-0008", "c-0080", "c-0235", "c-0072", "c-0407", "c-0509" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 4,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 286.8367,
+        "top" : [ "c-0335", "c-0297", "c-0095", "c-0291", "c-0008", "c-0080", "c-0235", "c-0072", "c-0407", "c-0509" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-24",
+    "source" : "chatgpt",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "planned expenses for the coming period",
+    "targets" : [ "T024" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2211,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.875,
+        "latencyMedianMs" : 250.8761,
+        "top" : [ "c-0277", "c-0489", "c-0334", "c-0116", "c-0142", "c-0159", "c-0081", "c-0282", "c-0404", "c-0165" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.875,
+        "latencyMedianMs" : 261.5279,
+        "top" : [ "c-0277", "c-0489", "c-0334", "c-0116", "c-0142", "c-0159", "c-0081", "c-0282", "c-0404", "c-0165" ]
+      }
+    }
+  }, {
+    "id" : "chatgpt-25",
+    "source" : "chatgpt",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "bonus allocated across financial goals",
+    "targets" : [ "T026" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0151,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 257.1172,
+        "top" : [ "c-0282", "c-0277", "c-0404", "c-0240", "c-0216", "c-0245", "c-0361", "c-0395", "c-0498", "c-0067" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 291.8518,
+        "top" : [ "c-0282", "c-0277", "c-0404", "c-0240", "c-0216", "c-0245", "c-0361", "c-0395", "c-0498", "c-0067" ]
+      }
+    }
+  }, {
+    "id" : "claude-01",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "напівмарафон",
+    "targets" : [ "T100" ],
+    "relevant" : 10,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.376,
+        "top" : [ "c-0518", "c-0441", "c-0384", "c-0312", "c-0210", "c-0132", "c-0088", "c-0049", "c-0036", "c-0006" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 208.2921,
+        "top" : [ "c-0132", "c-0312", "c-0036", "c-0518", "c-0384", "c-0006", "c-0049", "c-0088", "c-0210", "c-0441" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 275.1031,
+        "top" : [ "c-0518", "c-0312", "c-0132", "c-0384", "c-0441", "c-0036", "c-0210", "c-0088", "c-0049", "c-0006" ]
+      }
+    }
+  }, {
+    "id" : "claude-02",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "ОВДП",
+    "targets" : [ "T018" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.9266,
+        "top" : [ "c-0495", "c-0489", "c-0488", "c-0306", "c-0216", "c-0205", "c-0203", "c-0193", "c-0148", "c-0142" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 377.2627,
+        "top" : [ "c-0118", "c-0306", "c-0142", "c-0205", "c-0133", "c-0489", "c-0033", "c-0193", "c-0495", "c-0216" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 315.731,
+        "top" : [ "c-0306", "c-0489", "c-0495", "c-0205", "c-0118", "c-0142", "c-0488", "c-0216", "c-0133", "c-0193" ]
+      }
+    }
+  }, {
+    "id" : "claude-03",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "розсаду помідорів",
+    "targets" : [ "T121" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.5882,
+        "top" : [ "c-0485", "c-0463", "c-0429", "c-0391", "c-0326", "c-0263", "c-0258", "c-0215", "c-0173", "c-0107" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 260.6457,
+        "top" : [ "c-0173", "c-0028", "c-0258", "c-0086", "c-0215", "c-0485", "c-0090", "c-0391", "c-0326", "c-0107" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 349.1541,
+        "top" : [ "c-0485", "c-0173", "c-0258", "c-0391", "c-0215", "c-0463", "c-0326", "c-0028", "c-0429", "c-0086" ]
+      }
+    }
+  }, {
+    "id" : "claude-04",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "пральна машина",
+    "targets" : [ "T114", "T124" ],
+    "relevant" : 19,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.3859,
+        "top" : [ "c-0448", "c-0432", "c-0429", "c-0421", "c-0328", "c-0322", "c-0286", "c-0265", "c-0263", "c-0164" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 268.7465,
+        "top" : [ "c-0421", "c-0328", "c-0164", "c-0004", "c-0429", "c-0263", "c-0448", "c-0322", "c-0286", "c-0432" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 296.3945,
+        "top" : [ "c-0421", "c-0328", "c-0448", "c-0429", "c-0432", "c-0164", "c-0322", "c-0263", "c-0286", "c-0004" ]
+      }
+    }
+  }, {
+    "id" : "claude-05",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "стоматолог",
+    "targets" : [ "T037" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.3798,
+        "top" : [ "c-0507", "c-0478", "c-0444", "c-0425", "c-0418", "c-0385", "c-0342", "c-0316", "c-0304", "c-0279" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 311.085,
+        "top" : [ "c-0127", "c-0418", "c-0261", "c-0279", "c-0121", "c-0316", "c-0507", "c-0146", "c-0220", "c-0478" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 326.0354,
+        "top" : [ "c-0418", "c-0507", "c-0478", "c-0261", "c-0279", "c-0316", "c-0127", "c-0425", "c-0220", "c-0444" ]
+      }
+    }
+  }, {
+    "id" : "claude-06",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "павербанком",
+    "targets" : [ "T116", "T126" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.2091,
+        "top" : [ "c-0481", "c-0463", "c-0352", "c-0340", "c-0326", "c-0321", "c-0259", "c-0157", "c-0145", "c-0134" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 246.4839,
+        "top" : [ "c-0134", "c-0046", "c-0157", "c-0481", "c-0113", "c-0145", "c-0352", "c-0340", "c-0259", "c-0326" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 292.5717,
+        "top" : [ "c-0481", "c-0352", "c-0134", "c-0157", "c-0340", "c-0046", "c-0326", "c-0145", "c-0463", "c-0259" ]
+      }
+    }
+  }, {
+    "id" : "claude-07",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "борщ",
+    "targets" : [ "T117", "T127" ],
+    "relevant" : 25,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.5624,
+        "top" : [ "c-0471", "c-0424", "c-0327", "c-0325", "c-0259", "c-0252", "c-0200", "c-0145", "c-0126", "c-0113" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 260.0302,
+        "top" : [ "c-0327", "c-0252", "c-0471", "c-0090", "c-0325", "c-0259", "c-0107", "c-0100", "c-0113", "c-0145" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 290.236,
+        "top" : [ "c-0471", "c-0327", "c-0252", "c-0325", "c-0259", "c-0424", "c-0090", "c-0107", "c-0145", "c-0113" ]
+      }
+    }
+  }, {
+    "id" : "claude-08",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "резервний фонд",
+    "targets" : [ "T017", "T027" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 2.1034,
+        "top" : [ "c-0519", "c-0506", "c-0356", "c-0284", "c-0216", "c-0159", "c-0118" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 356.0834,
+        "top" : [ "c-0159", "c-0118", "c-0356", "c-0506", "c-0519", "c-0216", "c-0209", "c-0203", "c-0284", "c-0081" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 268.2565,
+        "top" : [ "c-0519", "c-0506", "c-0356", "c-0159", "c-0118", "c-0216", "c-0284", "c-0209", "c-0203", "c-0081" ]
+      }
+    }
+  }, {
+    "id" : "claude-09",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "стендап",
+    "targets" : [ "T001" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.0313,
+        "top" : [ "c-0517", "c-0499", "c-0462", "c-0351", "c-0329", "c-0301", "c-0290", "c-0271", "c-0254", "c-0190" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 273.8031,
+        "top" : [ "c-0271", "c-0329", "c-0190", "c-0517", "c-0290", "c-0177", "c-0408", "c-0462", "c-0262", "c-0499" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 231.3056,
+        "top" : [ "c-0517", "c-0329", "c-0271", "c-0462", "c-0499", "c-0290", "c-0190", "c-0351", "c-0177", "c-0254" ]
+      }
+    }
+  }, {
+    "id" : "claude-10",
+    "source" : "claude",
+    "type" : "exact",
+    "lang" : "uk",
+    "text" : "ембедінги",
+    "targets" : [ "T085", "T094" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 2.0882,
+        "top" : [ "c-0490", "c-0475", "c-0442", "c-0382", "c-0375", "c-0308", "c-0296", "c-0247", "c-0176", "c-0160" ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 254.4699,
+        "top" : [ "c-0375", "c-0023", "c-0490", "c-0143", "c-0247", "c-0077", "c-0160", "c-0176", "c-0021", "c-0308" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 286.2116,
+        "top" : [ "c-0490", "c-0375", "c-0247", "c-0475", "c-0023", "c-0442", "c-0382", "c-0143", "c-0308", "c-0160" ]
+      }
+    }
+  }, {
+    "id" : "claude-11",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "напівмарафону",
+    "targets" : [ "T100" ],
+    "relevant" : 10,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.3163,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 257.8362,
+        "top" : [ "c-0132", "c-0312", "c-0518", "c-0036", "c-0441", "c-0384", "c-0088", "c-0006", "c-0049", "c-0210" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 257.4768,
+        "top" : [ "c-0132", "c-0312", "c-0518", "c-0036", "c-0441", "c-0384", "c-0088", "c-0006", "c-0049", "c-0210" ]
+      }
+    }
+  }, {
+    "id" : "claude-12",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "Говерла",
+    "targets" : [ "T067", "T079" ],
+    "relevant" : 23,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 4.9035,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 243.5651,
+        "top" : [ "c-0124", "c-0201", "c-0250", "c-0041", "c-0294", "c-0320", "c-0267", "c-0196", "c-0063", "c-0314" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 288.0302,
+        "top" : [ "c-0124", "c-0201", "c-0250", "c-0041", "c-0294", "c-0320", "c-0267", "c-0196", "c-0063", "c-0314" ]
+      }
+    }
+  }, {
+    "id" : "claude-13",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "стоматолога",
+    "targets" : [ "T037" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7634,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 266.1525,
+        "top" : [ "c-0127", "c-0418", "c-0261", "c-0279", "c-0121", "c-0507", "c-0163", "c-0146", "c-0220", "c-0478" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 261.0819,
+        "top" : [ "c-0127", "c-0418", "c-0261", "c-0279", "c-0121", "c-0507", "c-0163", "c-0146", "c-0220", "c-0478" ]
+      }
+    }
+  }, {
+    "id" : "claude-14",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "плавав у басейні",
+    "targets" : [ "T104", "T111" ],
+    "relevant" : 25,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.8772,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 287.673,
+        "top" : [ "c-0115", "c-0443", "c-0175", "c-0251", "c-0052", "c-0367", "c-0458", "c-0482", "c-0390", "c-0056" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 241.3706,
+        "top" : [ "c-0115", "c-0443", "c-0175", "c-0251", "c-0052", "c-0367", "c-0458", "c-0482", "c-0390", "c-0056" ]
+      }
+    }
+  }, {
+    "id" : "claude-15",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "футболу з друзями",
+    "targets" : [ "T103", "T110" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7687,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 262.3925,
+        "top" : [ "c-0026", "c-0315", "c-0441", "c-0246", "c-0470", "c-0073", "c-0344", "c-0305", "c-0056", "c-0115" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 278.1546,
+        "top" : [ "c-0026", "c-0315", "c-0441", "c-0246", "c-0470", "c-0073", "c-0344", "c-0305", "c-0056", "c-0115" ]
+      }
+    }
+  }, {
+    "id" : "claude-16",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "ходив до терапевта",
+    "targets" : [ "T034", "T044" ],
+    "relevant" : 29,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.5921,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 267.1594,
+        "top" : [ "c-0376", "c-0211", "c-0163", "c-0158", "c-0043", "c-0338", "c-0038", "c-0256", "c-0445", "c-0337" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 270.3758,
+        "top" : [ "c-0376", "c-0211", "c-0163", "c-0158", "c-0043", "c-0338", "c-0038", "c-0256", "c-0445", "c-0337" ]
+      }
+    }
+  }, {
+    "id" : "claude-17",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "посварилися з братом",
+    "targets" : [ "T053" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0188,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 265.8565,
+        "top" : [ "c-0269", "c-0455", "c-0106", "c-0224", "c-0348", "c-0238", "c-0230", "c-0029", "c-0119", "c-0019" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 251.3104,
+        "top" : [ "c-0269", "c-0455", "c-0106", "c-0224", "c-0348", "c-0238", "c-0230", "c-0029", "c-0119", "c-0019" ]
+      }
+    }
+  }, {
+    "id" : "claude-18",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "зламалася пральна машинка",
+    "targets" : [ "T114", "T124" ],
+    "relevant" : 19,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.7987,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 285.2846,
+        "top" : [ "c-0004", "c-0322", "c-0286", "c-0265", "c-0164", "c-0204", "c-0421", "c-0005", "c-0429", "c-0263" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 284.8436,
+        "top" : [ "c-0004", "c-0322", "c-0286", "c-0265", "c-0164", "c-0204", "c-0421", "c-0005", "c-0429", "c-0263" ]
+      }
+    }
+  }, {
+    "id" : "claude-19",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "ремонт кухні в батьків",
+    "targets" : [ "T054" ],
+    "relevant" : 10,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1971,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 193.7255,
+        "top" : [ "c-0409", "c-0456", "c-0012", "c-0262", "c-0408", "c-0001", "c-0071", "c-0200", "c-0402", "c-0119" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 285.0146,
+        "top" : [ "c-0409", "c-0456", "c-0012", "c-0262", "c-0408", "c-0001", "c-0071", "c-0200", "c-0402", "c-0119" ]
+      }
+    }
+  }, {
+    "id" : "claude-20",
+    "source" : "claude",
+    "type" : "wordform",
+    "lang" : "uk",
+    "text" : "писав диплом",
+    "targets" : [ "T081", "T091" ],
+    "relevant" : 20,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7864,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 204.82,
+        "top" : [ "c-0382", "c-0085", "c-0308", "c-0128", "c-0461", "c-0439", "c-0176", "c-0231", "c-0247", "c-0496" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 255.9749,
+        "top" : [ "c-0382", "c-0085", "c-0308", "c-0128", "c-0461", "c-0439", "c-0176", "c-0231", "c-0247", "c-0496" ]
+      }
+    }
+  }, {
+    "id" : "claude-21",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "біг 21 кілометр уперше",
+    "targets" : [ "T100" ],
+    "relevant" : 10,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 7.0345,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 258.879,
+        "top" : [ "c-0210", "c-0518", "c-0312", "c-0049", "c-0132", "c-0052", "c-0443", "c-0384", "c-0006", "c-0036" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 251.5488,
+        "top" : [ "c-0210", "c-0518", "c-0312", "c-0049", "c-0132", "c-0052", "c-0443", "c-0384", "c-0006", "c-0036" ]
+      }
+    }
+  }, {
+    "id" : "claude-22",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "лікування зубів",
+    "targets" : [ "T037" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 50.552,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 331.7211,
+        "top" : [ "c-0418", "c-0127", "c-0279", "c-0123", "c-0220", "c-0507", "c-0025", "c-0121", "c-0211", "c-0163" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 250.9148,
+        "top" : [ "c-0418", "c-0127", "c-0279", "c-0123", "c-0220", "c-0507", "c-0025", "c-0121", "c-0211", "c-0163" ]
+      }
+    }
+  }, {
+    "id" : "claude-23",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "не виспався",
+    "targets" : [ "T035", "T045" ],
+    "relevant" : 32,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 33.1931,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 258.2445,
+        "top" : [ "c-0337", "c-0379", "c-0175", "c-0283", "c-0255", "c-0399", "c-0257", "c-0435", "c-0174", "c-0390" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 388.4344,
+        "top" : [ "c-0337", "c-0379", "c-0175", "c-0283", "c-0255", "c-0399", "c-0257", "c-0435", "c-0174", "c-0390" ]
+      }
+    }
+  }, {
+    "id" : "claude-24",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "відключення електрики",
+    "targets" : [ "T116", "T126" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 6.8691,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 272.1855,
+        "top" : [ "c-0430", "c-0412", "c-0300", "c-0372", "c-0264", "c-0302", "c-0369", "c-0431", "c-0249", "c-0481" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 262.9099,
+        "top" : [ "c-0430", "c-0412", "c-0300", "c-0372", "c-0264", "c-0302", "c-0369", "c-0431", "c-0249", "c-0481" ]
+      }
+    }
+  }, {
+    "id" : "claude-25",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "на що витрачаю гроші",
+    "targets" : [ "T019", "T029" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 4.9192,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 256.8855,
+        "top" : [ "c-0222", "c-0133", "c-0282", "c-0506", "c-0171", "c-0078", "c-0488", "c-0154", "c-0070", "c-0130" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 290.1511,
+        "top" : [ "c-0222", "c-0133", "c-0282", "c-0506", "c-0171", "c-0078", "c-0488", "c-0154", "c-0070", "c-0130" ]
+      }
+    }
+  }, {
+    "id" : "claude-26",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "нічний поїзд",
+    "targets" : [ "T065", "T075" ],
+    "relevant" : 23,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 4.0371,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 215.0162,
+        "top" : [ "c-0150", "c-0392", "c-0460", "c-0457", "c-0250", "c-0520", "c-0180", "c-0469", "c-0310", "c-0045" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 231.945,
+        "top" : [ "c-0150", "c-0392", "c-0460", "c-0457", "c-0250", "c-0520", "c-0180", "c-0469", "c-0310", "c-0045" ]
+      }
+    }
+  }, {
+    "id" : "claude-27",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "втомився від нескінченних зустрічей",
+    "targets" : [ "T006", "T014" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.9701,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 213.6519,
+        "top" : [ "c-0190", "c-0394", "c-0269", "c-0376", "c-0474", "c-0008", "c-0029", "c-0455", "c-0106", "c-0224" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 250.5168,
+        "top" : [ "c-0190", "c-0394", "c-0269", "c-0376", "c-0474", "c-0008", "c-0029", "c-0455", "c-0106", "c-0224" ]
+      }
+    }
+  }, {
+    "id" : "claude-28",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "державні облігації",
+    "targets" : [ "T018" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.9413,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.3,
+        "latencyMedianMs" : 240.185,
+        "top" : [ "c-0495", "c-0209", "c-0165", "c-0334", "c-0142", "c-0159", "c-0258", "c-0203", "c-0243", "c-0213" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.3,
+        "latencyMedianMs" : 271.0844,
+        "top" : [ "c-0495", "c-0209", "c-0165", "c-0334", "c-0142", "c-0159", "c-0258", "c-0203", "c-0243", "c-0213" ]
+      }
+    }
+  }, {
+    "id" : "claude-29",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "переглядали дитячі фотографії",
+    "targets" : [ "T055", "T064" ],
+    "relevant" : 18,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 3.0653,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 203.203,
+        "top" : [ "c-0336", "c-0197", "c-0503", "c-0014", "c-0348", "c-0262", "c-0419", "c-0230", "c-0408", "c-0027" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 251.9287,
+        "top" : [ "c-0336", "c-0197", "c-0503", "c-0014", "c-0348", "c-0262", "c-0419", "c-0230", "c-0408", "c-0027" ]
+      }
+    }
+  }, {
+    "id" : "claude-30",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "свято для бабусі",
+    "targets" : [ "T052", "T062" ],
+    "relevant" : 27,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.8157,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 272.2478,
+        "top" : [ "c-0071", "c-0511", "c-0420", "c-0019", "c-0044", "c-0014", "c-0416", "c-0516", "c-0484", "c-0483" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 307.5799,
+        "top" : [ "c-0071", "c-0511", "c-0420", "c-0019", "c-0044", "c-0014", "c-0416", "c-0516", "c-0484", "c-0483" ]
+      }
+    }
+  }, {
+    "id" : "claude-31",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "сусіди шуміли зранку",
+    "targets" : [ "T122" ],
+    "relevant" : 7,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 3.9647,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8571,
+        "latencyMedianMs" : 209.4672,
+        "top" : [ "c-0326", "c-0463", "c-0485", "c-0352", "c-0134", "c-0004", "c-0262", "c-0157", "c-0408", "c-0230" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8571,
+        "latencyMedianMs" : 265.2726,
+        "top" : [ "c-0326", "c-0463", "c-0485", "c-0352", "c-0134", "c-0004", "c-0262", "c-0157", "c-0408", "c-0230" ]
+      }
+    }
+  }, {
+    "id" : "claude-32",
+    "source" : "claude",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "скинув зайві підписки",
+    "targets" : [ "T022", "T030" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.8457,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7778,
+        "latencyMedianMs" : 247.933,
+        "top" : [ "c-0356", "c-0243", "c-0053", "c-0495", "c-0018", "c-0213", "c-0284", "c-0190", "c-0173", "c-0501" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7778,
+        "latencyMedianMs" : 281.1948,
+        "top" : [ "c-0356", "c-0243", "c-0053", "c-0495", "c-0018", "c-0213", "c-0284", "c-0190", "c-0173", "c-0501" ]
+      }
+    }
+  }, {
+    "id" : "claude-33",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "half marathon",
+    "targets" : [ "T100" ],
+    "relevant" : 10,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4477,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 266.9453,
+        "top" : [ "c-0312", "c-0036", "c-0132", "c-0384", "c-0088", "c-0006", "c-0049", "c-0518", "c-0441", "c-0210" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 262.1787,
+        "top" : [ "c-0312", "c-0036", "c-0132", "c-0384", "c-0088", "c-0006", "c-0049", "c-0518", "c-0441", "c-0210" ]
+      }
+    }
+  }, {
+    "id" : "claude-34",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "uk",
+    "text" : "болить горло, сиджу вдома",
+    "targets" : [ "T043" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.7695,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 303.0027,
+        "top" : [ "c-0167", "c-0272", "c-0275", "c-0069", "c-0413", "c-0492", "c-0256", "c-0158", "c-0192", "c-0117" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 267.6131,
+        "top" : [ "c-0167", "c-0272", "c-0275", "c-0069", "c-0413", "c-0492", "c-0256", "c-0158", "c-0192", "c-0117" ]
+      }
+    }
+  }, {
+    "id" : "claude-35",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "hiking in the Carpathians",
+    "targets" : [ "T067", "T079" ],
+    "relevant" : 23,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 35.2184,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 254.7088,
+        "top" : [ "c-0232", "c-0170", "c-0129", "c-0422", "c-0040", "c-0358", "c-0169", "c-0076", "c-0201", "c-0244" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 253.732,
+        "top" : [ "c-0232", "c-0170", "c-0129", "c-0422", "c-0040", "c-0358", "c-0169", "c-0076", "c-0201", "c-0244" ]
+      }
+    }
+  }, {
+    "id" : "claude-36",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "government bonds",
+    "targets" : [ "T018" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 6.5625,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 206.3303,
+        "top" : [ "c-0498", "c-0289", "c-0130", "c-0277", "c-0477", "c-0406", "c-0139", "c-0084", "c-0209", "c-0404" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 261.5801,
+        "top" : [ "c-0498", "c-0289", "c-0130", "c-0277", "c-0477", "c-0406", "c-0139", "c-0084", "c-0209", "c-0404" ]
+      }
+    }
+  }, {
+    "id" : "claude-37",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "cooking borscht",
+    "targets" : [ "T117", "T127" ],
+    "relevant" : 25,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.5589,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 200.2827,
+        "top" : [ "c-0327", "c-0259", "c-0090", "c-0252", "c-0100", "c-0113", "c-0145", "c-0325", "c-0471", "c-0020" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 247.46,
+        "top" : [ "c-0327", "c-0259", "c-0090", "c-0252", "c-0100", "c-0113", "c-0145", "c-0325", "c-0471", "c-0020" ]
+      }
+    }
+  }, {
+    "id" : "claude-38",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "uk",
+    "text" : "нестабільний інтеграційний тест",
+    "targets" : [ "T011" ],
+    "relevant" : 5,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.3161,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 297.4515,
+        "top" : [ "c-0476", "c-0487", "c-0011", "c-0349", "c-0055", "c-0186", "c-0339", "c-0254", "c-0247", "c-0060" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 217.9229,
+        "top" : [ "c-0476", "c-0487", "c-0011", "c-0349", "c-0055", "c-0186", "c-0339", "c-0254", "c-0247", "c-0060" ]
+      }
+    }
+  }, {
+    "id" : "claude-39",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "talked about grandpa's health",
+    "targets" : [ "T049", "T059" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4044,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 194.8512,
+        "top" : [ "c-0223", "c-0044", "c-0202", "c-0153", "c-0491", "c-0185", "c-0054", "c-0207", "c-0074", "c-0492" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 262.6685,
+        "top" : [ "c-0223", "c-0044", "c-0202", "c-0153", "c-0491", "c-0185", "c-0054", "c-0207", "c-0074", "c-0492" ]
+      }
+    }
+  }, {
+    "id" : "claude-40",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "dentist",
+    "targets" : [ "T037" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9911,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 265.1604,
+        "top" : [ "c-0127", "c-0261", "c-0418", "c-0121", "c-0146", "c-0316", "c-0507", "c-0279", "c-0163", "c-0304" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 311.0144,
+        "top" : [ "c-0127", "c-0261", "c-0418", "c-0121", "c-0146", "c-0316", "c-0507", "c-0279", "c-0163", "c-0304" ]
+      }
+    }
+  }, {
+    "id" : "claude-41",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "daily stand-up about payments",
+    "targets" : [ "T001" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.158,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 201.0596,
+        "top" : [ "c-0329", "c-0509", "c-0290", "c-0297", "c-0195", "c-0095", "c-0055", "c-0474", "c-0190", "c-0499" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 300.8625,
+        "top" : [ "c-0329", "c-0509", "c-0290", "c-0297", "c-0195", "c-0095", "c-0055", "c-0474", "c-0190", "c-0499" ]
+      }
+    }
+  }, {
+    "id" : "claude-42",
+    "source" : "claude",
+    "type" : "crosslingual",
+    "lang" : "uk",
+    "text" : "розмова з клієнтом про обсяг робіт",
+    "targets" : [ "T016", "T005" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.6393,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 223.7296,
+        "top" : [ "c-0394", "c-0065", "c-0474", "c-0189", "c-0235", "c-0190", "c-0254", "c-0177", "c-0291", "c-0125" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 260.0836,
+        "top" : [ "c-0394", "c-0065", "c-0474", "c-0189", "c-0235", "c-0190", "c-0254", "c-0177", "c-0291", "c-0125" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-01",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "чому ламається на сервері",
+    "targets" : [ "T003" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9256,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 296.3752,
+        "top" : [ "c-0011", "c-0083", "c-0311", "c-0349", "c-0400", "c-0177", "c-0480", "c-0405", "c-0065", "c-0091" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 267.8954,
+        "top" : [ "c-0011", "c-0083", "c-0311", "c-0349", "c-0400", "c-0177", "c-0480", "c-0405", "c-0065", "c-0091" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-02",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "переніс структуру сховища перевірив",
+    "targets" : [ "T007" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9742,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 263.6421,
+        "top" : [ "c-0512", "c-0349", "c-0159", "c-0311", "c-0186", "c-0375", "c-0476", "c-0254", "c-0092", "c-0334" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.4,
+        "latencyMedianMs" : 223.0163,
+        "top" : [ "c-0512", "c-0349", "c-0159", "c-0311", "c-0186", "c-0375", "c-0476", "c-0254", "c-0092", "c-0334" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-03",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "схвальні слова від керівника",
+    "targets" : [ "T010" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4842,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 226.5292,
+        "top" : [ "c-0324", "c-0080", "c-0375", "c-0291", "c-0247", "c-0143", "c-0512", "c-0496", "c-0128", "c-0364" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 276.6418,
+        "top" : [ "c-0324", "c-0080", "c-0375", "c-0291", "c-0247", "c-0143", "c-0512", "c-0496", "c-0128", "c-0364" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-04",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "планування грошей на місяць",
+    "targets" : [ "T024" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2137,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.875,
+        "latencyMedianMs" : 235.1214,
+        "top" : [ "c-0159", "c-0334", "c-0489", "c-0081", "c-0114", "c-0138", "c-0165", "c-0209", "c-0116", "c-0067" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.875,
+        "latencyMedianMs" : 259.7581,
+        "top" : [ "c-0159", "c-0334", "c-0489", "c-0081", "c-0114", "c-0138", "c-0165", "c-0209", "c-0116", "c-0067" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-05",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "грошова винагорода розклав по планах",
+    "targets" : [ "T026" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1952,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.3,
+        "latencyMedianMs" : 271.1097,
+        "top" : [ "c-0397", "c-0506", "c-0519", "c-0171", "c-0334", "c-0078", "c-0284", "c-0282", "c-0455", "c-0106" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.3,
+        "latencyMedianMs" : 283.7328,
+        "top" : [ "c-0397", "c-0506", "c-0519", "c-0171", "c-0334", "c-0078", "c-0284", "c-0282", "c-0455", "c-0106" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-06",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "здав лабораторні чекаю відповідь",
+    "targets" : [ "T036", "T047" ],
+    "relevant" : 28,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9643,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 302.4928,
+        "top" : [ "c-0439", "c-0496", "c-0512", "c-0446", "c-0452", "c-0343", "c-0231", "c-0393", "c-0085", "c-0461" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 267.3174,
+        "top" : [ "c-0439", "c-0496", "c-0512", "c-0446", "c-0452", "c-0343", "c-0231", "c-0393", "c-0085", "c-0461" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-07",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "змінив питний режим",
+    "targets" : [ "T038", "T048" ],
+    "relevant" : 31,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.101,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 257.0742,
+        "top" : [ "c-0305", "c-0131", "c-0221", "c-0188", "c-0394", "c-0046", "c-0187", "c-0323", "c-0340", "c-0515" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 314.331,
+        "top" : [ "c-0305", "c-0131", "c-0221", "c-0188", "c-0394", "c-0046", "c-0187", "c-0323", "c-0340", "c-0515" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-08",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "порада лікаря про гаджети ввечері",
+    "targets" : [ "T042" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1322,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 241.9172,
+        "top" : [ "c-0354", "c-0127", "c-0146", "c-0103", "c-0478", "c-0220", "c-0418", "c-0445", "c-0121", "c-0386" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 223.1975,
+        "top" : [ "c-0354", "c-0127", "c-0146", "c-0103", "c-0478", "c-0220", "c-0418", "c-0445", "c-0121", "c-0386" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-09",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "поїздка до рідних на два дні",
+    "targets" : [ "T050", "T060" ],
+    "relevant" : 15,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1022,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 256.12,
+        "top" : [ "c-0460", "c-0520", "c-0150", "c-0104", "c-0392", "c-0457", "c-0310", "c-0181", "c-0250", "c-0180" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 280.148,
+        "top" : [ "c-0460", "c-0520", "c-0150", "c-0104", "c-0392", "c-0457", "c-0310", "c-0181", "c-0250", "c-0180" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-10",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "малий родич почав ходити",
+    "targets" : [ "T056" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2201,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 4,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 206.2707,
+        "top" : [ "c-0259", "c-0063", "c-0020", "c-0503", "c-0015", "c-0371", "c-0113", "c-0145", "c-0468", "c-0294" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 4,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 280.3331,
+        "top" : [ "c-0259", "c-0063", "c-0020", "c-0503", "c-0015", "c-0371", "c-0113", "c-0145", "c-0468", "c-0294" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-11",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "від мами гостинці привіз",
+    "targets" : [ "T057" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.8306,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 284.1003,
+        "top" : [ "c-0197", "c-0484", "c-0516", "c-0027", "c-0398", "c-0102", "c-0511", "c-0456", "c-0420", "c-0503" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 323.385,
+        "top" : [ "c-0197", "c-0484", "c-0516", "c-0027", "c-0398", "c-0102", "c-0511", "c-0456", "c-0420", "c-0503" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-12",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "затримка рейсу але приємна дорога",
+    "targets" : [ "T068" ],
+    "relevant" : 11,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.8653,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 234.3306,
+        "top" : [ "c-0357", "c-0467", "c-0181", "c-0438", "c-0150", "c-0087", "c-0298", "c-0469", "c-0244", "c-0320" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 247.6514,
+        "top" : [ "c-0357", "c-0467", "c-0181", "c-0438", "c-0150", "c-0087", "c-0298", "c-0469", "c-0244", "c-0320" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-13",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "перший самостійний виліт за межі країни",
+    "targets" : [ "T070" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.5813,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 259.8998,
+        "top" : [ "c-0063", "c-0196", "c-0181", "c-0066", "c-0136", "c-0357", "c-0268", "c-0438", "c-0075", "c-0047" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 297.0525,
+        "top" : [ "c-0063", "c-0196", "c-0181", "c-0066", "c-0136", "c-0357", "c-0268", "c-0438", "c-0075", "c-0047" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-14",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "план поїздки по країнах на сім днів",
+    "targets" : [ "T073" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.7284,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8889,
+        "latencyMedianMs" : 293.3994,
+        "top" : [ "c-0156", "c-0520", "c-0310", "c-0508", "c-0392", "c-0180", "c-0389", "c-0087", "c-0104", "c-0460" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8889,
+        "latencyMedianMs" : 299.8359,
+        "top" : [ "c-0156", "c-0520", "c-0310", "c-0508", "c-0392", "c-0180", "c-0389", "c-0087", "c-0104", "c-0460" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-15",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "підготовка до тестування зі структур даних",
+    "targets" : [ "T084", "T096" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.6674,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 307.8648,
+        "top" : [ "c-0307", "c-0364", "c-0393", "c-0064", "c-0039", "c-0217", "c-0085", "c-0496", "c-0060", "c-0099" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.9,
+        "latencyMedianMs" : 245.3147,
+        "top" : [ "c-0307", "c-0364", "c-0393", "c-0064", "c-0039", "c-0217", "c-0085", "c-0496", "c-0060", "c-0099" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-16",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "розібрався з багатопоточністю в програмуванні",
+    "targets" : [ "T090" ],
+    "relevant" : 9,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.9847,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 243.1348,
+        "top" : [ "c-0110", "c-0296", "c-0475", "c-0009", "c-0388", "c-0401", "c-0387", "c-0077", "c-0035", "c-0449" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 305.2631,
+        "top" : [ "c-0110", "c-0296", "c-0475", "c-0009", "c-0388", "c-0401", "c-0387", "c-0077", "c-0035", "c-0449" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-17",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "не пішов на заняття через виснаження",
+    "targets" : [ "T099", "T109" ],
+    "relevant" : 22,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 1.8915,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 247.7813,
+        "top" : [ "c-0234", "c-0323", "c-0309", "c-0370", "c-0344", "c-0002", "c-0228", "c-0512", "c-0006", "c-0143" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.8,
+        "latencyMedianMs" : 203.4757,
+        "top" : [ "c-0234", "c-0323", "c-0309", "c-0370", "c-0344", "c-0002", "c-0228", "c-0512", "c-0006", "c-0143" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-18",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "щоденні вправи на гнучкість зранку",
+    "targets" : [ "T102", "T112" ],
+    "relevant" : 21,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4358,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 282.1632,
+        "top" : [ "c-0158", "c-0256", "c-0043", "c-0337", "c-0220", "c-0386", "c-0381", "c-0360", "c-0459", "c-0445" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 262.1221,
+        "top" : [ "c-0158", "c-0256", "c-0043", "c-0337", "c-0220", "c-0386", "c-0381", "c-0360", "c-0459", "c-0445" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-19",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "прибирання всього житла забрало багато часу",
+    "targets" : [ "T113", "T123" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0721,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 288.995,
+        "top" : [ "c-0469", "c-0327", "c-0065", "c-0421", "c-0394", "c-0448", "c-0087", "c-0481", "c-0157", "c-0234" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 280.4146,
+        "top" : [ "c-0469", "c-0327", "c-0065", "c-0421", "c-0394", "c-0448", "c-0087", "c-0481", "c-0157", "c-0234" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-20",
+    "source" : "deepseek",
+    "type" : "paraphrase",
+    "lang" : "uk",
+    "text" : "пересунув обстановку в кімнаті",
+    "targets" : [ "T118" ],
+    "relevant" : 11,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.2162,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 232.5495,
+        "top" : [ "c-0340", "c-0112", "c-0215", "c-0447", "c-0322", "c-0004", "c-0200", "c-0187", "c-0100", "c-0286" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 1.0,
+        "latencyMedianMs" : 291.985,
+        "top" : [ "c-0340", "c-0112", "c-0215", "c-0447", "c-0322", "c-0004", "c-0200", "c-0187", "c-0100", "c-0286" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-21",
+    "source" : "deepseek",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "why does it break on server",
+    "targets" : [ "T003" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.189,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 210.8658,
+        "top" : [ "c-0510", "c-0011", "c-0195", "c-0125", "c-0204", "c-0509", "c-0335", "c-0474", "c-0189", "c-0311" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 2,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 308.7422,
+        "top" : [ "c-0510", "c-0011", "c-0195", "c-0125", "c-0204", "c-0509", "c-0335", "c-0474", "c-0189", "c-0311" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-22",
+    "source" : "deepseek",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "moved structure of storage checked",
+    "targets" : [ "T007" ],
+    "relevant" : 14,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.1153,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 3,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 261.167,
+        "top" : [ "c-0404", "c-0030", "c-0349", "c-0322", "c-0395", "c-0434", "c-0240", "c-0295", "c-0277", "c-0161" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 3,
+        "recall10" : 0.1,
+        "latencyMedianMs" : 288.333,
+        "top" : [ "c-0404", "c-0030", "c-0349", "c-0322", "c-0395", "c-0434", "c-0240", "c-0295", "c-0277", "c-0161" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-23",
+    "source" : "deepseek",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "approving words from boss",
+    "targets" : [ "T010" ],
+    "relevant" : 12,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0851,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 6,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 192.2984,
+        "top" : [ "c-0274", "c-0008", "c-0335", "c-0407", "c-0072", "c-0080", "c-0297", "c-0474", "c-0082", "c-0291" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 6,
+        "recall10" : 0.2,
+        "latencyMedianMs" : 278.0511,
+        "top" : [ "c-0274", "c-0008", "c-0335", "c-0407", "c-0072", "c-0080", "c-0297", "c-0474", "c-0082", "c-0291" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-24",
+    "source" : "deepseek",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "planning money for month",
+    "targets" : [ "T024" ],
+    "relevant" : 8,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.4602,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 7,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 276.1388,
+        "top" : [ "c-0404", "c-0240", "c-0406", "c-0498", "c-0395", "c-0277", "c-0159", "c-0081", "c-0209", "c-0489" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 7,
+        "recall10" : 0.5,
+        "latencyMedianMs" : 262.0976,
+        "top" : [ "c-0404", "c-0240", "c-0406", "c-0498", "c-0395", "c-0277", "c-0159", "c-0081", "c-0209", "c-0489" ]
+      }
+    }
+  }, {
+    "id" : "deepseek-25",
+    "source" : "deepseek",
+    "type" : "crosslingual",
+    "lang" : "en",
+    "text" : "cash reward split by plans",
+    "targets" : [ "T026" ],
+    "relevant" : 13,
+    "modes" : {
+      "lexical" : {
+        "firstRelevantRank" : 0,
+        "recall10" : 0.0,
+        "latencyMedianMs" : 2.0285,
+        "top" : [ ]
+      },
+      "semantic" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 203.6604,
+        "top" : [ "c-0018", "c-0067", "c-0282", "c-0216", "c-0148", "c-0404", "c-0397", "c-0284", "c-0240", "c-0395" ]
+      },
+      "hybrid" : {
+        "firstRelevantRank" : 1,
+        "recall10" : 0.7,
+        "latencyMedianMs" : 194.8564,
+        "top" : [ "c-0018", "c-0067", "c-0282", "c-0216", "c-0148", "c-0404", "c-0397", "c-0284", "c-0240", "c-0395" ]
+      }
+    }
+  } ]
+}
