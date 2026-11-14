@@ -53,10 +53,7 @@ public class JournalService {
         return repository.save(newEntry(userId, request, date));
     }
 
-    /**
-     * Ключі наявних записів користувача за період одним запитом: імпорт звіряє з ними весь файл замість окремої
-     * перевірки на кожен запис.
-     */
+    /** Ключі наявних записів за період одним запитом — для звірки імпорту. */
     @Transactional(readOnly = true)
     public Set<String> existingKeys(UUID userId, LocalDate from, LocalDate to) {
         return repository.findKeys(userId, from, to).stream()
@@ -64,11 +61,7 @@ public class JournalService {
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * Пакетне створення для імпорту: одна транзакція, INSERT-и йдуть JDBC batch. Викликач уже перевірив записи
-     * (валідація, дата, дублікати); якщо паралельний запит встиг вставити такий самий запис, unique-обмеження кине
-     * DataIntegrityViolationException і вся пачка відкотиться.
-     */
+    /** Пакетне створення для імпорту в одній транзакції; записи вже перевірені викликачем. */
     @Transactional
     public int createAll(UUID userId, List<EntryRequest> requests) {
         List<JournalEntry> entries = requests.stream()

@@ -9,10 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-/**
- * Повнотекстовий пошук PostgreSQL. Native SQL через JDBC, а не JPA: результат не сутність, а рядок із рангом, і
- * колонка search_vector у сутність не потрапляє.
- */
+/** Повнотекстовий пошук PostgreSQL через JDBC: результат — рядок із рангом, а не сутність. */
 @Repository
 public class LexicalSearchRepository {
 

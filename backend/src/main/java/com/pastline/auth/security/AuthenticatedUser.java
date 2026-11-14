@@ -7,10 +7,7 @@ import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- * Принципал у сесії. id — єдине джерело власності записів: userId від клієнта не приймаємо.
- * Хеш пароля потрібен лише під час перевірки входу і стирається після неї.
- */
+/** Принципал у сесії; id — єдине джерело власності записів. Хеш пароля стирається після входу. */
 public final class AuthenticatedUser implements UserDetails, CredentialsContainer {
 
     private final UUID id;

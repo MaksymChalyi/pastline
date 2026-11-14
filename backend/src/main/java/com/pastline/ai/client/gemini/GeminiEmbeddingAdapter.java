@@ -12,11 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 
-/**
- * Ембедінги через Gemini (онлайн-демо). Розмірність 768, як у схемі БД: gemini-embedding-001 навчено так, що
- * перші 768 координат дають придатний вектор. Запит і документ розрізняються через taskType, а не текстові
- * префікси, як у EmbeddingGemma. Числа експерименту з цією моделлю не порівнюються.
- */
+/** Ембедінги через Gemini для онлайн-демо: 768 вимірів, як у схемі БД; запит і документ розрізняє taskType. */
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "pastline.ai.provider", havingValue = "gemini")

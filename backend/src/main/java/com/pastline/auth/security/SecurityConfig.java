@@ -23,10 +23,7 @@ import org.springframework.security.web.csrf.CsrfException;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import tools.jackson.databind.ObjectMapper;
 
-/**
- * Серверна сесія в HttpOnly cookie; CSRF-токен у cookie XSRF-TOKEN, React повертає його в заголовку X-XSRF-TOKEN.
- * Без JWT, form login і httpBasic: вхід лише через POST /api/v1/auth/login.
- */
+/** Серверна сесія в HttpOnly cookie і CSRF-токен у cookie XSRF-TOKEN; вхід лише через POST /api/v1/auth/login. */
 @Configuration
 public class SecurityConfig {
 

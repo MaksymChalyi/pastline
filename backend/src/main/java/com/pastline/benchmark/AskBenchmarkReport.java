@@ -14,15 +14,7 @@ public record AskBenchmarkReport(String startedAt, Config config, Summary summar
             String questionsSha256,
             int questions) {}
 
-    /**
-     * Частки рахуються від кількості питань відповідної групи (answer / refuse).
-     *
-     * @param rawAnswersWithFabricatedRefs відповіді моделі, де до перевірки був хоча б один вигаданий [E#]
-     * @param answersChangedByValidation відповіді, з яких перевірка прибрала хоча б одне речення
-     * @param answersBlockedByValidation відповіді, які перевірка заблокувала повністю (NO_EVIDENCE не з волі моделі)
-     * @param citedSourcePrecision частка процитованих записів, що справді містять цільове речення
-     * @param contextRecall частка питань з відповіддю, де хоча б один релевантний запис потрапив у контекст
-     */
+    /** Частки рахуються від кількості питань своєї групи (answer / refuse). */
     public record Summary(
             int answerable,
             int unanswerable,

@@ -3,8 +3,7 @@ package com.pastline.benchmark;
 import java.util.List;
 import java.util.Map;
 
-/** Результат прогону: зберігається JSON-файлом у docs/experiments/results. */
-/** completedModes: режими, що встигли пройти; звіт перезаписується після кожного. */
+/** Звіт прогону; перезаписується після кожного режиму (completedModes). */
 public record BenchmarkReport(
         String startedAt,
         Config config,

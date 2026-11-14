@@ -22,10 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-/**
- * Ask Pastline: гібридний пошук по записах користувача, відповідь моделі лише з цих записів, перевірка посилань.
- * Відповідь без перевіреного джерела не показується. Текст питання, записів і відповіді не логується.
- */
+/** Ask Pastline: гібридний пошук, відповідь моделі лише з цих записів, перевірка посилань. */
 @Slf4j
 @Service
 public class AskService {

@@ -5,9 +5,8 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * rank починається з 1; score залежить від режиму, тож порівнювати його між режимами не можна.
- *
- * @param debug лише для hybrid з debug=true: звідки взявся результат і як порахований його бал
+ * rank починається з 1; score залежить від режиму, тож між режимами не порівнюється.
+ * debug — лише для hybrid з debug=true.
  */
 public record SearchHit(
         UUID id,

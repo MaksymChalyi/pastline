@@ -16,11 +16,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
 /**
- * Запис щоденника. Власник зберігається як userId, а не як зв'язок з User: модуль journal не залежить від сутностей
- * auth, а зв'язок гарантує зовнішній ключ у БД.
- *
- * <p>Persistable: id призначається в Java, тому без явного isNew() Spring Data вважав би новий запис наявним і робив
- * merge (зайвий SELECT перед кожним INSERT).
+ * Запис щоденника. Власник — userId, а не зв'язок з User: journal не залежить від сутностей auth.
+ * Persistable: id призначається в Java, і без isNew() Spring Data робив би зайвий SELECT перед кожним INSERT.
  */
 @Entity
 @Table(name = "journal_entries")

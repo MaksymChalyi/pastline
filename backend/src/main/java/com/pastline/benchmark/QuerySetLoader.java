@@ -17,9 +17,8 @@ import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 /**
- * Читає папку набору запитів: targets.json (цільові речення) і всі інші *.json як файли запитів. Ім'я файлу стає
- * джерелом запиту. Підтримує два формати елементів: повний ({type, lang, text, targets}) і короткий ({target, lang,
- * text}); у короткому запит українською вважається paraphrase, іншою мовою - crosslingual.
+ * Читає набір запитів: targets.json і всі інші *.json (ім'я файлу — джерело запиту).
+ * Короткий формат {target, lang, text}: українською — paraphrase, іншою мовою — crosslingual.
  */
 @Component
 @RequiredArgsConstructor

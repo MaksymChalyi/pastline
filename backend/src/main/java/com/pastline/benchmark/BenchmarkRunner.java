@@ -11,11 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-/**
- * Запуск: {@code .\mvnw spring-boot:run "-Dspring-boot.run.profiles=benchmark"} з папки backend. Без веб-сервера (див.
- * application-benchmark.properties): прогін, звіт, вихід. pastline.benchmark.task: search (пошук, за замовчуванням)
- * або ask (Ask Pastline, H5).
- */
+/** Запуск бенчмарку в профілі benchmark (без веб-сервера); pastline.benchmark.task = search або ask. */
 @Slf4j
 @Component
 @Profile("benchmark")

@@ -11,11 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * Рахує вектори для записів, у яких їх немає або вони застаріли. Модуль journal про це не знає: індексатор сам
- * звіряє content_hash, тож нові, відредаговані й імпортовані записи потрапляють у пошук однаково, а після
- * перезапуску застосунку робота просто продовжується.
- */
+/** Рахує вектори для записів без актуального вектора (немає, змінився текст або модель). */
 @Slf4j
 @Component
 @RequiredArgsConstructor

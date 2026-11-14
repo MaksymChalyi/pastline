@@ -19,10 +19,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 
-/**
- * Адаптер порту до Spring AI (Ollama). Модель за замовчуванням qwen3:4b-instruct: на відміну від qwen3:4b (це
- * thinking-варіант, що міркує навіть з think=false), відповідає одразу, без ходу думок.
- */
+/** Відповіді через Ollama. Типова модель qwen3:4b-instruct: qwen3:4b — thinking-варіант і міркує навіть з think=false. */
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "pastline.ai.provider", havingValue = "ollama", matchIfMissing = true)
@@ -71,8 +68,7 @@ public class OllamaChatAdapter implements ChatModelPort {
             // I/O-помилка RestClient: Ollama не відповідає або перевищено тайм-аут читання
             throw new ChatUnavailableException();
         } catch (NonTransientAiException | TransientAiException e) {
-            // Ollama відповіла помилкою (немає моделі, перевантаження). У повідомленні лише відповідь Ollama, без
-            // промпту
+            // Помилка від Ollama (немає моделі, перевантаження); у повідомленні немає промпту
             log.warn("Модель {} повернула помилку: {}", modelName, e.getMessage());
             throw new ChatUnavailableException();
         }
@@ -82,7 +78,7 @@ public class OllamaChatAdapter implements ChatModelPort {
         String text = response.getResult().getOutput().getText();
         String raw = text == null ? "" : text;
         String answer = THINK_BLOCK.matcher(raw).replaceAll("").strip();
-        // Лише числа, без тексту: видно, скільки токенів пішло на промпт і на відповідь і чи були міркування
+        // Лише числа, без тексту запиту і відповіді
         var usage = response.getMetadata().getUsage();
         log.info(
                 "Модель {}: промпт {} ток., відповідь {} ток., {} мс, блок міркувань: {}",

@@ -10,13 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-/**
- * Вектори записів. JDBC з текстовим літералом '[...]'::vector: без окремої бібліотеки pgvector-java і без
- * JPA-сутності для типу, якого Hibernate не знає.
- *
- * <p>Вектор вважається актуальним, лише якщо збігаються content_hash і модель. Застарілі вектори пошук пропускає, а
- * індексатор перераховує.
- */
+/** Вектори записів через JDBC (літерал '[...]'::vector). Вектор актуальний, лише коли збігаються content_hash і модель. */
 @Repository
 @RequiredArgsConstructor
 public class EmbeddingRepository {
@@ -61,10 +55,7 @@ public class EmbeddingRepository {
         return count == null ? 0 : count;
     }
 
-    /**
-     * Upsert з умовою на хеш: якщо запис встигли відредагувати під час обчислення, хеш у journal_entries уже інший, і
-     * вектор просто знову стане застарілим, а не перезапише свіжий.
-     */
+    /** Хеш — того тексту, з якого пораховано вектор: якщо запис змінили під час обчислення, вектор одразу застарілий. */
     public void saveReady(UUID entryId, float[] vector, String model, String contentHash, Instant now) {
         jdbc.update("""
                 INSERT INTO entry_embeddings (entry_id, embedding, model, content_hash, status, error, updated_at)

@@ -29,10 +29,7 @@ import org.springframework.stereotype.Component;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-/**
- * Спільна підготовка для бенчмарків пошуку і Ask Pastline: окремий користувач, імпорт корпусу (повторний запуск
- * нічого не дублює), очікування всіх векторів, відповідність "запис корпусу -> запис у БД".
- */
+/** Підготовка корпусу для бенчмарків: користувач, імпорт, очікування всіх векторів, відповідність корпус → БД. */
 @Slf4j
 @Component
 @RequiredArgsConstructor

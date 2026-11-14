@@ -1,9 +1,6 @@
 package com.pastline.ai.client;
 
-/**
- * Префікси, з якими навчали EmbeddingGemma (model card: ai.google.dev/gemma/docs/embeddinggemma/model_card).
- * Запит і документ кодуються по-різному, тому модель розрізняє "що шукаю" і "що зберігаю".
- */
+/** Префікси запиту й документа, з якими навчали EmbeddingGemma (див. її model card). */
 public final class EmbeddingPrompts {
 
     private EmbeddingPrompts() {}

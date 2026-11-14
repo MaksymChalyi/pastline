@@ -13,17 +13,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientResponseException;
 
-/**
- * Мінімальний клієнт Gemini API (REST, ключ у заголовку x-goog-api-key). Лише два виклики, які потрібні адаптерам:
- * пакетні ембедінги і генерація тексту. Окремий SDK не підключаю: два POST-запити не варті ще однієї залежності.
- */
+/** Мінімальний REST-клієнт Gemini: пакетні ембедінги і генерація тексту, без окремого SDK. */
 @Component
 @ConditionalOnProperty(name = "pastline.ai.provider", havingValue = "gemini")
 public class GeminiApi {
 
     private final RestClient rest;
 
-    // Два конструктори: Spring має знати, який використовувати (другий лише для тестів)
     @Autowired
     public GeminiApi(
             @Value("${pastline.gemini.base-url:https://generativelanguage.googleapis.com/v1beta}") String baseUrl,
@@ -49,17 +45,12 @@ public class GeminiApi {
                 .build();
     }
 
-    /**
-     * Коротке повідомлення з тіла помилки Gemini ("models/x is not found", "quota exceeded"): допомагає з діагностикою.
-     * Тіло помилки не містить тексту запиту, лише опис проблеми; обрізається до 300 символів.
-     */
+    /** Опис помилки з тіла відповіді Gemini для логу (без тексту запиту), до 300 символів. */
     public static String errorMessage(RestClientResponseException e) {
         String body = e.getResponseBodyAsString();
         String oneLine = body.replaceAll("\\s+", " ").strip();
         return oneLine.length() > 300 ? oneLine.substring(0, 300) + "…" : oneLine;
     }
-
-    // --- Ембедінги ---
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public record Part(String text) {}
@@ -106,8 +97,6 @@ public class GeminiApi {
         }
         return v;
     }
-
-    // --- Генерація ---
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     record GenerationConfig(Double temperature, Integer maxOutputTokens) {}
