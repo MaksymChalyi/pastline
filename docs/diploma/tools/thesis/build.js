@@ -112,6 +112,16 @@ function renderBlocks(blocks) {
         spacing: { lineRule: LineRuleType.AUTO, line: LINE, before: 120, after: 120 }, keepNext: true,
       })];
       case 'where': return [p(cite(value), { noIndent: true })];
+      case 'hint': return hint(value);
+      case 'code': return [
+        p([r(value.caption)], { noIndent: true, keepNext: true, before: 120 }),
+        ...value.lines.map((line, i) => new Paragraph({
+          children: [new TextRun({ text: line.length ? line : ' ', font: 'Courier New', size: 22 })],
+          indent: { firstLine: 0, left: 284 }, alignment: AlignmentType.LEFT,
+          spacing: { lineRule: LineRuleType.AUTO, line: 240, before: 0, after: i === value.lines.length - 1 ? 120 : 0 },
+          keepNext: i < value.lines.length - 1, keepLines: true,
+        })),
+      ];
       default: throw new Error('Невідомий блок ' + kind);
     }
   });
@@ -295,45 +305,7 @@ const ch1 = renderChapter(1, require('./ch1'));
 const ch2 = renderChapter(2, require('./ch2'));
 
 // ---------- розділ 3 ----------
-const ch3 = [
-  chapter(3, 'РОЗРОБКА ТА ЕКСПЕРИМЕНТАЛЬНЕ ДОСЛІДЖЕННЯ СИСТЕМИ ПОШУКУ ПЕРСОНАЛЬНИХ ЗАПИСІВ'),
-  ...hint('Обсяг розділу — близько 30 сторінок. Поетапний опис розробки, тестування та експерименту. Діаграми — docs/diagrams/*.png, рисунки результатів — docs/diploma/figures/*.png. Код у тексті — лише короткі фрагменти; довгі лістинги — у додаток А.'),
-  h2('3.1. Попередні експериментальні дослідження'),
-  ...hint('≈ 3,5 с. Результати лабораторних як пілотні дослідження, що обґрунтували рішення. Дані — labs/0X-…/ANSWERS.md, docs/learning/labs.md.'),
-  h3('3.1.1. Локальне виконання мовних моделей'),
-  h3('3.1.2. Пілотне порівняння лексичного та семантичного пошуку'),
-  h3('3.1.3. Пілотне дослідження генерації відповідей із доповненням пошуком'),
-  h2('3.2. Архітектура системи'),
-  ...hint('≈ 3 с. Рисунок архітектури (diagrams/architecture.png), модулі та їхні залежності, порти й адаптери для моделей. docs/architecture.md.'),
-  h2('3.3. Модель даних'),
-  ...hint('≈ 2 с. ER-діаграма (diagrams/er.png), таблиця обмежень та індексів, generated-колонка search_vector, актуальність вектора без статусу PENDING. docs/database.md.'),
-  h2('3.4. Автентифікація, ізоляція користувачів і керування записами'),
-  ...hint('≈ 3 с. Серверна сесія і CSRF, захист від session fixation, ізоляція за user_id у кожному SQL і тест ізоляції; дедуплікація за хешем тексту; імпорт у три кроки. docs/features/auth.md, journal.md, import.md.'),
-  h2('3.5. Реалізація пошуку'),
-  h3('3.5.1. Лексичний пошук'),
-  ...hint('websearch_to_tsquery, ts_rank, варіант OR для абляції, план запиту EXPLAIN з GIN-індексом. docs/features/search.md, розділ 1.'),
-  h3('3.5.2. Фонова індексація та семантичний пошук'),
-  ...hint('Рисунок diagrams/indexing.png, умова «вектор застарів», точний пошук <=>. docs/features/search.md, розділи 2 і 4.'),
-  h3('3.5.3. Гібридний пошук'),
-  ...hint('Рисунок diagrams/hybrid-search.png, клас RrfFusion, режим debug. docs/features/search.md, розділ 3.'),
-  h2('3.6. Реалізація Ask Pastline з перевіркою посилань на джерела'),
-  ...hint('≈ 3 с. Рисунок diagrams/ask-sequence.png, структура промпту, короткі ідентифікатори E1…E8, екранування, алгоритм CitationValidator; що перевірка гарантує і чого не гарантує. docs/features/ask.md.'),
-  h2('3.7. Клієнтська частина'),
-  ...hint('≈ 2 с. Структура застосунку, робота з API і кешем, 2–3 скріншоти сторінок (лише синтетичні записи). docs/frontend.md.'),
-  h2('3.8. Тестування та розгортання'),
-  ...hint('≈ 2,5 с. Testcontainers і фейки моделей, таблиця покриття (112 тестів), ключові тести (ізоляція, «отруєна» відповідь); онлайн-демо (diagrams/deployment.png). docs/testing.md, docs/deployment.md.'),
-  h2('3.9. Методика експериментального дослідження'),
-  ...hint('≈ 2,5 с. Корпус (520 записів, SHA-256), набори запитів за типами й джерелами, розкриття того, що частину запитів і питань згенеровано мовними моделями, еталон релевантності, метрики, умови вимірювань, тег thesis-freeze. docs/experiments/README.md.'),
-  h2('3.10. Результати дослідження та їх аналіз'),
-  ...hint('≈ 5 с. Таблиці — docs/experiments/results-tables.md, рисунки — docs/diploma/figures/. Висновки щодо H1–H5 і пояснення результатів формулюєте ви; Claude перевіряє числа і логіку.'),
-  h3('3.10.1. Якість пошуку за типами запитів'),
-  h3('3.10.2. Вплив лексичного оператора на лексичний і гібридний пошук'),
-  h3('3.10.3. Затримка пошуку'),
-  h3('3.10.4. Оцінка Ask Pastline'),
-  h3('3.10.5. Аналіз помилок і загрози валідності'),
-  h2('3.11. Висновки до розділу 3'),
-  ...hint('≈ 1 с. Що розроблено, які гіпотези підтверджено або спростовано і з якими обмеженнями.'),
-];
+const ch3 = renderChapter(3, require('./ch3'));
 
 // ---------- кінець ----------
 const tail = [
