@@ -4,7 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 /** Результат прогону: зберігається JSON-файлом у docs/experiments/results. */
-public record BenchmarkReport(String startedAt, Config config, List<Summary> summary, List<QueryResult> queries) {
+/** completedModes: режими, що встигли пройти; звіт перезаписується після кожного. */
+public record BenchmarkReport(
+        String startedAt,
+        Config config,
+        List<String> completedModes,
+        List<Summary> summary,
+        List<QueryResult> queries) {
 
     public record Config(
             String embeddingModel,

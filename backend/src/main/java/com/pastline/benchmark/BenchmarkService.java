@@ -140,8 +140,26 @@ public class BenchmarkService {
             relevantByQuery.put(q.id(), relevant(q, targets, corpus, dbIdByCorpusId));
         }
 
+        Config config = new Config(
+                embeddingModel.modelName(),
+                rrfK,
+                BenchmarkMetrics.DEPTH,
+                cfg.warmup(),
+                cfg.repeats(),
+                sha256(corpusBytes),
+                corpus.size(),
+                queryFileHashes(cfg.queriesDir()),
+                queries.size(),
+                failed,
+                System.getProperty("java.version"));
+        Files.createDirectories(cfg.outputDir());
+        String stamp = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss").format(java.time.LocalDateTime.now(clock));
+        Path file = cfg.outputDir().resolve("run-" + stamp + ".json");
+
         Map<String, Map<String, ModeResult>> resultsByQuery = new LinkedHashMap<>();
         Map<String, Map<String, List<Double>>> latenciesByQuery = new HashMap<>();
+        List<String> completedModes = new ArrayList<>();
+        BenchmarkReport report = null;
         for (SearchMode mode : MODES) {
             log.info("Режим {}: прогрів {}, повторів {}", mode.apiName(), cfg.warmup(), cfg.repeats());
             for (int i = 0; i < Math.min(cfg.warmup(), queries.size()); i++) {
@@ -171,8 +189,27 @@ public class BenchmarkService {
                         .put(mode.apiName(), result);
                 latenciesByQuery.computeIfAbsent(q.id(), k -> new HashMap<>()).put(mode.apiName(), times);
             }
+            completedModes.add(mode.apiName());
+            // Після кожного режиму звіт перезаписується: обрив (сон ноутбука, падіння Ollama) не губить готове
+            report = buildReport(
+                    startedAt, config, queries, relevantByQuery, completedModes, resultsByQuery, latenciesByQuery);
+            Files.writeString(
+                    file, objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(report));
+            log.info("Режим {} готовий, проміжний звіт: {}", mode.apiName(), file.toAbsolutePath());
         }
+        logSummary(report.summary());
+        log.info("Звіт: {}", file.toAbsolutePath());
+        return new Result(file, report);
+    }
 
+    private static BenchmarkReport buildReport(
+            String startedAt,
+            Config config,
+            List<BenchmarkQuery> queries,
+            Map<String, Set<UUID>> relevantByQuery,
+            List<String> completedModes,
+            Map<String, Map<String, ModeResult>> resultsByQuery,
+            Map<String, Map<String, List<Double>>> latenciesByQuery) {
         List<QueryResult> queryResults = queries.stream()
                 .map(q -> new QueryResult(
                         q.id(),
@@ -184,10 +221,8 @@ public class BenchmarkService {
                         relevantByQuery.get(q.id()).size(),
                         resultsByQuery.get(q.id())))
                 .toList();
-
         List<Summary> summary = new ArrayList<>();
-        for (SearchMode mode : MODES) {
-            String m = mode.apiName();
+        for (String m : completedModes) {
             summary.add(summarize(m, "all", queries, q -> true, resultsByQuery, latenciesByQuery));
             for (String type : distinct(queries.stream().map(BenchmarkQuery::type))) {
                 summary.add(summarize(
@@ -203,28 +238,7 @@ public class BenchmarkService {
                         latenciesByQuery));
             }
         }
-
-        Config config = new Config(
-                embeddingModel.modelName(),
-                rrfK,
-                BenchmarkMetrics.DEPTH,
-                cfg.warmup(),
-                cfg.repeats(),
-                sha256(corpusBytes),
-                corpus.size(),
-                queryFileHashes(cfg.queriesDir()),
-                queries.size(),
-                failed,
-                System.getProperty("java.version"));
-        BenchmarkReport report = new BenchmarkReport(startedAt, config, summary, queryResults);
-
-        Files.createDirectories(cfg.outputDir());
-        String stamp = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss").format(java.time.LocalDateTime.now(clock));
-        Path file = cfg.outputDir().resolve("run-" + stamp + ".json");
-        Files.writeString(file, objectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(report));
-        logSummary(summary);
-        log.info("Звіт: {}", file.toAbsolutePath());
-        return new Result(file, report);
+        return new BenchmarkReport(startedAt, config, List.copyOf(completedModes), summary, queryResults);
     }
 
     private UUID ensureUser(String email) {

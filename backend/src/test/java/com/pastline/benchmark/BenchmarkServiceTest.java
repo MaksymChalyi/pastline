@@ -67,6 +67,7 @@ class BenchmarkServiceTest {
         assertThat(Files.readString(result.file())).contains("\"summary\"").contains("\"corpusSha256\"");
 
         BenchmarkReport report = result.report();
+        assertThat(report.completedModes()).containsExactly("lexical", "semantic", "hybrid");
         assertThat(report.config().corpusEntries()).isEqualTo(4);
         assertThat(report.config().queries()).isEqualTo(3);
         assertThat(report.config().embeddingModel()).isEqualTo("fake-bow");

@@ -3,6 +3,7 @@ package com.pastline.auth.security;
 import com.pastline.shared.exception.ErrorResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -29,7 +30,9 @@ import tools.jackson.databind.ObjectMapper;
 @Configuration
 public class SecurityConfig {
 
+    /** Лише у веб-застосунку: профіль benchmark працює без веб-сервера, і HttpSecurity там немає. */
     @Bean
+    @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
     SecurityFilterChain securityFilterChain(
             HttpSecurity http, ObjectMapper mapper, SecurityContextRepository securityContextRepository)
             throws Exception {
