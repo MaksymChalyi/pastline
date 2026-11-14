@@ -223,10 +223,8 @@ label {
 }
 
 .brand-mark {
-  font-family: var(--font-prose);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
+  display: flex;
+  justify-content: center;
 }
 
 .auth-brand p {
@@ -267,11 +265,33 @@ label {
 }
 
 .brand {
-  font-family: var(--font-prose);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--text);
   text-decoration: none;
+}
+
+/* Логотип: знак акцентним кольором, назва — кольором тексту */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.logo-mark {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.semantic-note {
+  margin: -0.4rem 0 0.9rem;
+  max-width: 68ch;
 }
 
 .topnav {

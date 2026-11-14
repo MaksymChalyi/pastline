@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { ApiError } from '../api/client'
+import Logo from '../layout/Logo'
 
 interface Props {
   title: string
@@ -29,7 +30,9 @@ export default function AuthForm({ title, submitLabel, passwordHint, pending, er
   return (
     <div className="auth">
       <div className="auth-brand">
-        <div className="brand-mark">Pastline</div>
+        <div className="brand-mark">
+          <Logo size={34} />
+        </div>
         <p className="muted">Щоденник, який пам'ятає за вас</p>
       </div>
       <form className="card auth-card" onSubmit={handleSubmit}>

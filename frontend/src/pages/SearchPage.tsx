@@ -107,6 +107,12 @@ export default function SearchPage() {
               </span>
             )}
           </div>
+          {mode !== 'lexical' && data.hits.length > 0 && (
+            <p className="muted small semantic-note">
+              Пошук за змістом завжди показує найближчі записи, навіть коли точної відповіді немає. Щоб отримати
+              відповідь або чесне «не знайдено», поставте питання в розділі <Link to="/ask">«Запитати»</Link>.
+            </p>
+          )}
           {data.hits.length === 0 ? (
             <div className="empty">Нічого не знайдено. Спробуйте інший режим або інші слова.</div>
           ) : (

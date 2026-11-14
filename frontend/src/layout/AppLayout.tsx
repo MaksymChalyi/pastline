@@ -1,6 +1,7 @@
 import { Navigate, NavLink, Outlet } from 'react-router'
 import { useLogout, useMe } from '../auth/useAuth'
 import { IconAsk, IconImport, IconJournal, IconSearch } from './Icons'
+import Logo from './Logo'
 
 const NAV = [
   { to: '/', label: 'Записи', icon: IconJournal, end: true },
@@ -32,8 +33,8 @@ export default function AppLayout() {
   return (
     <div className="app">
       <header className="topbar">
-        <NavLink to="/" className="brand">
-          Pastline
+        <NavLink to="/" className="brand" aria-label="Pastline — на головну">
+          <Logo />
         </NavLink>
         <nav className="topnav" aria-label="Розділи">
           {NAV.map(({ to, label, end }) => (
