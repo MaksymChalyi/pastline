@@ -1,0 +1,32 @@
+erDiagram
+    users ||--o{ journal_entries : "має"
+    journal_entries ||--o| entry_embeddings : "має вектор"
+
+    users {
+        UUID id PK
+        VARCHAR email UK "нижній регістр"
+        VARCHAR password_hash "bcrypt"
+        VARCHAR timezone
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+    journal_entries {
+        UUID id PK
+        UUID user_id FK "ізоляція користувачів"
+        VARCHAR title "до 200 символів"
+        TEXT content "до 20000 символів"
+        DATE entry_date
+        VARCHAR content_hash "SHA-256 нормалізованого тексту"
+        TSVECTOR search_vector "generated, GIN-індекс"
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+    entry_embeddings {
+        UUID entry_id PK, FK
+        VECTOR embedding "768 вимірів"
+        VARCHAR model "модель + префікси"
+        VARCHAR content_hash "для виявлення застарілих"
+        VARCHAR status "READY | FAILED"
+        VARCHAR error
+        TIMESTAMPTZ updated_at
+    }

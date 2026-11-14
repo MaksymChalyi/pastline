@@ -1,0 +1,32 @@
+sequenceDiagram
+    autonumber
+    actor U as Користувач
+    participant C as React-клієнт
+    participant A as AskService
+    participant S as SearchService
+    participant J as JournalEntry<br/>Repository
+    participant M as ChatModelPort
+    participant V as Citation<br/>Validator
+
+    U->>C: «Що сказав стоматолог?»
+    C->>A: POST /api/v1/ai/ask
+    A->>S: гібридний пошук, top-8 записів користувача
+    alt записів не знайдено
+        A-->>C: NO_EVIDENCE (модель не викликається)
+    end
+    A->>J: повний текст записів (WHERE user_id = :userId)
+    Note over A,J: контекст: <entry id="E1" date="…">текст</entry><br/>кутові дужки в тексті екрануються
+    A->>M: системні правила + контекст + питання
+    M-->>A: сира відповідь
+    alt відповідь NO_ANSWER
+        A-->>C: NO_EVIDENCE
+    end
+    A->>V: validate(відповідь, {E1…E8})
+    Note over M,V: речення лишається, лише якщо має посилання [E1]<br/>і всі його посилання є серед переданих записів
+    V-->>A: перевірені речення + кількість відкинутих
+    alt не лишилося жодного речення
+        A-->>C: NO_EVIDENCE
+    else
+        A-->>C: ANSWERED: відповідь, джерела, removedSentences
+    end
+    C-->>U: відповідь із номерами джерел

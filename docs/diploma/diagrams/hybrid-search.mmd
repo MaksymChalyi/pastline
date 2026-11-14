@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    actor U as Користувач
+    participant C as React-клієнт
+    participant S as SearchService
+    participant M as Embedding<br/>ModelPort
+    participant E as Embedding<br/>Repository
+    participant L as LexicalSearch<br/>Repository
+    participant F as RrfFusion
+
+    U->>C: запит «бігав зранку», режим «Гібридний»
+    C->>S: GET /api/v1/search?q=…&mode=hybrid
+    S->>M: embedQuery(q)
+    alt модель недоступна
+        M-->>S: модель недоступна
+        S-->>C: 503 EMBEDDING_UNAVAILABLE (без тихого переходу на lexical)
+    end
+    M-->>S: вектор запиту (768)
+    S->>E: top-50 за косинусною відстанню (<=>), WHERE user_id = :userId
+    E-->>S: семантичний список
+    S->>L: top-50 за ts_rank, websearch_to_tsquery, WHERE user_id = :userId
+    L-->>S: лексичний список
+    S->>F: fuse(lexical, semantic, k = 60, limit)
+    Note over S,F: score = Σ 1 / (k + rank)<br/>рівні бали: кращий ранг → новіша дата → id
+    F-->>S: об'єднаний список
+    S-->>C: hits (+ ранги й RRF-бал при debug=true)
+    C-->>U: картки результатів

@@ -1,0 +1,14 @@
+flowchart TB
+    subgraph local["Локально: експеримент і розробка"]
+        lb["Браузер"] --> vite["Vite dev-сервер :5173<br/>проксі /api"]
+        vite --> app1["Spring Boot :8090<br/>профіль default / benchmark"]
+        app1 --> pg1[("PostgreSQL 17 + pgvector<br/>Docker Compose :5434")]
+        app1 --> ol["Ollama :11434<br/>embeddinggemma · qwen3:4b-instruct"]
+    end
+
+    subgraph cloud["Онлайн-демо: $0 на місяць"]
+        cb["Браузер / телефон"] --> vercel["Vercel<br/>статичний React +<br/>rewrite /api/* (один домен для cookie)"]
+        vercel --> render["Render Free, Docker<br/>Spring Boot, профіль cloud<br/>512 МБ RAM"]
+        render --> neon[("Neon Free<br/>PostgreSQL + pgvector")]
+        render --> gem["Gemini API<br/>безкоштовний рівень"]
+    end

@@ -1,0 +1,38 @@
+flowchart LR
+    subgraph client["Клієнт (React 19 + TypeScript)"]
+        ui["Сторінки: записи, пошук,<br/>«Запитати», імпорт"]
+        http["api/client.ts<br/>cookie сесії + CSRF"]
+        ui --> http
+    end
+
+    subgraph backend["Бекенд: модульний моноліт (Spring Boot 4, Java 21)"]
+        auth["auth<br/>реєстрація, вхід,<br/>сесія, CSRF"]
+        journal["journal<br/>CRUD записів"]
+        importing["importing<br/>JSON / Markdown"]
+        search["search<br/>lexical · semantic · hybrid (RRF)<br/>EmbeddingIndexer"]
+        ask["ask<br/>Ask Pastline +<br/>перевірка джерел"]
+        ai["ai<br/>EmbeddingModelPort<br/>ChatModelPort"]
+        bench["benchmark<br/>профіль benchmark"]
+        importing --> journal
+        ask --> search
+        ask --> journal
+        search --> ai
+        ask --> ai
+        bench --> search
+        bench --> ask
+    end
+
+    db[("PostgreSQL 17 + pgvector<br/>users · journal_entries ·<br/>entry_embeddings")]
+    ollama["Ollama (локально)<br/>embeddinggemma · qwen3:4b-instruct"]
+    gemini["Gemini API (онлайн-демо)<br/>gemini-embedding-001 · gemini-3.5-flash-lite"]
+
+    http -- "REST /api/v1, JSON" --> auth
+    http --> journal
+    http --> importing
+    http --> search
+    http --> ask
+    journal --> db
+    search --> db
+    auth --> db
+    ai -- "provider = ollama" --> ollama
+    ai -. "provider = gemini" .-> gemini
