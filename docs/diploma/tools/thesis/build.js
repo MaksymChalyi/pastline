@@ -106,6 +106,12 @@ function renderBlocks(blocks) {
       case 'olist': return value.map((item, i) => p(`${i + 1}. ` + cite(item)));
       case 'table': return renderTable(value);
       case 'figure': return renderFigure(value);
+      case 'formula': return [new Paragraph({
+        children: [new TextRun({ text: '\t' + value.text, font: FONT, size: 28 }), new TextRun({ text: `\t(${value.num})`, font: FONT, size: 28 })],
+        tabStops: [{ type: TabStopType.CENTER, position: 4819 }, { type: TabStopType.RIGHT, position: 9638 }],
+        spacing: { lineRule: LineRuleType.AUTO, line: LINE, before: 120, after: 120 }, keepNext: true,
+      })];
+      case 'where': return [p(cite(value), { noIndent: true })];
       default: throw new Error('Невідомий блок ' + kind);
     }
   });
@@ -286,35 +292,7 @@ const intro = [
 const ch1 = renderChapter(1, require('./ch1'));
 
 // ---------- розділ 2 ----------
-const ch2 = [
-  chapter(2, 'АНАЛІЗ МЕТОДІВ І ЗАСОБІВ РОЗРОБКИ СИСТЕМИ'),
-  ...hint('Обсяг розділу — близько 26 сторінок. Правило кожного підрозділу: варіанти → порівняння (бажано таблицею) → обґрунтований вибір. Не переказ документації. Теорія — docs/learning/concepts.md, рішення й альтернативи — docs/decisions.md.'),
-  h2('2.1. Методи пошуку в текстових даних'),
-  h3('2.1.1. Лексичний пошук і повнотекстовий пошук PostgreSQL'),
-  ...hint('≈ 3 с. Інвертований індекс, TF-IDF і BM25 (з джерелами), tsvector / tsquery, GIN, конфігурації мов; відсутність українського стемера і наслідки для словоформ. concepts.md, розділ 1.'),
-  h3('2.1.2. Семантичний пошук на основі векторних представлень тексту'),
-  ...hint('≈ 3 с. Ембедінги, косинусна схожість (формула з номером), асиметричний пошук (префікси запиту й документа), точний і наближений пошук (HNSW, IVFFlat) — переваги й недоліки. concepts.md, розділи 2–3.'),
-  h3('2.1.3. Гібридний пошук і метод злиття рангів RRF'),
-  ...hint('≈ 2 с. Чому бали різних методів не можна просто складати; формула RRF, роль k, приклад розрахунку (таблиця). Джерело: Cormack, Clarke, Büttcher, 2009. concepts.md, розділ 4.'),
-  h3('2.1.4. Генерація відповідей із доповненням пошуком'),
-  ...hint('≈ 2 с. Схема RAG (Lewis et al., 2020), причини галюцинацій, prompt injection через дані, методи зменшення ризику, зокрема перевірка посилань після генерації. concepts.md, розділи 6–7.'),
-  h3('2.1.5. Метрики оцінювання якості пошуку'),
-  ...hint('≈ 1,5 с. Hit@k, MRR@10, Recall@10 з нормуванням, перцентилі затримки p50/p95 — формули з номерами і пояснення, чому обрано саме ці. concepts.md, розділ 5; docs/experiments/README.md.'),
-  h2('2.2. Архітектурні підходи до побудови системи'),
-  ...hint('≈ 2,5 с. Моноліт, модульний моноліт, мікросервіси — таблиця порівняння за складністю, вартістю, масштабуванням для одного розробника. Вибір — модульний моноліт (рішення 1–2, 6 у docs/decisions.md).'),
-  h2('2.3. Засоби реалізації серверної частини'),
-  ...hint('≈ 3,5 с. Java 21 (альтернативи Kotlin, Python), Spring Boot (Quarkus, Micronaut), Spring Security — серверна сесія проти JWT (рішення 8–9), Spring AI (LangChain4j, прямий HTTP-клієнт з Лаби 02).'),
-  h2('2.4. Сховище даних і засоби векторного пошуку'),
-  ...hint('≈ 2,5 с. PostgreSQL + pgvector проти окремих векторних БД (Qdrant, Milvus) і Elasticsearch: один SQL з фільтром користувача, транзакційність, обсяг даних (рішення 3, 13). Flyway проти Liquibase.'),
-  h2('2.5. Мовні моделі: локальне та хмарне виконання'),
-  ...hint('≈ 2,5 с. Ollama і локальні моделі (embeddinggemma, qwen3:4b-instruct) проти хмарних API: приватність, відтворюваність, вартість, швидкість на CPU. Хмарний Gemini — лише для онлайн-демо (рішення 4, 22, 25). docs/ai-providers.md.'),
-  h2('2.6. Засоби реалізації клієнтської частини'),
-  ...hint('≈ 1,5 с. TypeScript, React, Vite, TanStack Query; альтернативи Angular, Vue. docs/frontend.md.'),
-  h2('2.7. Засоби тестування, контейнеризації та розгортання'),
-  ...hint('≈ 1,5 с. JUnit 5 і Testcontainers проти H2 (рішення 5), Docker і Docker Compose, Vercel + Render + Neon проти AWS (рішення 25). docs/testing.md, docs/deployment.md.'),
-  h2('2.8. Висновки до розділу 2'),
-  ...hint('≈ 1 с. Підсумкова таблиця обраного стеку і коротке обґрунтування кожного вибору.'),
-];
+const ch2 = renderChapter(2, require('./ch2'));
 
 // ---------- розділ 3 ----------
 const ch3 = [

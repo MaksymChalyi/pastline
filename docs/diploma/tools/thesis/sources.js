@@ -46,4 +46,55 @@ module.exports = {
   notion_qna: web('Q&A', 'Notion Help Center', 'https://www.notion.com/help/qna'),
   obsidian_smart_connections: web('Smart Connections', 'Obsidian Community Plugins', 'https://community.obsidian.md/plugins/smart-connections'),
   reflection_appstore: web('Reflection: AI Journal & Coach', 'App Store', 'https://apps.apple.com/app/id1504547616'),
+  // ---------- розділ 2 ----------
+  sparckjones1972:
+    'Spärck Jones K. A statistical interpretation of term specificity and its application in retrieval. Journal of Documentation. 1972. Vol. 28, No. 1. P. 11–21. DOI: 10.1108/eb026526.',
+  manning2008:
+    'Manning C. D., Raghavan P., Schütze H. Introduction to information retrieval. Cambridge : Cambridge University Press, 2008. 482 p.',
+  robertson2009:
+    'Robertson S., Zaragoza H. The probabilistic relevance framework: BM25 and beyond. Foundations and Trends in Information Retrieval. 2009. Vol. 3, No. 4. P. 333–389. DOI: 10.1561/1500000019.',
+  pg_textsearch: web('PostgreSQL documentation. Chapter 12. Full Text Search. 12.3. Controlling Text Search', 'PostgreSQL Global Development Group', 'https://www.postgresql.org/docs/current/textsearch-controls.html'),
+  reimers2019:
+    'Reimers N., Gurevych I. Sentence-BERT: sentence embeddings using Siamese BERT-networks. Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP). Hong Kong, 2019. P. 3982–3992. DOI: 10.18653/v1/D19-1410.',
+  embeddinggemma2025:
+    'Schechter Vera H., Dua S. et al. EmbeddingGemma: powerful and lightweight text representations. arXiv preprint. 2025. arXiv:2509.20354. URL: https://arxiv.org/abs/2509.20354 (' + ACCESSED + ').',
+  embeddinggemma_card: web('EmbeddingGemma model card', 'Google AI for Developers', 'https://ai.google.dev/gemma/docs/embeddinggemma/model_card'),
+  malkov2020:
+    'Malkov Y. A., Yashunin D. A. Efficient and robust approximate nearest neighbor search using hierarchical navigable small world graphs. IEEE Transactions on Pattern Analysis and Machine Intelligence. 2020. Vol. 42, No. 4. P. 824–836. DOI: 10.1109/TPAMI.2018.2889473.',
+  pgvector: web('pgvector: open-source vector similarity search for Postgres', 'GitHub', 'https://github.com/pgvector/pgvector'),
+  greshake2023:
+    'Greshake K., Abdelnabi S., Mishra S., Endres C., Holz T., Fritz M. Not what you’ve signed up for: compromising real-world LLM-integrated applications with indirect prompt injection. Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISec ’23). Copenhagen, 2023. P. 79–90. DOI: 10.1145/3605764.3623985.',
+  voorhees1999:
+    'Voorhees E. M. The TREC-8 question answering track report. The Eighth Text REtrieval Conference (TREC-8) : NIST Special Publication 500-246. Gaithersburg, 2000. P. 77–82.',
+  fowler2015: web('Fowler M. MonolithFirst', 'martinfowler.com', 'https://martinfowler.com/bliki/MonolithFirst.html'),
+  cockburn2005: web('Cockburn A. Hexagonal architecture (ports and adapters). HaT Technical Report 2005.02', 'Alistair Cockburn', 'https://alistair.cockburn.us/hexagonal-architecture/'),
+  jdk21: web('JDK 21', 'OpenJDK', 'https://openjdk.org/projects/jdk/21/'),
+  spring_boot4: web('Spring Framework 7 and Spring Boot 4 deliver API versioning, resilience, and null-safe annotations', 'InfoQ', 'https://www.infoq.com/news/2025/11/spring-7-spring-boot-4/'),
+  spring_security_csrf: web('Cross Site Request Forgery (CSRF). Spring Security reference', 'Spring', 'https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html'),
+  owasp_csrf: web('Cross-Site Request Forgery Prevention Cheat Sheet', 'OWASP Cheat Sheet Series', 'https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html'),
+  spring_ai: web('Spring AI reference', 'Spring', 'https://docs.spring.io/spring-ai/reference/'),
+  langchain4j: web('LangChain4j documentation', 'LangChain4j', 'https://docs.langchain4j.dev/'),
+  qwen3_report:
+    'Yang A., Li A., Yang B. et al. Qwen3 technical report. arXiv preprint. 2025. arXiv:2505.09388. URL: https://arxiv.org/abs/2505.09388 (' + ACCESSED + ').',
+  qwen3_card: web('Qwen3-4B-Instruct-2507', 'Hugging Face', 'https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507'),
+  ollama: web('Ollama documentation', 'Ollama', 'https://docs.ollama.com/'),
+  gemini_terms: web('Gemini API Additional Terms of Service', 'Google AI for Developers', 'https://ai.google.dev/gemini-api/terms'),
+  qdrant: web('Qdrant documentation', 'Qdrant', 'https://qdrant.tech/documentation/'),
+  milvus: web('Milvus documentation', 'Milvus', 'https://milvus.io/docs'),
+  elastic_knn: web('kNN search. Elasticsearch guide', 'Elastic', 'https://www.elastic.co/docs/solutions/search/vector/knn'),
+  flyway: web('Flyway documentation', 'Redgate', 'https://documentation.red-gate.com/flyway'),
+  testcontainers: web('Testcontainers for Java', 'Testcontainers', 'https://java.testcontainers.org/'),
+  react: web('React reference', 'Meta Open Source', 'https://react.dev/reference/react'),
+  typescript: web('TypeScript documentation', 'Microsoft', 'https://www.typescriptlang.org/docs/'),
+  vite: web('Vite guide', 'Vite', 'https://vite.dev/guide/'),
+  tanstack_query: web('TanStack Query. Overview', 'TanStack', 'https://tanstack.com/query/latest/docs/framework/react/overview'),
+  docker_compose: web('Docker Compose overview', 'Docker Docs', 'https://docs.docker.com/compose/'),
+  render_free: web('Deploy for free', 'Render Docs', 'https://render.com/docs/free'),
+  vercel_rewrites: web('Rewrites on Vercel', 'Vercel Docs', 'https://vercel.com/docs/routing/rewrites'),
+  neon_pgvector: web('The pgvector extension', 'Neon Docs', 'https://neon.com/docs/extensions/pgvector'),
+  pg_dictionaries: web('PostgreSQL documentation. Chapter 12. Full Text Search. 12.6. Dictionaries', 'PostgreSQL Global Development Group', 'https://www.postgresql.org/docs/current/textsearch-dictionaries.html'),
+  e5_card: web('intfloat/multilingual-e5-large', 'Hugging Face', 'https://huggingface.co/intfloat/multilingual-e5-large'),
+  wang2024e5:
+    'Wang L., Yang N., Huang X., Yang L., Majumder R., Wei F. Multilingual E5 text embeddings: a technical report. arXiv preprint. 2024. arXiv:2402.05672. URL: https://arxiv.org/abs/2402.05672 (' + ACCESSED + ').',
+  bgem3_card: web('BAAI/bge-m3', 'Hugging Face', 'https://huggingface.co/BAAI/bge-m3'),
 };
