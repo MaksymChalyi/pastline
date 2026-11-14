@@ -1,5 +1,6 @@
 package com.pastline;
 
+import com.pastline.support.FakeChatModel;
 import com.pastline.support.FakeEmbeddingModel;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -25,5 +26,12 @@ public class TestcontainersConfiguration {
     @Primary
     public FakeEmbeddingModel fakeEmbeddingModel() {
         return new FakeEmbeddingModel();
+    }
+
+    /** Генеративної моделі в тестах теж немає: заготовлені відповіді перевіряють пост-валідацію детерміновано. */
+    @Bean
+    @Primary
+    public FakeChatModel fakeChatModel() {
+        return new FakeChatModel();
     }
 }

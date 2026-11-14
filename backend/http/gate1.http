@@ -52,3 +52,19 @@ GET http://localhost:8090/api/v1/search?q=went jogging in the park&mode=semantic
 
 ### 10. Гібридний пошук з поясненням рангів (6.7)
 GET http://localhost:8090/api/v1/search?q=бігав зранку&mode=hybrid&limit=5&debug=true
+
+### 11. Ask Pastline (6.10): відповідь із посиланнями [E#] і джерелами; перша відповідь довша (модель вантажиться)
+# @timeout 600
+POST http://localhost:8090/api/v1/ai/ask
+Content-Type: application/json
+X-XSRF-TOKEN: {{xsrf}}
+
+{"question": "Коли я бігав напівмарафон і як пройшло?"}
+
+### 12. Ask Pastline: питання, на яке в корпусі відповіді немає (очікується NO_EVIDENCE)
+# @timeout 600
+POST http://localhost:8090/api/v1/ai/ask
+Content-Type: application/json
+X-XSRF-TOKEN: {{xsrf}}
+
+{"question": "Яку машину я купив минулого року?"}
