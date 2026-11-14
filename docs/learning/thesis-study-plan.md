@@ -41,6 +41,19 @@ H1–H5.
 
 **Готово, коли:** на кожне питання наприкінці сесій `code-tour.md` відповідаю вголос, не дивлячись у код.
 
+### Що почитати на етапі 2 (по одній статті ввечері, 15–20 хв)
+
+| День | Статті |
+|---|---|
+| пн 16 | Baeldung, «A Guide to CSRF Protection in Spring Security» — https://www.baeldung.com/spring-security-csrf; «CSRF With Stateless REST API» — https://www.baeldung.com/csrf-stateless-rest-api (порівняти зі своїм `SecurityConfig`: у вас сесія, тож CSRF потрібен) |
+| вт 17 | Baeldung, статті з тегом Testcontainers — https://www.baeldung.com/category/testing/tag/testcontainers («DB Integration Tests with Spring Boot and Testcontainers») |
+| ср 18 | Habr, Selectel: «Векторный поиск внутри PostgreSQL: что умеет и где может пригодиться pgvector» — https://habr.com/ru/post/920824; ParadeDB, «Hybrid Search in PostgreSQL: The Missing Manual» — https://paradedb.com/blog/hybrid-search-in-postgresql-the-missing-manual |
+| чт 19 | DOU, «Як вибрати embedding-модель для української, коли жоден бенчмарк вам не підходить» — https://dou.ua/goto/5aON; Baeldung, «Create a ChatGPT Like Chatbot With Ollama and Spring AI» — https://www.baeldung.com/spring-ai-ollama-chatgpt-like-chatbot (у статті старіша версія Spring AI, звіряти з власним кодом) |
+| пт 20 | DOU, «Як оцінити RAG-систему: від тестового датасету до порівняння пошуку. Частина 1» — https://dou.ua/goto/Ige0; Habr, Java + PostgreSQL/pgvector + Ollama + Testcontainers на статтях Хабра — https://habr.com/ru/post/915348 |
+
+Під час читання шукати не «як зробити», а «чим це відрізняється від мого рішення і чому». Такі порівняння —
+найкращий матеріал для відповідей комісії.
+
 ## Етап 3. Записка з правками — сб 21.11 – нд 22.11 (по 4–5 год)
 
 Читаю розділ, і для кожного абзацу перевіряю: розумію? можу показати в коді? є джерело або число? Правки — одразу
@@ -73,3 +86,16 @@ H1–H5.
    - Як система захищає дані користувача? (user_id у кожному SQL, 404 замість 403, локальні моделі)
 
 **Пт 27.11 — здача.**
+
+## Етап 5. Поглиблення до кінця місяця — сб 28.11 – пн 30.11
+
+1. Відтворити прогін експерименту за [`experiments/README.md`](../experiments/README.md) («Як відтворити») і
+   переконатися, що SHA-256 корпусу і запитів збігаються зі звітом. Після цього питання «звідки числа» не страшне.
+2. Пройти записку без підглядання в код: на кожен рисунок і таблицю розділу 3 — пояснення вголос за 1 хвилину.
+3. Почитати, як роблять BM25 і гібридний пошук усередині PostgreSQL розширеннями (ParadeDB `pg_search`,
+   `pg_textsearch`) — це ваш «напрям удосконалення» з висновків, і на захисті корисно знати, що він реальний.
+4. DOU, «Архітектура рішень, заснованих на LLM, для великих ентерпрайзів» — https://dou.ua/forums/topic/50191/
+   (RAG у продакшні; порівняти з Ask Pastline).
+5. Почати презентацію до захисту (15.12): 10–12 слайдів — проблема, гіпотези, архітектура, експеримент, результати
+   H1–H5, обмеження.
+
