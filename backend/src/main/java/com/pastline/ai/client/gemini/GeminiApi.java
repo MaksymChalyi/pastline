@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.Duration;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.MediaType;
@@ -21,6 +22,8 @@ public class GeminiApi {
 
     private final RestClient rest;
 
+    // Два конструктори: Spring має знати, який використовувати (другий лише для тестів)
+    @Autowired
     public GeminiApi(
             @Value("${pastline.gemini.base-url:https://generativelanguage.googleapis.com/v1beta}") String baseUrl,
             @Value("${pastline.gemini.api-key:}") String apiKey,
