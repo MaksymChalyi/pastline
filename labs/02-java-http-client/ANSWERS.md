@@ -67,7 +67,7 @@ Main: відповідь додається в history як "assistant", дру�
 1. **`NoClassDefFoundError: com/fasterxml/jackson/databind/ObjectMapper` під час запуску `Main`.** `mvn test` проходив, а запуск з IDEA падав: у classpath були `jackson-core` і `jackson-annotations`, але не `jackson-databind`. Maven → Reload не допоміг, допоміг лише **File → Invalidate Caches** з перезапуском IDEA. Висновок: IDEA тримає власну копію налаштувань Maven-проєкту, і вона може розійтися з `pom.xml`. Еталонний запуск — через `mvn`.
 2. **Невідомі поля у відповіді.** Ollama повертає в `message` ще поле `thinking`, а у відповіді — `done`, `load_duration` та інші. Без `@JsonIgnoreProperties(ignoreUnknown = true)` на `ChatResponse` і `ChatMessage` Jackson падає на першому ж невідомому полі. Додав анотацію в обидва records, бо поле `thinking` бачив ще в лабі 1.
 3. **snake_case у JSON.** Поля `total_duration` і `eval_count` у Java назвав `totalDuration` і `evalCount` і прив'язав через `@JsonProperty`.
-4. **Пакет.** У `CLAUDE.md` для лаб записано `lab02`, у `LABS.md` — `lab`. Лишив `lab`, як у завданні лаби.
+4. **Пакет.** У правилах проєкту для лаб записано `lab02`, у `LABS.md` — `lab`. Лишив `lab`, як у завданні лаби.
 
 ## Висновки
 
