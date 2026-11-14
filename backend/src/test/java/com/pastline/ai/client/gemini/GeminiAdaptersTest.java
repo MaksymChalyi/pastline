@@ -93,23 +93,23 @@ class GeminiAdaptersTest {
 
     @Test
     void chatSendsSystemInstructionAndJoinsParts() {
-        server.expect(requestTo("http://gemini.test/v1beta/models/gemini-2.5-flash-lite:generateContent"))
+        server.expect(requestTo("http://gemini.test/v1beta/models/gemini-3.5-flash-lite:generateContent"))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("\"systemInstruction\"")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("\"maxOutputTokens\":400")))
                 .andRespond(withSuccess(
                         "{\"candidates\":[{\"content\":{\"role\":\"model\",\"parts\":[{\"text\":\"Ти бігав \"},{\"text\":\"у парку [E1].\"}]}}]}",
                         MediaType.APPLICATION_JSON));
 
-        GeminiChatAdapter chat = new GeminiChatAdapter(api, "gemini-2.5-flash-lite", 0.2, 400);
+        GeminiChatAdapter chat = new GeminiChatAdapter(api, "gemini-3.5-flash-lite", 0.2, 400);
         assertThat(chat.generate("правила", "питання")).isEqualTo("Ти бігав у парку [E1].");
     }
 
     @Test
     void chatServerErrorMeansAiUnavailable() {
-        server.expect(requestTo("http://gemini.test/v1beta/models/gemini-2.5-flash-lite:generateContent"))
+        server.expect(requestTo("http://gemini.test/v1beta/models/gemini-3.5-flash-lite:generateContent"))
                 .andRespond(withStatus(HttpStatus.SERVICE_UNAVAILABLE));
 
-        assertThatThrownBy(() -> new GeminiChatAdapter(api, "gemini-2.5-flash-lite", 0.2, 400).generate("s", "u"))
+        assertThatThrownBy(() -> new GeminiChatAdapter(api, "gemini-3.5-flash-lite", 0.2, 400).generate("s", "u"))
                 .isInstanceOf(ChatUnavailableException.class);
     }
 }

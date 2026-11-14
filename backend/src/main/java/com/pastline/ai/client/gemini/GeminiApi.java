@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
 
 /**
  * Мінімальний клієнт Gemini API (REST, ключ у заголовку x-goog-api-key). Лише два виклики, які потрібні адаптерам:
@@ -46,6 +47,16 @@ public class GeminiApi {
                 .requestFactory(factory)
                 .defaultHeader("x-goog-api-key", apiKey)
                 .build();
+    }
+
+    /**
+     * Коротке повідомлення з тіла помилки Gemini ("models/x is not found", "quota exceeded"): допомагає з діагностикою.
+     * Тіло помилки не містить тексту запиту, лише опис проблеми; обрізається до 300 символів.
+     */
+    public static String errorMessage(RestClientResponseException e) {
+        String body = e.getResponseBodyAsString();
+        String oneLine = body.replaceAll("\\s+", " ").strip();
+        return oneLine.length() > 300 ? oneLine.substring(0, 300) + "…" : oneLine;
     }
 
     // --- Ембедінги ---

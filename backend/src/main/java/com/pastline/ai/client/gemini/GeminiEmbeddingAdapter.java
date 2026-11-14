@@ -68,7 +68,7 @@ public class GeminiEmbeddingAdapter implements EmbeddingModelPort {
             throw new EmbeddingUnavailableException();
         } catch (RestClientResponseException e) {
             // 429 (ліміт безкоштовного рівня) і 5xx — тимчасово; у лог лише статус, без тексту записів
-            log.warn("Gemini embeddings: HTTP {}", e.getStatusCode().value());
+            log.warn("Gemini embeddings: HTTP {} {}", e.getStatusCode().value(), GeminiApi.errorMessage(e));
             throw new EmbeddingUnavailableException();
         }
         for (float[] v : vectors) {

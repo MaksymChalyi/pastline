@@ -22,7 +22,7 @@ public class GeminiChatAdapter implements ChatModelPort {
 
     public GeminiChatAdapter(
             GeminiApi api,
-            @Value("${pastline.gemini.chat-model:gemini-2.5-flash-lite}") String model,
+            @Value("${pastline.gemini.chat-model:gemini-3.5-flash-lite}") String model,
             @Value("${pastline.ask.temperature:0.2}") double temperature,
             @Value("${pastline.ask.max-tokens:400}") int maxTokens) {
         this.api = api;
@@ -43,7 +43,7 @@ public class GeminiChatAdapter implements ChatModelPort {
         } catch (ResourceAccessException e) {
             throw new ChatUnavailableException();
         } catch (RestClientResponseException e) {
-            log.warn("Gemini chat: HTTP {}", e.getStatusCode().value());
+            log.warn("Gemini chat: HTTP {} {}", e.getStatusCode().value(), GeminiApi.errorMessage(e));
             throw new ChatUnavailableException();
         }
     }
