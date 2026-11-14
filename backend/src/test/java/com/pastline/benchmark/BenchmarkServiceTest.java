@@ -71,6 +71,8 @@ class BenchmarkServiceTest {
         assertThat(report.config().corpusEntries()).isEqualTo(4);
         assertThat(report.config().queries()).isEqualTo(3);
         assertThat(report.config().embeddingModel()).isEqualTo("fake-bow");
+        assertThat(report.config().lexicalOperator()).isEqualTo("and");
+        assertThat(result.file().getFileName().toString()).endsWith("-and.json");
         assertThat(report.summary())
                 .filteredOn(s -> s.group().equals("all"))
                 .extracting(Summary::mode)

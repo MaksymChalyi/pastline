@@ -53,6 +53,22 @@ class BenchmarkMetricsTest {
     }
 
     @Test
+    void recallIsNormalizedByDepthWhenThereAreMoreRelevantThanDepth() {
+        // 12 релевантних, у top-10 лише вони: більше знайти неможливо, отже 1.0, а не 10/12
+        List<UUID> relevant = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            relevant.add(UUID.randomUUID());
+        }
+        assertThat(BenchmarkMetrics.recall(relevant, Set.copyOf(relevant))).isEqualTo(1.0);
+        // 5 з 10 можливих
+        List<UUID> half = new ArrayList<>(relevant.subList(0, 5));
+        for (int i = 0; i < 5; i++) {
+            half.add(UUID.randomUUID());
+        }
+        assertThat(BenchmarkMetrics.recall(half, Set.copyOf(relevant))).isEqualTo(0.5);
+    }
+
+    @Test
     void percentileUsesNearestRank() {
         List<Double> values = List.of(5.0, 1.0, 3.0, 2.0, 4.0);
         assertThat(BenchmarkMetrics.percentile(values, 0.5)).isEqualTo(3.0);

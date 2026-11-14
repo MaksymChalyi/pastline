@@ -10,7 +10,8 @@ import java.util.UUID;
  * <ul>
  *   <li>Hit@k: чи є хоча б один релевантний запис серед перших k;
  *   <li>RR@10: 1 / позиція першого релевантного (0, якщо його немає в top-10); середнє по запитах = MRR@10;
- *   <li>Recall@10: частка всіх релевантних записів, що потрапили в top-10.
+ *   <li>Recall@10: знайдені релевантні в top-10, поділені на min(10, кількість релевантних). Без нормування запит із
+ *       30 релевантними не міг би отримати більше 10/30, і метрика залежала б від розміру еталону, а не від пошуку.
  * </ul>
  */
 public final class BenchmarkMetrics {
@@ -42,7 +43,7 @@ public final class BenchmarkMetrics {
             return 0;
         }
         long found = ranked.stream().limit(DEPTH).filter(relevant::contains).count();
-        return (double) found / relevant.size();
+        return (double) found / Math.min(DEPTH, relevant.size());
     }
 
     /** Перцентиль методом найближчого рангу; values не обов'язково відсортовані. */

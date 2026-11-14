@@ -13,6 +13,7 @@ import com.pastline.journal.service.JournalService;
 import com.pastline.search.dto.SearchHit;
 import com.pastline.search.embedding.EmbeddingIndexer;
 import com.pastline.search.repository.EmbeddingRepository;
+import com.pastline.search.repository.LexicalOperator;
 import com.pastline.search.service.SearchMode;
 import com.pastline.search.service.SearchService;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import java.util.HashSet;
 import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -75,6 +77,7 @@ public class BenchmarkService {
     private final JdbcTemplate jdbc;
     private final Clock clock;
     private final int rrfK;
+    private final LexicalOperator lexicalOperator;
 
     public BenchmarkService(
             ObjectMapper objectMapper,
@@ -87,7 +90,8 @@ public class BenchmarkService {
             SearchService searchService,
             JdbcTemplate jdbc,
             Clock clock,
-            @Value("${pastline.search.rrf-k:60}") int rrfK) {
+            @Value("${pastline.search.rrf-k:60}") int rrfK,
+            @Value("${pastline.search.lexical-operator:and}") String lexicalOperator) {
         this.objectMapper = objectMapper;
         this.querySetLoader = querySetLoader;
         this.authService = authService;
@@ -99,6 +103,7 @@ public class BenchmarkService {
         this.jdbc = jdbc;
         this.clock = clock;
         this.rrfK = rrfK;
+        this.lexicalOperator = LexicalOperator.parse(lexicalOperator);
     }
 
     public record Result(Path file, BenchmarkReport report) {}
@@ -109,7 +114,11 @@ public class BenchmarkService {
         List<CorpusEntry> corpus = objectMapper.readValue(corpusBytes, new TypeReference<>() {});
         QuerySetLoader.Targets targets = querySetLoader.loadTargets(cfg.queriesDir());
         List<BenchmarkQuery> queries = querySetLoader.loadQueries(cfg.queriesDir(), targets);
-        log.info("Корпус: {} записів, запитів: {}", corpus.size(), queries.size());
+        log.info(
+                "Корпус: {} записів, запитів: {}, лексичний оператор: {}",
+                corpus.size(),
+                queries.size(),
+                lexicalOperator);
 
         UUID userId = ensureUser(cfg.userEmail());
         ImportReport imported = importService.importFile(userId, "corpus.json", corpusBytes, false);
@@ -143,6 +152,7 @@ public class BenchmarkService {
         Config config = new Config(
                 embeddingModel.modelName(),
                 rrfK,
+                lexicalOperator.name().toLowerCase(Locale.ROOT),
                 BenchmarkMetrics.DEPTH,
                 cfg.warmup(),
                 cfg.repeats(),
@@ -154,7 +164,7 @@ public class BenchmarkService {
                 System.getProperty("java.version"));
         Files.createDirectories(cfg.outputDir());
         String stamp = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss").format(java.time.LocalDateTime.now(clock));
-        Path file = cfg.outputDir().resolve("run-" + stamp + ".json");
+        Path file = cfg.outputDir().resolve("run-" + stamp + "-" + config.lexicalOperator() + ".json");
 
         Map<String, Map<String, ModeResult>> resultsByQuery = new LinkedHashMap<>();
         Map<String, Map<String, List<Double>>> latenciesByQuery = new HashMap<>();

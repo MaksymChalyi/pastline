@@ -15,6 +15,7 @@ public record BenchmarkReport(
     public record Config(
             String embeddingModel,
             int rrfK,
+            String lexicalOperator,
             int depth,
             int warmup,
             int repeats,
