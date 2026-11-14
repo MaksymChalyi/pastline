@@ -15,6 +15,7 @@ import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.ai.retry.NonTransientAiException;
 import org.springframework.ai.retry.TransientAiException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 
@@ -24,6 +25,7 @@ import org.springframework.web.client.ResourceAccessException;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(name = "pastline.ai.provider", havingValue = "ollama", matchIfMissing = true)
 public class OllamaChatAdapter implements ChatModelPort {
 
     // Підстраховка: якщо модель усе ж видала блок міркувань, він не потрапляє у відповідь

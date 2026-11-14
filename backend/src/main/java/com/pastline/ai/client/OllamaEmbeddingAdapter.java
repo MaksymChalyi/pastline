@@ -5,11 +5,13 @@ import com.pastline.ai.port.EmbeddingModelPort;
 import java.util.List;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
 
 /** Адаптер порту до Spring AI (Ollama, embeddinggemma). */
 @Component
+@ConditionalOnProperty(name = "pastline.ai.provider", havingValue = "ollama", matchIfMissing = true)
 public class OllamaEmbeddingAdapter implements EmbeddingModelPort {
 
     public static final int DIMENSIONS = 768;
