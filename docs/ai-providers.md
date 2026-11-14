@@ -70,7 +70,7 @@ ollama pull qwen3:4b-instruct
 ```
 
 - `qwen3:4b` у реєстрі Ollama — **thinking**-варіант: перед кожною відповіддю він «міркує» сотні токенів, що на CPU
-  займає хвилини. `qwen3:4b-instruct` відповідає одразу ([рішення 22](decisions.md#d22)).
+  займає хвилини. `qwen3:4b-instruct` відповідає одразу ([рішення 22](decisions.md#22-модель-відповідей-qwen34b-instruct)).
 - `OllamaChatAdapter` явно передає назву моделі в опціях запиту (інакше Spring AI бере свою модель за
   замовчуванням), `numPredict` = `pastline.ask.max-tokens`, і прибирає `<think>…</think>`, якщо він є.
 - Тайм-аут читання `spring.http.clients.read-timeout=300s`, повтори Spring AI вимкнено (`max-attempts=1`).
@@ -81,7 +81,7 @@ ollama pull qwen3:4b-instruct
 - Gemini 2.5 недоступні для нових ключів, тому модель відповідей — `gemini-3.5-flash-lite`; змінна
   `GEMINI_CHAT_MODEL` дозволяє замінити її без нової збірки.
 - Безкоштовний рівень може використовувати запити для покращення продуктів Google. Тому в онлайн-демо лише
-  синтетичні дані ([рішення 25](decisions.md#d25)).
+  синтетичні дані ([рішення 25](decisions.md#25-онлайн-демо-vercel--render--neon--gemini)).
 - Числа експерименту отримано **лише** з Ollama: онлайн-демо використовує інші моделі.
 
 ## Як додати провайдера

@@ -1,0 +1,11 @@
+{
+  "name": "pastline-thesis",
+  "private": true,
+  "description": "Генератор пояснювальної записки (docx)",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "docx": "9.8.1"
+  }
+}

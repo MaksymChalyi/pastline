@@ -2,7 +2,7 @@
 
 Онлайн-демо: **https://pastline.vercel.app** (бекенд — `https://pastline-api.onrender.com`). Вартість — $0 на
 місяць: усе на безкоштовних планах. Демо призначене для показу; числа експерименту отримано локально
-([рішення 25](decisions.md#d25)).
+([рішення 25](decisions.md#25-онлайн-демо-vercel--render--neon--gemini)).
 
 ```mermaid
 flowchart TB
