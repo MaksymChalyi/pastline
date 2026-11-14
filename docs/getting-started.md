@@ -71,7 +71,11 @@ npm run check                        # Prettier, ESLint, TypeScript, збірк�
 
 ## 6. Ручні HTTP-запити
 
-`backend/http/gate1.http` — сценарій для HTTP Client в IntelliJ IDEA.
+- **Postman:** Import → `backend/http/pastline.postman_collection.json`. Скрипт колекції перед кожним
+  POST/PUT/DELETE бере свіжий CSRF-токен; cookie сесії Postman зберігає сам. Порядок: `Health` → `Auth/Register`
+  → `Auth/Login` → решта. Для імпорту обрати файл у Body → form-data → `file`. Для онлайн-демо змінна колекції
+  `baseUrl` = `https://pastline.vercel.app` (там працює все під `/api`, але не `/actuator/health`).
+- **IntelliJ HTTP Client:** `backend/http/gate1.http`.
 
 ## Що далі
 

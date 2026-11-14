@@ -49,7 +49,8 @@
 | 503 | `EMBEDDING_UNAVAILABLE`, `AI_UNAVAILABLE` | модель ембедінгів / відповідей недоступна |
 | 500 | `INTERNAL_ERROR` | неочікувана помилка (деталі лише в лозі за `requestId`) |
 
-Ручні запити для перевірки — `backend/http/gate1.http` (IntelliJ HTTP Client).
+Ручні запити для перевірки: колекція Postman `backend/http/pastline.postman_collection.json` (CSRF ставить її
+скрипт) і `backend/http/gate1.http` (IntelliJ HTTP Client).
 
 Кожна відповідь має заголовок `X-Request-Id` (`RequestIdFilter`); той самий id потрапляє в MDC логів, тож помилку
 з UI можна знайти в лозі сервера.

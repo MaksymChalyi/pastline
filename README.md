@@ -70,7 +70,7 @@ npm run dev                              # http://localhost:5173
 | [Деплой](docs/deployment.md) | онлайн-демо на безкоштовних планах |
 | [Журнал рішень](docs/decisions.md) | що вирішили, чому і що відкинули |
 | [Експеримент](docs/experiments/README.md) | методика, дані, як відтворити, [таблиці результатів](docs/experiments/results-tables.md) |
-| [Навчання](docs/learning/) | [ключові поняття](docs/learning/concepts.md), [екскурсія кодом](docs/learning/code-tour.md), [лабораторні](docs/learning/labs.md) |
+| [Навчання](docs/learning/) | [ключові поняття](docs/learning/concepts.md), [план вивчення коду](docs/learning/code-tour.md), [лабораторні](docs/learning/labs.md) |
 | [Диплом](docs/diploma/README.md) | матеріали магістерської роботи: план, питання захисту, рисунки |
 
 ## Структура репозиторію
