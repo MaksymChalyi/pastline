@@ -3,6 +3,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { searchApi } from '../api/search'
 import type { SearchMode } from '../api/types'
+import { IconSearch } from '../layout/Icons'
 import { formatEntryDate } from '../lib/dates'
 
 const MODES: { value: SearchMode; label: string; hint: string }[] = [
@@ -55,14 +56,16 @@ export default function SearchPage() {
       <form className="search-bar" onSubmit={handleSubmit}>
         <input
           type="search"
+          aria-label="Пошуковий запит"
           placeholder="Наприклад: коли я бігав напівмарафон"
           value={draft}
           maxLength={500}
           onChange={(e) => setDraft(e.target.value)}
           autoFocus
         />
-        <button type="submit" disabled={!draft.trim()}>
-          Шукати
+        <button type="submit" disabled={!draft.trim()} aria-label="Шукати">
+          <IconSearch size={20} />
+          <span className="button-text">Шукати</span>
         </button>
       </form>
 
@@ -112,14 +115,14 @@ export default function SearchPage() {
                 <li key={hit.id}>
                   <Link to={'/entries/' + hit.id} className="entry-card">
                     <div className="entry-meta">
-                      #{hit.rank} · {formatEntryDate(hit.entryDate)}
-                      {hit.debug && (
-                        <span className="debug">
-                          lexical {hit.debug.lexicalRank ?? '—'} · semantic {hit.debug.semanticRank ?? '—'} · RRF{' '}
-                          {hit.debug.rrfScore.toFixed(4)}
-                        </span>
-                      )}
+                      <span className="rank">#{hit.rank}</span> {formatEntryDate(hit.entryDate)}
                     </div>
+                    {hit.debug && (
+                      <div className="debug">
+                        lexical {hit.debug.lexicalRank ?? '—'} · semantic {hit.debug.semanticRank ?? '—'} · RRF{' '}
+                        {hit.debug.rrfScore.toFixed(4)}
+                      </div>
+                    )}
                     {hit.title && <div className="entry-title">{hit.title}</div>}
                     <p className="entry-preview">{hit.snippet}</p>
                   </Link>

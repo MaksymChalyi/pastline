@@ -28,7 +28,7 @@ export default function ImportPage() {
     <section>
       <h1>Імпорт записів</h1>
       <div className="editor">
-        <label>
+        <label className="file-field">
           Файл JSON або Markdown (до 5 МБ, до 5000 записів)
           <input
             type="file"
@@ -49,7 +49,11 @@ export default function ImportPage() {
         </details>
 
         <div className="editor-actions">
-          <button disabled={!file || run.isPending} onClick={() => file && run.mutate({ f: file, dryRun: true })}>
+          <button
+            className="secondary"
+            disabled={!file || run.isPending}
+            onClick={() => file && run.mutate({ f: file, dryRun: true })}
+          >
             {run.isPending && run.variables?.dryRun ? 'Перевіряю…' : 'Перевірити'}
           </button>
           <button

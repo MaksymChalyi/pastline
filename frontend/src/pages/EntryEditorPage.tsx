@@ -57,7 +57,9 @@ function EntryForm({ entry }: { entry: Entry | undefined }) {
     <section>
       <div className="page-head">
         <h1>{entry ? 'Редагування запису' : 'Новий запис'}</h1>
-        <Link to="/">← До стрічки</Link>
+        <Link to="/" className="back-link">
+          ← До стрічки
+        </Link>
       </div>
       <form className="editor" onSubmit={handleSubmit}>
         <div className="editor-row">
@@ -73,6 +75,7 @@ function EntryForm({ entry }: { entry: Entry | undefined }) {
         <label>
           Текст
           <textarea
+            className="prose"
             value={content}
             maxLength={20000}
             rows={14}
@@ -80,7 +83,7 @@ function EntryForm({ entry }: { entry: Entry | undefined }) {
             required
             autoFocus={!entry}
           />
-          <small className="muted">{content.length} / 20000</small>
+          <small className="muted counter">{content.length} / 20000</small>
         </label>
 
         {error && (

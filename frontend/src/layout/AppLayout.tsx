@@ -1,9 +1,18 @@
 import { Navigate, NavLink, Outlet } from 'react-router'
 import { useLogout, useMe } from '../auth/useAuth'
+import { IconAsk, IconImport, IconJournal, IconSearch } from './Icons'
+
+const NAV = [
+  { to: '/', label: 'Записи', icon: IconJournal, end: true },
+  { to: '/search', label: 'Пошук', icon: IconSearch, end: false },
+  { to: '/ask', label: 'Запитати', icon: IconAsk, end: false },
+  { to: '/import', label: 'Імпорт', icon: IconImport, end: false },
+]
 
 /**
  * Макет для сторінок, що потребують входу. Без сесії перенаправляє на /login.
  * Outlet — місце, куди router підставляє дочірню сторінку (як layout-шаблон).
+ * Навігація одна, а показується по-різному: на широкому екрані в шапці, на телефоні — нижня панель вкладок.
  */
 export default function AppLayout() {
   const me = useMe()
@@ -19,27 +28,49 @@ export default function AppLayout() {
     return <Navigate to="/login" replace />
   }
 
+  const email = me.data.email
   return (
     <div className="app">
       <header className="topbar">
-        <span className="brand">Pastline</span>
-        <nav>
-          <NavLink to="/" end>
-            Записи
-          </NavLink>
-          <NavLink to="/search">Пошук</NavLink>
-          <NavLink to="/ask">Запитати</NavLink>
-          <NavLink to="/import">Імпорт</NavLink>
+        <NavLink to="/" className="brand">
+          Pastline
+        </NavLink>
+        <nav className="topnav" aria-label="Розділи">
+          {NAV.map(({ to, label, end }) => (
+            <NavLink key={to} to={to} end={end}>
+              {label}
+            </NavLink>
+          ))}
         </nav>
-        <span className="spacer" />
-        <span className="muted">{me.data.email}</span>
-        <button className="link" onClick={() => logout.mutate()} disabled={logout.isPending}>
-          Вийти
-        </button>
+        {/* details/summary: випадне меню без власного стану і обробників кліків */}
+        <details className="user-menu">
+          <summary aria-label={'Обліковий запис ' + email}>
+            <span className="avatar" aria-hidden="true">
+              {email.charAt(0).toUpperCase()}
+            </span>
+            <span className="user-email">{email}</span>
+          </summary>
+          <div className="user-dropdown">
+            <div className="muted small user-dropdown-email">{email}</div>
+            <button className="ghost" onClick={() => logout.mutate()} disabled={logout.isPending}>
+              Вийти
+            </button>
+          </div>
+        </details>
       </header>
+
       <main className="content">
         <Outlet />
       </main>
+
+      <nav className="tabbar" aria-label="Розділи">
+        {NAV.map(({ to, label, icon: Icon, end }) => (
+          <NavLink key={to} to={to} end={end}>
+            <Icon />
+            <span>{label}</span>
+          </NavLink>
+        ))}
+      </nav>
     </div>
   )
 }

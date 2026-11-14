@@ -28,7 +28,11 @@ export default function AuthForm({ title, submitLabel, passwordHint, pending, er
 
   return (
     <div className="auth">
-      <form className="card" onSubmit={handleSubmit}>
+      <div className="auth-brand">
+        <div className="brand-mark">Pastline</div>
+        <p className="muted">Щоденник, який пам'ятає за вас</p>
+      </div>
+      <form className="card auth-card" onSubmit={handleSubmit}>
         <h1>{title}</h1>
         <label>
           Email
@@ -65,7 +69,7 @@ export default function AuthForm({ title, submitLabel, passwordHint, pending, er
             )}
           </div>
         )}
-        <button type="submit" disabled={pending}>
+        <button type="submit" className="block" disabled={pending}>
           {pending ? 'Зачекайте…' : submitLabel}
         </button>
         <div className="muted footer">{footer}</div>

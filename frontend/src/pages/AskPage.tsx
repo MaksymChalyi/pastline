@@ -82,14 +82,14 @@ function renderAnswer(answer: string, numberByRef: Map<string, number>): ReactNo
   const parts: ReactNode[] = []
   let last = 0
   for (const match of answer.matchAll(CITATION)) {
-    parts.push(answer.slice(last, match.index))
+    // Пробіл перед [E1] прибираємо: номер джерела стоїть впритул до слова, як виноска
+    parts.push(answer.slice(last, match.index).trimEnd())
     const refs = match[1].split(',').map((r) => r.trim())
     parts.push(
       <sup key={match.index} className="cite">
-        {refs.map((ref, i) => (
-          <a key={ref} href={'#src-' + ref}>
+        {refs.map((ref) => (
+          <a key={ref} href={'#src-' + ref} aria-label={'Джерело ' + (numberByRef.get(ref) ?? '?')}>
             {numberByRef.get(ref) ?? '?'}
-            {i < refs.length - 1 ? ',' : ''}
           </a>
         ))}
       </sup>,
@@ -105,7 +105,7 @@ function Answer({ response, question }: { response: AskResponse; question: strin
     return (
       <div className="answer">
         <p className="question">{question}</p>
-        <p className="muted">{response.answer}</p>
+        <p className="no-evidence">{response.answer}</p>
         <p className="muted small">Спробуйте переформулювати питання або знайдіть записи через пошук.</p>
       </div>
     )
@@ -114,13 +114,13 @@ function Answer({ response, question }: { response: AskResponse; question: strin
   return (
     <div className="answer">
       <p className="question">{question}</p>
-      <p className="answer-text">{renderAnswer(response.answer, numberByRef)}</p>
+      <blockquote className="answer-text">{renderAnswer(response.answer, numberByRef)}</blockquote>
       <div className="muted small">
         {(response.tookMs / 1000).toFixed(1)} с
         {response.removedSentences > 0 &&
           ` · приховано речень без підтвердженого джерела: ${response.removedSentences}`}
       </div>
-      <h2>Джерела</h2>
+      <h2 className="sources-title">Джерела</h2>
       <ol className="sources">
         {response.sources.map((s) => (
           <SourceItem key={s.ref} source={s} />
@@ -133,11 +133,11 @@ function Answer({ response, question }: { response: AskResponse; question: strin
 function SourceItem({ source }: { source: AskSource }) {
   return (
     <li id={'src-' + source.ref}>
-      <Link to={'/entries/' + source.id}>
+      <Link to={'/entries/' + source.id} className="source-link">
         {formatEntryDate(source.entryDate)}
         {source.title ? ` · ${source.title}` : ''}
       </Link>
-      <p className="muted">{source.snippet}</p>
+      <p className="source-snippet">{source.snippet}</p>
     </li>
   )
 }

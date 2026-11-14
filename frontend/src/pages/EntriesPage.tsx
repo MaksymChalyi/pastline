@@ -1,5 +1,6 @@
 import { Link, useSearchParams } from 'react-router'
 import { useEntries } from '../entries/useEntries'
+import { IconPlus } from '../layout/Icons'
 import { formatEntryDate } from '../lib/dates'
 
 const PAGE_SIZE = 20
@@ -32,7 +33,8 @@ export default function EntriesPage() {
       <div className="page-head">
         <h1>Мої записи</h1>
         <Link className="button" to="/entries/new">
-          Новий запис
+          <IconPlus size={18} />
+          <span>Новий запис</span>
         </Link>
       </div>
 
@@ -50,7 +52,7 @@ export default function EntriesPage() {
             Скинути
           </button>
         )}
-        {data && <span className="muted spacer-left">Записів: {data.totalItems}</span>}
+        {data && <span className="muted filters-count">Записів: {data.totalItems}</span>}
       </div>
 
       {entries.isPending && <p className="muted">Завантаження…</p>}
@@ -82,13 +84,14 @@ export default function EntriesPage() {
 
       {data && data.totalPages > 1 && (
         <div className="pager">
-          <button disabled={page === 0} onClick={() => update({ page: String(page - 1) })}>
+          <button className="secondary" disabled={page === 0} onClick={() => update({ page: String(page - 1) })}>
             ← Новіші
           </button>
-          <span className="muted">
-            Сторінка {page + 1} з {data.totalPages}
+          <span className="muted pager-label">
+            {page + 1} / {data.totalPages}
           </span>
           <button
+            className="secondary"
             disabled={page + 1 >= data.totalPages}
             onClick={() => update({ page: String(page + 1) })}
           >
