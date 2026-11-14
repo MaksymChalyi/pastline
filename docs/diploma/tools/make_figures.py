@@ -3,7 +3,7 @@
 
 Читає найновіші звіти бенчмарку з docs/experiments/results і пише:
   docs/diploma/figures/*.png    — рисунки (300 dpi, для Word)
-  docs/diploma/project/results-tables.md — ті самі числа таблицями
+  docs/experiments/results-tables.md — ті самі числа таблицями
 
 Запуск із кореня репозиторію:  python docs/diploma/tools/make_figures.py
 Потрібно: Python 3.10+, matplotlib (pip install matplotlib).
@@ -25,7 +25,7 @@ import matplotlib.ticker  # noqa: E402
 ROOT = Path(__file__).resolve().parents[3]
 RESULTS = ROOT / "docs" / "experiments" / "results"
 OUT_FIG = ROOT / "docs" / "diploma" / "figures"
-OUT_MD = ROOT / "docs" / "diploma" / "project" / "results-tables.md"
+OUT_MD = ROOT / "docs" / "experiments" / "results-tables.md"
 
 # Колір закріплений за режимом і однаковий на всіх рисунках (перші три слоти перевіреної палітри)
 MODE_COLORS = {"lexical": "#2a78d6", "semantic": "#eb6834", "hybrid": "#1baf7a"}

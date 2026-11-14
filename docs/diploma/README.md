@@ -1,23 +1,29 @@
 # Матеріали диплома Pastline
 
-Усе, що стосується кваліфікаційної роботи магістра: технічна документація проєкту, рисунки, діаграми, таблиці
-результатів і (далі) текст пояснювальної записки.
+Усе, що стосується кваліфікаційної роботи магістра: план, питання захисту, рисунки й (далі) текст пояснювальної
+записки. Документація самого продукту — у [`docs/`](../) і не залежить від диплома.
 
 ## Структура
 
 | Папка / файл | Що там |
 |---|---|
-| `project/architecture.md` | архітектура: модулі, дані, безпека, ключові рішення |
-| `project/api.md` | REST API: ендпоінти, коди помилок |
-| `project/running.md` | запуск локально, тести, бенчмарк, онлайн-демо |
-| `project/experiment.md` | методика експерименту і де лежать результати |
-| `project/results-tables.md` | таблиці результатів (**генеруються**, вручну не редагувати) |
+| [`plan.md`](plan.md) | план диплома: гіпотези, календар, структура записки, прогрес |
+| [`defense-qa.md`](defense-qa.md) | короткі відповіді на очікувані питання комісії |
 | `figures/` | рисунки результатів, PNG 300 dpi (**генеруються**) |
-| `diagrams/` | діаграми: `.mmd` — джерело (Mermaid), `.png` / `.svg` — для вставки в записку |
-| `tools/make_figures.py` | генератор рисунків і таблиць |
+| `tools/make_figures.py` | генератор рисунків і таблиць `../experiments/results-tables.md` |
+| `text/` | текст записки (з'явиться) |
 | `reference/` | приклади дипломів і документи кафедри — **лише локально, не в Git** (`.gitignore`) |
 
-Що потрібно знати про сам проєкт, лежить у `PLAN.md` (план, гіпотези, журнал рішень у розділі 14).
+Що брати для записки з документації продукту:
+
+| Розділ записки | Джерело |
+|---|---|
+| 1. Аналоги, постановка задачі | `plan.md` (розділи 1, 9), [`learning/concepts.md`](../learning/concepts.md) |
+| 2. Методи і засоби, вибір стеку | [`decisions.md`](../decisions.md), [`ai-providers.md`](../ai-providers.md), [`learning/concepts.md`](../learning/concepts.md) |
+| 3. Розробка і тестування | [`architecture.md`](../architecture.md), [`database.md`](../database.md), [`features/`](../features/), [`api.md`](../api.md), [`testing.md`](../testing.md) |
+| 3. Експеримент | [`experiments/README.md`](../experiments/README.md), [`experiments/results-tables.md`](../experiments/results-tables.md), `figures/` |
+| 4. Експлуатація | [`getting-started.md`](../getting-started.md), [`deployment.md`](../deployment.md), [`configuration.md`](../configuration.md) |
+| Ілюстрації архітектури | [`../diagrams/`](../diagrams/) |
 
 ## Рисунки результатів
 
@@ -40,7 +46,7 @@ python docs/diploma/tools/make_figures.py
 | `fig-search-latency.png` | затримка p50 / p95 за режимами (логарифмічна шкала) |
 | `fig-ask-outcomes.png` | результати Ask Pastline: відповіді, відмови, вигадані посилання |
 
-## Діаграми
+## Діаграми (`docs/diagrams/`)
 
 | Файл | Що показує |
 |---|---|
@@ -55,7 +61,7 @@ python docs/diploma/tools/make_figures.py
 зміни: вставити вміст `.mmd` на https://mermaid.live і експортувати PNG, або
 
 ```
-npx -y @mermaid-js/mermaid-cli -i docs/diploma/diagrams/er.mmd -o docs/diploma/diagrams/er.png -s 3
+npx -y @mermaid-js/mermaid-cli -i docs/diagrams/er.mmd -o docs/diagrams/er.png -s 3
 ```
 
 ## Вимоги кафедри (з методички)
