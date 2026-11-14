@@ -1,0 +1,127 @@
+[
+  {
+    "target": "T003",
+    "lang": "uk",
+    "text": "збій завантаження платежів у бойовому середовищі"
+  },
+  {
+    "target": "T007",
+    "lang": "uk",
+    "text": "оновлення схеми сховища з перевірками"
+  },
+  {
+    "target": "T010",
+    "lang": "uk",
+    "text": "керівник похвалив за робочий цикл"
+  },
+  {
+    "target": "T024",
+    "lang": "uk",
+    "text": "план витрат на прийдешній період"
+  },
+  {
+    "target": "T026",
+    "lang": "uk",
+    "text": "бонус розклав по фінансових планах"
+  },
+  {
+    "target": "T036",
+    "lang": "uk",
+    "text": "лабораторне обстеження ще без висновку"
+  },
+  {
+    "target": "T038",
+    "lang": "uk",
+    "text": "змінив звички щодо напоїв"
+  },
+  {
+    "target": "T042",
+    "lang": "uk",
+    "text": "медик рекомендував обмежити гаджети ввечері"
+  },
+  {
+    "target": "T050",
+    "lang": "uk",
+    "text": "гостювали в рідних дивилися город"
+  },
+  {
+    "target": "T056",
+    "lang": "uk",
+    "text": "малюк навчився ходити самостійно"
+  },
+  {
+    "target": "T057",
+    "lang": "uk",
+    "text": "гостинці від матері домашні солодощі"
+  },
+  {
+    "target": "T068",
+    "lang": "uk",
+    "text": "залізнична затримка на кілька годин"
+  },
+  {
+    "target": "T070",
+    "lang": "uk",
+    "text": "дебютний авіарейс в іншу країну без компанії"
+  },
+  {
+    "target": "T073",
+    "lang": "uk",
+    "text": "планував пересування країнами на сім днів"
+  },
+  {
+    "target": "T084",
+    "lang": "uk",
+    "text": "підготовка до іспиту задачі на вершини"
+  },
+  {
+    "target": "T090",
+    "lang": "uk",
+    "text": "багатопотокове виконання в джаві"
+  },
+  {
+    "target": "T099",
+    "lang": "uk",
+    "text": "не пішов у зал через виснаження"
+  },
+  {
+    "target": "T102",
+    "lang": "uk",
+    "text": "ранкова гнучкість щоденна коротка зарядка"
+  },
+  {
+    "target": "T113",
+    "lang": "uk",
+    "text": "велике наведення ладу вдома"
+  },
+  {
+    "target": "T118",
+    "lang": "uk",
+    "text": "змінив розташування обстановки стало вільніше"
+  },
+  {
+    "target": "T003",
+    "lang": "en",
+    "text": "production payment loading failure investigation"
+  },
+  {
+    "target": "T007",
+    "lang": "en",
+    "text": "schema upgrade with automated checks"
+  },
+  {
+    "target": "T010",
+    "lang": "en",
+    "text": "team lead praised my recent work"
+  },
+  {
+    "target": "T024",
+    "lang": "en",
+    "text": "planned expenses for the coming period"
+  },
+  {
+    "target": "T026",
+    "lang": "en",
+    "text": "bonus allocated across financial goals"
+  }
+]

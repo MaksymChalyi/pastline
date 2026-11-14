@@ -1,0 +1,82 @@
+[
+  {
+    "type": "paraphrase",
+    "lang": "uk",
+    "text": "чому на проді не вантажились транзакції",
+    "targets": [
+      "T003"
+    ]
+  },
+  {
+    "type": "wordform",
+    "lang": "uk",
+    "text": "купував ОВДП",
+    "targets": [
+      "T018"
+    ]
+  },
+  {
+    "type": "crosslingual",
+    "lang": "en",
+    "text": "my brokerage index fund purchase",
+    "targets": [
+      "T020"
+    ]
+  },
+  {
+    "type": "paraphrase",
+    "lang": "uk",
+    "text": "чому спина ниє після ноутбука",
+    "targets": [
+      "T039"
+    ]
+  },
+  {
+    "type": "paraphrase",
+    "lang": "uk",
+    "text": "новорічні домовленості з батьками",
+    "targets": [
+      "T058"
+    ]
+  },
+  {
+    "type": "crosslingual",
+    "lang": "en",
+    "text": "seaside accommodation booking for late August",
+    "targets": [
+      "T069"
+    ]
+  },
+  {
+    "type": "paraphrase",
+    "lang": "uk",
+    "text": "коли засидівся з магістерською допізна",
+    "targets": [
+      "T081"
+    ]
+  },
+  {
+    "type": "crosslingual",
+    "lang": "en",
+    "text": "learning Java thread concurrency",
+    "targets": [
+      "T090"
+    ]
+  },
+  {
+    "type": "exact",
+    "lang": "uk",
+    "text": "проплив кілометр",
+    "targets": [
+      "T104"
+    ]
+  },
+  {
+    "type": "paraphrase",
+    "lang": "uk",
+    "text": "працював від акумулятора під час відключення",
+    "targets": [
+      "T116"
+    ]
+  }
+]
